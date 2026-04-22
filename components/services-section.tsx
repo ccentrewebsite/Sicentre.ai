@@ -53,20 +53,24 @@ const C_VIOLET = "rgba(167,139,250,0.9)";
 const C_BLUE   = "rgba(147,197,253,0.9)";
 
 function Stat({ value, color, size = "clamp(3.8rem,7.5vw,6rem)" }: { value: string; color: string; size?: string }) {
+  const base = {
+    fontFamily: "'AUTOMATA-DISPLAY', sans-serif",
+    fontWeight: 700,
+    letterSpacing: "-0.02em",
+    userSelect: "none" as const,
+    lineHeight: 1,
+  };
   return (
-    <span style={{
-      fontFamily: "'AUTOMATA-DISPLAY', sans-serif",
-      fontSize: size,
-      fontWeight: 700,
-      color: "transparent",
-      WebkitTextStroke: `2px ${color}`,
-      textShadow: `0 0 36px ${color}, 0 0 70px ${color}`,
-      letterSpacing: "-0.02em",
-      userSelect: "none",
-      lineHeight: 1,
-    }}>
-      {value}
-    </span>
+    <>
+      {/* Mobile — solid fill for legibility */}
+      <span className="md:hidden" style={{ ...base, fontSize: "clamp(3rem,14vw,4.2rem)", color, textShadow: `0 0 24px ${color}` }}>
+        {value}
+      </span>
+      {/* Desktop — outlined glow effect */}
+      <span className="hidden md:inline" style={{ ...base, fontSize: size, color: "transparent", WebkitTextStroke: `2px ${color}`, textShadow: `0 0 36px ${color}, 0 0 70px ${color}` }}>
+        {value}
+      </span>
+    </>
   );
 }
 
@@ -196,7 +200,7 @@ function ServiceCard({ item, visible, index }: { item: ServiceItem; visible: boo
       onMouseLeave={() => setHovered(false)}
     >
       {/* Visual area */}
-      <div className="relative w-full" style={{ height: "260px" }}>
+      <div className="relative w-full h-44 md:h-[260px]">
         {Visual}
       </div>
 
