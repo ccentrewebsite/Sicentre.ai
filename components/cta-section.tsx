@@ -1,291 +1,249 @@
 "use client";
 
-import { useState, FormEvent } from "react";
-import { Send, CheckCircle } from "lucide-react";
+import { useState } from "react";
+import { Check, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-interface FormData {
-  nombre: string;
-  empresa: string;
-  servicio: string;
-  contacto: string;
-}
+// ── Qualification questions ────────────────────────────────────────────────────
 
-const servicios = [
-  { value: "", label: "Servicio de interés" },
-  { value: "website", label: "Website" },
-  { value: "llamadas-ia", label: "Llamadas IA" },
-  { value: "studio", label: "Studio" },
-  { value: "ultra-360", label: "ULTRA 360" },
+const STEPS = [
+  {
+    id: "servicio",
+    question: "¿Qué servicio le interesa?",
+    options: [
+      { value: "web",     label: "Diseño Web",    icon: "🌐" },
+      { value: "voz",     label: "Agente Voz IA", icon: "🤖" },
+      { value: "studio",  label: "Studio Visual", icon: "🎬" },
+      { value: "todo",    label: "Todo junto",    icon: "⚡" },
+    ],
+  },
+  {
+    id: "empresa",
+    question: "¿Cómo describe su empresa?",
+    options: [
+      { value: "freelance",  label: "Emprendedor / Freelance", icon: "👤" },
+      { value: "pyme",       label: "Pequeña empresa",         icon: "🏢" },
+      { value: "mediana",    label: "Empresa mediana",         icon: "🏛️" },
+      { value: "grande",     label: "Empresa grande",          icon: "🌍" },
+    ],
+  },
+  {
+    id: "presupuesto",
+    question: "¿Cuál es su presupuesto aproximado?",
+    options: [
+      { value: "less500",    label: "Menos de $500",    icon: "💡" },
+      { value: "500_2000",   label: "$500 – $2.000",    icon: "📈" },
+      { value: "2000_5000",  label: "$2.000 – $5.000",  icon: "🚀" },
+      { value: "more5000",   label: "Más de $5.000",    icon: "💎" },
+    ],
+  },
+  {
+    id: "timing",
+    question: "¿Cuándo quiere comenzar?",
+    options: [
+      { value: "now",        label: "Ya mismo",          icon: "⚡" },
+      { value: "1month",     label: "En menos de 1 mes", icon: "📅" },
+      { value: "3months",    label: "En 2–3 meses",      icon: "🗓️" },
+      { value: "exploring",  label: "Solo explorando",   icon: "👀" },
+    ],
+  },
+];
+
+const inputStyle = {
+  background: "rgba(255,255,255,0.05)",
+  border: "1px solid rgba(255,255,255,0.10)",
+};
+
+const benefits = [
+  "Respuesta en menos de 24 horas",
+  "Sin compromiso ni costo",
+  "Consejo gratuito y personalizado",
+  "Equipo basado en Asunción, Paraguay",
 ];
 
 export default function CTASection() {
-  const [form, setForm] = useState<FormData>({
-    nombre: "",
-    empresa: "",
-    servicio: "",
-    contacto: "",
-  });
-  const [submitted, setSubmitted] = useState(false);
+  const [step, setStep] = useState(0);                  // 0–3 = questions, 4 = contact form, 5 = success
+  const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [selected, setSelected] = useState<string>("");
+  const [contact, setContact] = useState({ nombre: "", whatsapp: "", email: "" });
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
+  const currentQ = STEPS[step];
+  const progress = Math.round(((step) / STEPS.length) * 100);
 
-  const handleSubmit = async (e: FormEvent) => {
+  function handleSelect(value: string) {
+    setSelected(value);
+  }
+
+  function handleNext() {
+    if (!selected) return;
+    const newAnswers = { ...answers, [currentQ.id]: selected };
+    setAnswers(newAnswers);
+    setSelected("");
+    setStep((s) => s + 1);
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1200));
+    await new Promise((r) => setTimeout(r, 1200));
     setLoading(false);
-    setSubmitted(true);
-  };
+    setStep(5);
+  }
 
   return (
-    <section
-      id="contacto"
-      className="relative py-32 overflow-hidden aurora-bg"
-      style={{ background: "#0D0B18" }}
-    >
-      {/* Aurora blobs */}
-      <div
-        className="absolute pointer-events-none"
-        style={{
-          width: "700px",
-          height: "700px",
-          background:
-            "radial-gradient(circle, rgba(124,58,237,0.25) 0%, transparent 70%)",
-          top: "-200px",
-          left: "-200px",
-          borderRadius: "50%",
-          filter: "blur(80px)",
-        }}
-      />
-      <div
-        className="absolute pointer-events-none"
-        style={{
-          width: "500px",
-          height: "500px",
-          background:
-            "radial-gradient(circle, rgba(234,88,12,0.18) 0%, transparent 70%)",
-          bottom: "-150px",
-          right: "-100px",
-          borderRadius: "50%",
-          filter: "blur(80px)",
-        }}
-      />
-      <div
-        className="absolute pointer-events-none"
-        style={{
-          width: "400px",
-          height: "400px",
-          background:
-            "radial-gradient(circle, rgba(124,58,237,0.12) 0%, transparent 70%)",
-          top: "50%",
-          right: "20%",
-          borderRadius: "50%",
-          filter: "blur(60px)",
-          transform: "translateY(-50%)",
-        }}
-      />
+    <section id="contacto" className="relative py-24 md:py-32 overflow-hidden">
+      {/* Background glows */}
+      <div className="absolute pointer-events-none" style={{ width: "700px", height: "700px", background: "radial-gradient(circle, rgba(124,58,237,0.18) 0%, transparent 70%)", top: "-200px", left: "-200px", borderRadius: "50%", filter: "blur(80px)" }} />
+      <div className="absolute pointer-events-none" style={{ width: "500px", height: "500px", background: "radial-gradient(circle, rgba(234,88,12,0.12) 0%, transparent 70%)", bottom: "-150px", right: "-100px", borderRadius: "50%", filter: "blur(80px)" }} />
 
-      <div className="relative z-10 max-w-4xl mx-auto px-6 md:px-10 text-center">
-        {/* Headline */}
-        <p className="text-xs font-semibold tracking-[0.2em] uppercase text-violet-400/70 mb-5">
-          Contacto
-        </p>
-        <h2
-          className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-5 leading-[0.95]"
-          style={{ fontFamily: "'Clash Display', sans-serif" }}
-        >
-          ¿Listo para el{" "}
-          <span className="bg-gradient-to-r from-violet-400 to-orange-400 bg-clip-text text-transparent">
-            siguiente nivel?
-          </span>
-        </h2>
-        <p className="text-white/60 text-lg mb-12 max-w-xl mx-auto">
-          Escribinos y te respondemos en menos de 24 horas.
-        </p>
+      <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10">
+        <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-        {/* Form card */}
-        <div
-          className="max-w-xl mx-auto rounded-[24px] p-8 md:p-10"
-          style={{
-            backdropFilter: "blur(24px)",
-            WebkitBackdropFilter: "blur(24px)",
-            background: "rgba(124, 58, 237, 0.07)",
-            border: "1px solid rgba(124, 58, 237, 0.2)",
-          }}
-        >
-          {submitted ? (
-            <div className="flex flex-col items-center gap-4 py-8">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-r from-violet-600 to-orange-500 flex items-center justify-center">
-                <CheckCircle size={32} className="text-white" />
-              </div>
-              <h3
-                className="text-2xl font-bold text-white"
-                style={{ fontFamily: "'Clash Display', sans-serif" }}
-              >
-                ¡Mensaje enviado!
-              </h3>
-              <p className="text-white/60 text-center">
-                Te contactamos en menos de 24 horas. Mientras tanto, podés
-                escribirnos directo por WhatsApp.
-              </p>
-              <a
-                href="https://wa.me/595981000000"
-                className="mt-2 inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-white text-sm transition-all duration-200 hover:-translate-y-0.5"
-                style={{
-                  background: "linear-gradient(135deg, #7C3AED, #EA580C)",
-                }}
-              >
-                Ir a WhatsApp →
-              </a>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-              {/* Nombre */}
-              <div>
-                <input
-                  type="text"
-                  name="nombre"
-                  value={form.nombre}
-                  onChange={handleChange}
-                  placeholder="Nombre"
-                  required
-                  className={cn(
-                    "w-full p-4 rounded-xl text-white text-sm placeholder:text-white/40 outline-none transition-all duration-200",
-                    "focus:border-violet-500/60"
-                  )}
-                  style={{
-                    background: "rgba(255,255,255,0.05)",
-                    border: "1px solid rgba(124, 58, 237, 0.2)",
-                  }}
-                />
-              </div>
+          {/* ── Left column ── */}
+          <div>
+            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-violet-400/70 mb-5">Contacto</p>
+            <h2 className="font-clash leading-[1.0] mb-6" style={{ fontSize: "clamp(2.8rem, 5vw, 4.5rem)" }}>
+              <span className="block text-white" style={{ textShadow: "0 0 40px rgba(255,255,255,0.25), 0 0 80px rgba(255,255,255,0.10)" }}>
+                Hablemos.
+              </span>
+            </h2>
+            <p className="text-white/55 text-lg leading-relaxed mb-10">
+              Cuéntenos su proyecto y le responderemos en menos de 24 horas con ideas concretas para su negocio, sin costo y sin compromiso.
+            </p>
+            <ul className="flex flex-col gap-4">
+              {benefits.map((b) => (
+                <li key={b} className="flex items-center gap-3">
+                  <div className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center" style={{ background: "rgba(124,58,237,0.25)", border: "1px solid rgba(124,58,237,0.5)" }}>
+                    <Check size={12} className="text-violet-400" strokeWidth={3} />
+                  </div>
+                  <span className="text-white/70 text-sm">{b}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-              {/* Empresa */}
-              <div>
-                <input
-                  type="text"
-                  name="empresa"
-                  value={form.empresa}
-                  onChange={handleChange}
-                  placeholder="Empresa"
-                  className={cn(
-                    "w-full p-4 rounded-xl text-white text-sm placeholder:text-white/40 outline-none transition-all duration-200",
-                    "focus:border-violet-500/60"
-                  )}
-                  style={{
-                    background: "rgba(255,255,255,0.05)",
-                    border: "1px solid rgba(124, 58, 237, 0.2)",
-                  }}
-                />
-              </div>
+          {/* ── Right column — stepper ── */}
+          <div>
+            <div className="rounded-2xl p-7 md:p-8" style={{ backdropFilter: "blur(32px)", WebkitBackdropFilter: "blur(32px)", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.09)", boxShadow: "0 8px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.07)" }}>
 
-              {/* Servicio */}
-              <div>
-                <select
-                  name="servicio"
-                  value={form.servicio}
-                  onChange={handleChange}
-                  required
-                  className={cn(
-                    "w-full p-4 rounded-xl text-sm outline-none transition-all duration-200 appearance-none cursor-pointer",
-                    form.servicio ? "text-white" : "text-white/40"
-                  )}
-                  style={{
-                    background: "rgba(255,255,255,0.05)",
-                    border: "1px solid rgba(124, 58, 237, 0.2)",
-                    color: form.servicio
-                      ? "rgba(255,255,255,1)"
-                      : "rgba(255,255,255,0.4)",
-                  }}
-                >
-                  {servicios.map((s) => (
-                    <option
-                      key={s.value}
-                      value={s.value}
-                      style={{ background: "#1a1040", color: "white" }}
-                      disabled={s.value === ""}
-                    >
-                      {s.label}
-                    </option>
+              {/* ── Success ── */}
+              {step === 5 ? (
+                <div className="flex flex-col items-center gap-4 py-8 text-center">
+                  <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ background: "linear-gradient(135deg, #7C3AED, #EA580C)" }}>
+                    <Check size={32} className="text-white" strokeWidth={2.5} />
+                  </div>
+                  <h3 className="font-clash text-2xl font-bold text-white">¡Mensaje enviado!</h3>
+                  <p className="text-white/60 text-sm">Le contactamos en menos de 24 horas. También puede escribirnos por WhatsApp.</p>
+                  <a href="https://wa.me/595981000000" className="mt-2 inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-white text-sm transition-all hover:-translate-y-0.5" style={{ background: "linear-gradient(135deg, #7C3AED, #EA580C)" }}>
+                    Ir a WhatsApp →
+                  </a>
+                </div>
+
+              /* ── Contact form (after qualification) ── */
+              ) : step === 4 ? (
+                <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                  <div className="mb-1">
+                    <p className="text-xs font-semibold tracking-[0.15em] uppercase text-violet-400/70 mb-1">Último paso</p>
+                    <h3 className="font-clash text-xl text-white">¿Cómo le contactamos?</h3>
+                  </div>
+                  {[
+                    { name: "nombre",   label: "Nombre *",   type: "text",  placeholder: "Juan Pérez"           },
+                    { name: "whatsapp", label: "WhatsApp *", type: "tel",   placeholder: "+595 981 000 000"      },
+                    { name: "email",    label: "Email *",    type: "email", placeholder: "juan@empresa.com"      },
+                  ].map((f) => (
+                    <div key={f.name} className="flex flex-col gap-1.5">
+                      <label className="text-xs text-white/40 font-medium">{f.label}</label>
+                      <input
+                        type={f.type}
+                        required
+                        placeholder={f.placeholder}
+                        value={contact[f.name as keyof typeof contact]}
+                        onChange={(e) => setContact((p) => ({ ...p, [f.name]: e.target.value }))}
+                        className="w-full px-4 py-3 rounded-xl text-white text-sm placeholder:text-white/25 outline-none transition-all focus:border-violet-500/50"
+                        style={inputStyle}
+                      />
+                    </div>
                   ))}
-                </select>
-              </div>
 
-              {/* WhatsApp o Email */}
-              <div>
-                <input
-                  type="text"
-                  name="contacto"
-                  value={form.contacto}
-                  onChange={handleChange}
-                  placeholder="WhatsApp o Email"
-                  required
-                  className={cn(
-                    "w-full p-4 rounded-xl text-white text-sm placeholder:text-white/40 outline-none transition-all duration-200"
-                  )}
-                  style={{
-                    background: "rgba(255,255,255,0.05)",
-                    border: "1px solid rgba(124, 58, 237, 0.2)",
-                  }}
-                />
-              </div>
+                  {/* Summary pills */}
+                  <div className="flex flex-wrap gap-2 pt-1">
+                    {Object.entries(answers).map(([key, val]) => {
+                      const q = STEPS.find((s) => s.id === key);
+                      const opt = q?.options.find((o) => o.value === val);
+                      return opt ? (
+                        <span key={key} className="text-xs px-3 py-1 rounded-full" style={{ background: "rgba(124,58,237,0.2)", border: "1px solid rgba(124,58,237,0.35)", color: "rgba(167,139,250,0.9)" }}>
+                          {opt.icon} {opt.label}
+                        </span>
+                      ) : null;
+                    })}
+                  </div>
 
-              {/* Submit */}
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full flex items-center justify-center gap-2 py-4 px-8 rounded-full text-white font-bold text-base transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-violet-600/30 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:translate-y-0 mt-2"
-                style={{
-                  background: "linear-gradient(135deg, #7C3AED, #EA580C)",
-                }}
-              >
-                {loading ? (
-                  <>
-                    <svg
-                      className="animate-spin w-4 h-4"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                    >
-                      <circle
-                        className="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        strokeWidth="4"
-                      />
-                      <path
-                        className="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-                      />
-                    </svg>
-                    Enviando...
-                  </>
-                ) : (
-                  <>
-                    Enviar mensaje
-                    <Send size={16} />
-                  </>
-                )}
-              </button>
-            </form>
-          )}
+                  <button type="submit" disabled={loading} className="w-full flex items-center justify-center gap-2 py-3.5 rounded-full text-white font-semibold text-sm transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-violet-600/30 disabled:opacity-70 mt-1" style={{ background: "linear-gradient(135deg, #7C3AED, #EA580C)" }}>
+                    {loading ? (
+                      <><svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" /></svg>Enviando...</>
+                    ) : "Enviar consulta →"}
+                  </button>
+                </form>
+
+              /* ── Qualification questions ── */
+              ) : (
+                <div className="flex flex-col gap-6">
+                  {/* Progress bar */}
+                  <div className="flex flex-col gap-2">
+                    <div className="flex justify-between items-center">
+                      <span className="text-xs text-white/35">{step + 1} / {STEPS.length}</span>
+                      <span className="text-xs text-white/35">{progress}%</span>
+                    </div>
+                    <div className="h-1 rounded-full" style={{ background: "rgba(255,255,255,0.08)" }}>
+                      <div className="h-1 rounded-full transition-all duration-500" style={{ width: `${progress}%`, background: "linear-gradient(90deg, #7C3AED, #EA580C)" }} />
+                    </div>
+                  </div>
+
+                  {/* Question */}
+                  <h3 className="font-clash text-lg md:text-xl text-white leading-snug">{currentQ.question}</h3>
+
+                  {/* Options */}
+                  <div className="grid grid-cols-2 gap-3">
+                    {currentQ.options.map((opt) => (
+                      <button
+                        key={opt.value}
+                        type="button"
+                        onClick={() => handleSelect(opt.value)}
+                        className={cn(
+                          "flex flex-col items-start gap-1.5 px-4 py-3.5 rounded-xl text-left transition-all duration-200",
+                          selected === opt.value
+                            ? "border-violet-500/70 scale-[1.02]"
+                            : "border-white/10 hover:border-violet-400/40 hover:scale-[1.01]"
+                        )}
+                        style={{
+                          background: selected === opt.value ? "rgba(124,58,237,0.22)" : "rgba(255,255,255,0.04)",
+                          border: `1px solid ${selected === opt.value ? "rgba(124,58,237,0.6)" : "rgba(255,255,255,0.08)"}`,
+                          boxShadow: selected === opt.value ? "0 0 20px rgba(124,58,237,0.2)" : "none",
+                        }}
+                      >
+                        <span className="text-lg">{opt.icon}</span>
+                        <span className="text-sm font-medium text-white/85 leading-tight">{opt.label}</span>
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Next button */}
+                  <button
+                    type="button"
+                    onClick={handleNext}
+                    disabled={!selected}
+                    className="w-full flex items-center justify-center gap-2 py-3.5 rounded-full text-white font-semibold text-sm transition-all hover:-translate-y-0.5 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:translate-y-0"
+                    style={{ background: selected ? "linear-gradient(135deg, #7C3AED, #EA580C)" : "rgba(255,255,255,0.08)" }}
+                  >
+                    {step === STEPS.length - 1 ? "Ver formulario de contacto" : "Siguiente"} <ChevronRight size={16} />
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+
         </div>
-
-        {/* Fine print */}
-        {!submitted && (
-          <p className="mt-6 text-white/30 text-sm">
-            Sin spam. Sin compromiso. Solo resultados.
-          </p>
-        )}
       </div>
     </section>
   );

@@ -96,7 +96,7 @@ const vozPlans = [
   {
     id: "voz-enterprise",
     name: "Voz IA Enterprise",
-    tag: "sur devis",
+    tag: "A consultar",
     priceMonthly: 0,
     priceAnnual: 0,
     oneTime: false,
@@ -161,7 +161,7 @@ const studioPlans = [
   {
     id: "studio-enterprise",
     name: "Studio Enterprise",
-    tag: "sur devis",
+    tag: "A consultar",
     priceMonthly: 0,
     priceAnnual: 0,
     oneTime: false,
@@ -268,7 +268,7 @@ function PlanCard({
       {/* Price */}
       <div className="mb-6">
         {isEnterprise ? (
-          <p className="text-2xl font-bold text-white font-clash">Sur devis</p>
+          <p className="text-2xl font-bold text-white font-clash">A consultar</p>
         ) : (
           <div className="flex items-end gap-1.5">
             <span className="text-4xl font-bold text-white font-clash">${price}</span>

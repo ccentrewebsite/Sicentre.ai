@@ -18,36 +18,23 @@ interface PricingPlan {
 
 const plans: PricingPlan[] = [
   {
-    name: "Website Starter",
-    priceMonthly: 99,
-    priceAnnual: 79,
+    name: "Sitio Web",
+    priceMonthly: 500,
+    priceAnnual: 500,
+    subtitle: "Pago único",
     features: [
-      "Hasta 5 páginas",
-      "Hosting incluido",
-      "SSL + dominio",
-      "1.000 créditos/mes",
+      "Hasta 5 páginas custom",
+      "Hosting + dominio + SSL",
+      "SEO base + WhatsApp",
+      "Soporte 30 días",
     ],
-    cta: "Empezar →",
-    href: "#contacto",
+    cta: "Ver planes →",
+    href: "/web",
   },
   {
-    name: "Website Business",
-    priceMonthly: 199,
-    priceAnnual: 139,
-    features: [
-      "Todo Starter",
-      "SEO técnico",
-      "Blog integrado",
-      "Redes sociales",
-      "3.000 créditos/mes",
-    ],
-    cta: "Empezar →",
-    href: "#contacto",
-  },
-  {
-    name: "Llamadas IA",
-    priceMonthly: 399,
-    priceAnnual: 319,
+    name: "Agentes de Voz",
+    priceMonthly: 500,
+    priceAnnual: 400,
     features: [
       "Agente vocal 24/7",
       "Calificación de leads",
@@ -55,33 +42,33 @@ const plans: PricingPlan[] = [
       "Soporte prioritario",
     ],
     cta: "Probar demo →",
-    href: "#contacto",
+    href: "/voz-ia",
   },
   {
-    name: "Studio",
-    priceMonthly: 199,
-    priceAnnual: 139,
+    name: "Motion Studio",
+    priceMonthly: 500,
+    priceAnnual: 400,
     features: [
-      "4 reels/mes",
-      "Fotografía mensual",
-      "Content para redes",
-      "Edición profesional",
+      "Contenido mensual",
+      "Fotografía profesional",
+      "Content calendar",
+      "Edición con IA",
     ],
     cta: "Ver trabajos →",
-    href: "#portfolio",
+    href: "/motion",
   },
 ];
 
 const ultraPlan: PricingPlan = {
   name: "ULTRA 360",
-  priceMonthly: 699,
-  priceAnnual: 549,
+  priceMonthly: 3000,
+  priceAnnual: 2400,
   badge: "MÁS POPULAR",
-  subtitle: "TODOS los servicios combinados",
+  subtitle: "TODOS los servicios PREMIUM combinados",
   features: [
-    "Website Business",
-    "Llamadas IA 24/7",
-    "Studio Visual completo",
+    "Sitio web completo (Tienda Online)",
+    "Voz IA 24/7 ilimitada",
+    "Motion Studio completo",
     "Soporte dedicado",
     "Estrategia mensual",
   ],
@@ -105,7 +92,7 @@ function PlanCard({
       style={{
         backdropFilter: "blur(20px)",
         WebkitBackdropFilter: "blur(20px)",
-        background: "rgba(124, 58, 237, 0.06)",
+        background: "rgba(124, 58, 237, 0.14)",
         border: "1px solid rgba(124, 58, 237, 0.2)",
       }}
       onMouseEnter={(e) => {
@@ -119,16 +106,19 @@ function PlanCard({
     >
       <h3
         className="text-lg font-bold text-white mb-1"
-        style={{ fontFamily: "'Clash Display', sans-serif" }}
+        style={{ fontFamily: "'AUTOMATA-DISPLAY', sans-serif" }}
       >
         {plan.name}
       </h3>
-      <div className="flex items-baseline gap-1 mb-6">
-        <span className="text-4xl font-bold text-white">
-          ${price}
-        </span>
-        <span className="text-white/50 text-sm">/mes</span>
+      <div className="flex items-baseline gap-1 mb-1">
+        <span className="text-sm text-white/40">desde</span>
+        <span className="text-4xl font-bold text-white">${price}</span>
+        <span className="text-white/50 text-sm">{plan.subtitle ? "USD" : "/mes"}</span>
       </div>
+      {plan.subtitle && (
+        <p className="text-xs text-violet-400/70 mb-5">Pago único · Sin mensualidades</p>
+      )}
+      {!plan.subtitle && <div className="mb-6" />}
       <ul className="flex flex-col gap-2.5 mb-8 flex-1">
         {plan.features.map((feature) => (
           <li key={feature} className="flex items-start gap-2.5 text-sm text-white/70">
@@ -171,12 +161,13 @@ function UltraCard({ plan, annual }: { plan: PricingPlan; annual: boolean }) {
             </div>
             <h3
               className="text-3xl md:text-4xl font-bold text-white mb-1"
-              style={{ fontFamily: "'Clash Display', sans-serif" }}
+              style={{ fontFamily: "'AUTOMATA-DISPLAY', sans-serif" }}
             >
               Plan ULTRA 360
             </h3>
             <p className="text-white/50 text-sm mb-6">{plan.subtitle}</p>
             <div className="flex items-baseline gap-1">
+              <span className="text-sm text-white/40">desde</span>
               <span className="text-5xl font-bold text-white">${price}</span>
               <span className="text-white/50">/mes</span>
               {annual && (
@@ -226,8 +217,7 @@ export default function PricingSection() {
   return (
     <section
       id="precios"
-      className="relative py-24 overflow-hidden"
-      style={{ background: "#0D0B18" }}
+      className="relative pt-24 pb-8 overflow-hidden planet-section planet-section-warm"
     >
       {/* Background accent */}
       <div
@@ -246,7 +236,7 @@ export default function PricingSection() {
           </p>
           <h2
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8"
-            style={{ fontFamily: "'Clash Display', sans-serif" }}
+            style={{ fontFamily: "'AUTOMATA-DISPLAY', sans-serif" }}
           >
             Planes diseñados{" "}
             <span className="bg-gradient-to-r from-violet-400 to-orange-400 bg-clip-text text-transparent">
@@ -295,7 +285,7 @@ export default function PricingSection() {
         </div>
 
         {/* Standard plans grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
           {plans.map((plan) => (
             <PlanCard key={plan.name} plan={plan} annual={annual} />
           ))}

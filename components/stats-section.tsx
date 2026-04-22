@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 
 interface StatItem {
   prefix?: string;
@@ -9,25 +10,33 @@ interface StatItem {
   label: string;
   isStatic?: boolean;
   staticValue?: string;
+  href: string;
 }
 
 const stats: StatItem[] = [
   {
-    target: 72,
-    suffix: "h",
-    label: "Entrega del sitio web",
+    target: 0,
+    suffix: "",
+    label: "Su agente de voz, siempre activo. Sin descansos, sin ausencias.",
+    isStatic: true,
+    staticValue: "24/7",
+    href: "/voz-ia",
   },
   {
     target: 0,
     suffix: "",
-    label: "Disponible para tus clientes",
+    label: "Personalizado. Ningún sitio igual a otro.",
     isStatic: true,
-    staticValue: "24/7",
+    staticValue: "100%",
+    href: "/web",
   },
   {
-    target: 360,
-    suffix: "°",
-    label: "Solución digital completa",
+    target: 0,
+    suffix: "",
+    label: "Creatividad sin límites. Video IA, foto IA y campañas visuales a medida.",
+    isStatic: true,
+    staticValue: "∞",
+    href: "/motion",
   },
 ];
 
@@ -67,13 +76,19 @@ function StatCard({ stat, started }: { stat: StatItem; started: boolean }) {
     <div className="flex flex-col items-center text-center px-8 py-6 group">
       <div
         className="text-7xl md:text-8xl font-bold mb-3 bg-gradient-to-r from-violet-400 to-orange-400 bg-clip-text text-transparent tabular-nums"
-        style={{ fontFamily: "'Clash Display', sans-serif" }}
+        style={{ fontFamily: "'AUTOMATA-DISPLAY', sans-serif" }}
       >
         {stat.isStatic ? stat.staticValue : `${count}${stat.suffix}`}
       </div>
-      <p className="text-white/60 text-base md:text-lg font-medium">
+      <p className="text-white/60 text-base md:text-lg font-medium mb-5">
         {stat.label}
       </p>
+      <Link
+        href={stat.href}
+        className="text-xs font-semibold text-white/50 hover:text-white/90 tracking-[0.12em] uppercase transition-colors duration-200 border-b border-white/20 hover:border-white/60 pb-0.5"
+      >
+        Saber más
+      </Link>
     </div>
   );
 }
@@ -104,8 +119,7 @@ export default function StatsSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-24 overflow-hidden"
-      style={{ background: "#0D0B18" }}
+      className="relative py-24 overflow-hidden planet-section"
     >
       {/* Violet glow */}
       <div

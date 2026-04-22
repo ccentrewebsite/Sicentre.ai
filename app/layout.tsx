@@ -1,12 +1,19 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Geist } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import { cn } from "@/lib/utils";
+import { GlobalBackground } from "@/components/ui/global-background";
+import Navbar from "@/components/navbar";
+import { LiquidGlassFilter } from "@/components/ui/liquid-glass-nav";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-sans',
+});
 
 export const metadata: Metadata = {
-  title: "Santiria | Agencia Digital 360° IA",
+  title: "Sicentre | Agencia Digital 360° IA",
   description:
     "Agencia digital 360° con inteligencia artificial. Diseño web a medida, agentes de voz IA y producción visual premium — todo desde Asunción, Paraguay para América Latina.",
   keywords: [
@@ -19,9 +26,9 @@ export const metadata: Metadata = {
     "Asunción",
     "América Latina",
   ],
-  authors: [{ name: "Santiria" }],
+  authors: [{ name: "Sicentre" }],
   openGraph: {
-    title: "Santiria | Agencia Digital 360° IA",
+    title: "Sicentre | Agencia Digital 360° IA",
     description:
       "Diseño web, automatización de llamadas con IA y producción visual premium desde Asunción para América Latina.",
     type: "website",
@@ -35,14 +42,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={cn("dark", "font-sans", geist.variable)}>
+    <html lang="es" className={cn("dark", "font-sans", jakarta.variable)}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://api.fontshare.com" />
       </head>
-      <body className="bg-[#0D0B18] text-white font-sans antialiased">
-        {children}
+      <body className="bg-transparent text-white font-sans antialiased">
+        <GlobalBackground />
+        <LiquidGlassFilter />
+        <Navbar />
+        <div style={{ position: "relative", zIndex: 1 }}>
+          {children}
+        </div>
       </body>
     </html>
   );

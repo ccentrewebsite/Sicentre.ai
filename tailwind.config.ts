@@ -38,8 +38,8 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["DM Sans", "sans-serif"],
-        clash: ["Clash Display", "sans-serif"],
+        sans: ["Plus Jakarta Sans", "var(--font-sans)", "sans-serif"],
+        clash: ["AUTOMATA-DISPLAY", "sans-serif"],
         machina: ["PP Neue Machina", "sans-serif"],
       },
       animation: {
