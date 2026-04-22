@@ -175,13 +175,13 @@ export default function NosotrosPage() {
               </span>
             </div>
 
-            <h1 className="text-6xl md:text-8xl font-bold text-white leading-[0.95] mb-6 font-clash">
+            <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold text-white leading-[0.95] mb-6 font-clash">
               Dos personas.{" "}
               <br />
               <span className="gradient-text">Una visión.</span>
             </h1>
 
-            <p className="text-lg md:text-xl text-white/60 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-base md:text-lg lg:text-xl text-white/60 max-w-2xl mx-auto leading-relaxed">
               Una agencia pequeña con pensamiento grande. Nacimos para demostrar que el talento latinoamericano puede competir — y ganar — en el mundo digital global.
             </p>
           </div>
@@ -499,7 +499,7 @@ export default function NosotrosPage() {
                 )}
                 style={{ transitionDelay: `${i * 120}ms` }}
               >
-                <p className="text-6xl font-bold gradient-text font-clash mb-2">{stat.value}</p>
+                <p className="text-5xl md:text-6xl font-bold gradient-text font-clash mb-2">{stat.value}</p>
                 <p className="text-white/50 text-sm">{stat.label}</p>
               </div>
             ))}
@@ -519,7 +519,7 @@ export default function NosotrosPage() {
           </p>
           <a
             href="/contacto"
-            className="inline-flex items-center px-10 py-4 rounded-full bg-gradient-to-r from-violet-600 to-orange-500 text-white font-semibold text-base hover:opacity-90 transition-all duration-200 shadow-xl shadow-violet-600/30 hover:-translate-y-0.5"
+            className="inline-flex items-center px-6 md:px-10 py-4 rounded-full bg-gradient-to-r from-violet-600 to-orange-500 text-white font-semibold text-base hover:opacity-90 transition-all duration-200 shadow-xl shadow-violet-600/30 hover:-translate-y-0.5"
           >
             Hablemos →
           </a>

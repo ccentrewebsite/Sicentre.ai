@@ -93,10 +93,10 @@ export default function FooterSection() {
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10">
 
           {/* Main grid */}
-          <div className="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
+          <div className="py-12 md:py-16 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-8">
 
             {/* Brand column */}
-            <div className="lg:col-span-1 flex flex-col gap-5">
+            <div className="col-span-2 md:col-span-2 lg:col-span-1 flex flex-col gap-5">
               <SicentreLogoWhite />
               <p className="text-white/40 text-sm leading-relaxed max-w-[200px]">
                 Agencia digital 360° con IA para América Latina.

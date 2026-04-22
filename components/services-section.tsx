@@ -266,7 +266,7 @@ export default function ServicesSection() {
         {/* Header */}
         <div className={cn("text-center mb-16 transition-all duration-700", visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")}>
           <h2
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white max-w-3xl mx-auto leading-tight"
+            className="text-3xl md:text-5xl lg:text-6xl font-bold text-white max-w-3xl mx-auto leading-tight"
             style={{ fontFamily: "'AUTOMATA-DISPLAY', sans-serif" }}
           >
             Todo lo que su negocio necesita,

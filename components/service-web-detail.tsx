@@ -283,7 +283,7 @@ export default function ServiceWebDetail() {
       <div className="absolute pointer-events-none" style={{ width: "400px", height: "300px", background: "radial-gradient(ellipse, rgba(234,88,12,0.07) 0%, transparent 70%)", bottom: "0", right: "0", filter: "blur(60px)" }} />
 
       {/* Futuristic cursor — background decoration */}
-      <div className="absolute pointer-events-none" style={{ left: "14%", top: "18%", opacity: 0.10, zIndex: 1, transform: "rotate(-15deg)" }}>
+      <div className="absolute pointer-events-none hidden md:block" style={{ left: "14%", top: "18%", opacity: 0.10, zIndex: 1, transform: "rotate(105deg)" }}>
         <svg width="180" height="220" viewBox="0 0 180 220" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="cursorGrad" x1="10" y1="10" x2="140" y2="180" gradientUnits="userSpaceOnUse">
@@ -354,12 +354,12 @@ export default function ServiceWebDetail() {
             Diseño Web
           </p>
           <h2
-            className="font-clash text-4xl md:text-5xl lg:text-6xl font-bold text-white max-w-3xl mx-auto leading-tight mb-5"
+            className="font-clash text-3xl md:text-5xl lg:text-6xl font-bold text-white max-w-3xl mx-auto leading-tight mb-5"
           >
             Su presencia online,{" "}
             <span className="gradient-text" style={{ filter: "drop-shadow(0 3px 10px rgba(0,0,0,0.7))" }}>sin compromisos.</span>
           </h2>
-          <p className="text-white/55 text-lg max-w-xl mx-auto">
+          <p className="text-white/55 text-base md:text-lg max-w-xl mx-auto">
             Cada sitio es único. Diseñado desde cero para su negocio, su identidad y sus clientes.
           </p>
         </div>

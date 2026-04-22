@@ -27,7 +27,7 @@ export default function MotionHero() {
 
           {/* Headline */}
           <h1
-            className="text-6xl md:text-8xl font-bold text-white leading-[0.95] mb-6"
+            className="text-4xl sm:text-6xl md:text-8xl font-bold text-white leading-[0.95] mb-6"
             style={{ fontFamily: "'AUTOMATA-DISPLAY', sans-serif" }}
           >
             Contenido que{" "}
@@ -37,7 +37,7 @@ export default function MotionHero() {
           </h1>
 
           {/* Subheadline */}
-          <p className="text-lg md:text-xl text-white/60 max-w-2xl mx-auto mb-10 leading-relaxed">
+          <p className="text-base md:text-lg lg:text-xl text-white/60 max-w-2xl mx-auto mb-10 leading-relaxed">
             Video cinematográfico, fotografía IA y content mensual para redes.
             Producción de nivel internacional desde Asunción.
           </p>

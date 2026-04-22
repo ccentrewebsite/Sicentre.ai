@@ -103,12 +103,12 @@ export default function CTASection() {
           {/* ── Left column ── */}
           <div>
             <p className="text-xs font-semibold tracking-[0.2em] uppercase text-violet-400/70 mb-5">Contacto</p>
-            <h2 className="font-clash leading-[1.0] mb-6" style={{ fontSize: "clamp(2.8rem, 5vw, 4.5rem)" }}>
+            <h2 className="font-clash leading-[1.0] mb-6" style={{ fontSize: "clamp(2.4rem, 5vw, 4.5rem)" }}>
               <span className="block text-white" style={{ textShadow: "0 0 40px rgba(255,255,255,0.25), 0 0 80px rgba(255,255,255,0.10)" }}>
                 Hablemos.
               </span>
             </h2>
-            <p className="text-white/55 text-lg leading-relaxed mb-10">
+            <p className="text-white/55 text-base md:text-lg leading-relaxed mb-10">
               Cuéntenos su proyecto y le responderemos en menos de 24 horas con ideas concretas para su negocio, sin costo y sin compromiso.
             </p>
             <ul className="flex flex-col gap-4">

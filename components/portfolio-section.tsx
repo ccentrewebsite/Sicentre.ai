@@ -217,7 +217,7 @@ export default function PortfolioSection() {
             Portfolio
           </p>
           <h2
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight"
+            className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight"
             style={{
               fontFamily: "'AUTOMATA-DISPLAY', sans-serif",
               textShadow: "0 0 60px rgba(124,58,237,0.3)",
@@ -263,8 +263,8 @@ export default function PortfolioSection() {
           {/* Cards */}
           <div
             ref={scrollRef}
-            className="flex gap-5 overflow-x-auto scroll-hide px-16 md:px-24 pb-4"
-            style={{ scrollSnapType: "x mandatory" }}
+            className="flex gap-4 md:gap-5 overflow-x-auto scroll-hide px-10 md:px-24 pb-4"
+            style={{ scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" }}
             onScroll={checkActive}
           >
             {projects.map((project, i) => (

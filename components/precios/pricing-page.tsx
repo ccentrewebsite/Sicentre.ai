@@ -601,7 +601,7 @@ export default function PricingPage() {
           <div className="text-center">
             <a
               href="/contacto"
-              className="inline-flex items-center gap-2 px-10 py-4 rounded-full bg-gradient-to-r from-violet-600 to-orange-500 text-white font-bold text-lg hover:opacity-90 transition-all duration-200 shadow-2xl shadow-violet-600/30 hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 px-6 md:px-10 py-4 rounded-full bg-gradient-to-r from-violet-600 to-orange-500 text-white font-bold text-base md:text-lg hover:opacity-90 transition-all duration-200 shadow-2xl shadow-violet-600/30 hover:-translate-y-0.5"
             >
               <Zap size={18} fill="currentColor" />
               Activar ULTRA 360 →

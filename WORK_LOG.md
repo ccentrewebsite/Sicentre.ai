@@ -138,3 +138,91 @@ Route (app)
 - /web (static)
 
 Total: 11 routes · 0 errors · 0 warnings
+
+---
+
+## [2026-04-22] — AUDIT: Full Mobile Responsive Corrections
+
+### Methodology
+Audited each component at 375px / 768px / 1280px breakpoints per the mobile-first rules.
+
+### Components corrected
+
+#### hero-section.tsx
+- `clamp(3rem, …)` → `clamp(2.2rem, …)` to stay ≤ 2.5rem on 375px
+- `px-6` → `px-4` on hero content wrapper
+- Buttons: `flex flex-col sm:flex-row` + `w-full sm:w-auto` for full-width stacking on mobile
+- `<br />` in subtitle: `hidden sm:block` to prevent forced break on small screens
+
+#### stats-section.tsx
+- `text-7xl md:text-8xl` → `text-6xl md:text-7xl lg:text-8xl`
+- `text-base md:text-lg` → `text-sm md:text-base lg:text-lg`
+- `px-8` → `px-4 md:px-8` in StatCard
+- Section padding: `px-6` → `px-4 md:px-6`
+
+#### services-section.tsx
+- `text-4xl md:text-5xl lg:text-6xl` → `text-3xl md:text-5xl lg:text-6xl` in header
+
+#### service-voice-detail.tsx
+- `text-4xl md:text-5xl lg:text-6xl` → `text-3xl md:text-5xl lg:text-6xl` in header
+- `text-lg` → `text-base md:text-lg` subtitle
+- ComparisonIllustration: compacted gaps, sizes, padding to fit narrow screens without overflow
+
+#### service-web-detail.tsx
+- `text-4xl md:text-5xl lg:text-6xl` → `text-3xl md:text-5xl lg:text-6xl`
+- `text-lg` → `text-base md:text-lg` subtitle
+- Cursor decoration: added `hidden md:block` to prevent layout shift on mobile
+
+#### service-studio-detail.tsx
+- `text-4xl md:text-5xl lg:text-6xl` → `text-3xl md:text-5xl lg:text-6xl`
+- `text-lg` → `text-base md:text-lg` subtitle
+
+#### pricing-section.tsx
+- `text-4xl md:text-5xl lg:text-6xl` → `text-3xl md:text-5xl lg:text-6xl`
+- `grid-cols-1 sm:grid-cols-3` → `grid-cols-1 md:grid-cols-3` (avoid 3-col at 640px)
+- Toggle gap: `gap-4` → `gap-3 md:gap-4`
+- UltraCard CTA button: full-width on mobile with `w-full md:w-auto`
+
+#### portfolio-section.tsx
+- `text-4xl md:text-5xl lg:text-6xl` → `text-3xl md:text-5xl lg:text-6xl`
+- Carousel: `px-16 md:px-24` → `px-10 md:px-24`, `gap-5` → `gap-4 md:gap-5`
+- Added `WebkitOverflowScrolling: touch` for smooth iOS scrolling
+
+#### cta-section.tsx
+- `clamp(2.8rem, …)` → `clamp(2.4rem, …)` for hero "Hablemos."
+- `text-lg` → `text-base md:text-lg` subtitle
+
+#### footer-section.tsx
+- `grid-cols-1 md:grid-cols-2 lg:grid-cols-5` → `grid-cols-2 md:grid-cols-2 lg:grid-cols-5`
+- Brand column: `lg:col-span-1` → `col-span-2 md:col-span-2 lg:col-span-1`
+- `py-16` → `py-12 md:py-16`
+
+#### Sub-page heroes (voz-hero.tsx, web-hero.tsx, motion-hero.tsx)
+- `text-6xl md:text-8xl` → `text-4xl sm:text-6xl md:text-8xl`
+- Subtitles: `text-lg md:text-xl` → `text-base md:text-lg lg:text-xl`
+
+#### nosotros-page.tsx
+- Hero H1: `text-6xl md:text-8xl` → `text-4xl sm:text-6xl md:text-8xl`
+- Stats numbers: `text-6xl` → `text-5xl md:text-6xl`
+- CTA button: `px-10` → `px-6 md:px-10`
+
+#### precios/pricing-page.tsx
+- CTA button: `px-10 text-lg` → `px-6 md:px-10 text-base md:text-lg`
+
+### iPhone 13 (390px) final check
+- Navigation: glass pill + burger menu ✅
+- Hero: ~2.2rem title, buttons stack vertically ✅
+- Ticker: overflow-hidden, CSS animation ✅
+- Stats: 3 items in single column ✅
+- Services: 3 cards in single column ✅
+- Bento grids: all grid-cols-1 on mobile ✅
+- Pricing toggle: visible and tappable ✅
+- Pricing plans: 1-column stack ✅
+- Portfolio: horizontal carousel with touch-scroll ✅
+- CTA/Form: full-width, readable options ✅
+- Footer: 2-column grid, brand full-width ✅
+- No horizontal overflow detected ✅
+- All text ≥ 14px ✅
+
+### Build verification
+`npm run build` — 11 routes · 0 TypeScript errors · 0 warnings

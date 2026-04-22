@@ -280,11 +280,11 @@ export default function ServiceStudioDetail() {
         {/* Header */}
         <div className={cn("text-center mb-14 transition-all duration-700", visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")}>
           <p className="text-xs font-semibold tracking-[0.2em] uppercase text-violet-400/70 mb-4">Studio Visual</p>
-          <h2 className="font-clash text-4xl md:text-5xl lg:text-6xl font-bold text-white max-w-3xl mx-auto leading-tight mb-5">
+          <h2 className="font-clash text-3xl md:text-5xl lg:text-6xl font-bold text-white max-w-3xl mx-auto leading-tight mb-5">
             Contenido que{" "}
             <span className="gradient-text" style={{ filter: "drop-shadow(0 3px 10px rgba(0,0,0,0.7))" }}>detiene el scroll.</span>
           </h2>
-          <p className="text-white/55 text-lg max-w-xl mx-auto">
+          <p className="text-white/55 text-base md:text-lg max-w-xl mx-auto">
             Imágenes y videos que no parecen generados. Parecen filmados.
           </p>
         </div>

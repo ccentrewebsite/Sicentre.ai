@@ -73,14 +73,14 @@ function StatCard({ stat, started }: { stat: StatItem; started: boolean }) {
   const count = useCountUp(stat.target, 1800, started);
 
   return (
-    <div className="flex flex-col items-center text-center px-8 py-6 group">
+    <div className="flex flex-col items-center text-center px-4 md:px-8 py-6 group">
       <div
-        className="text-7xl md:text-8xl font-bold mb-3 bg-gradient-to-r from-violet-400 to-orange-400 bg-clip-text text-transparent tabular-nums"
+        className="text-6xl md:text-7xl lg:text-8xl font-bold mb-3 bg-gradient-to-r from-violet-400 to-orange-400 bg-clip-text text-transparent tabular-nums"
         style={{ fontFamily: "'AUTOMATA-DISPLAY', sans-serif" }}
       >
         {stat.isStatic ? stat.staticValue : `${count}${stat.suffix}`}
       </div>
-      <p className="text-white/60 text-base md:text-lg font-medium mb-5">
+      <p className="text-white/60 text-sm md:text-base lg:text-lg font-medium mb-5">
         {stat.label}
       </p>
       <Link
@@ -130,7 +130,7 @@ export default function StatsSection() {
         }}
       />
 
-      <div className="relative z-10 max-w-5xl mx-auto px-6">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 md:px-6">
         {/* Dividers between stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/10">
           {stats.map((stat) => (

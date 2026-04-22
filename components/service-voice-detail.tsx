@@ -134,57 +134,57 @@ function ComparisonIllustration() {
   );
 
   return (
-    <div className="relative w-full h-full flex items-center justify-center overflow-hidden px-4 py-2">
+    <div className="relative w-full h-full flex items-center justify-center overflow-hidden px-2 py-2">
       <div className="absolute" style={{ width: "300px", height: "120px", background: "radial-gradient(ellipse, rgba(234,88,12,0.12) 0%, transparent 70%)", filter: "blur(24px)", top: "30%" }} />
 
-      <div className="w-full flex items-center justify-between gap-2">
+      <div className="w-full flex items-center justify-between gap-1">
 
         {/* Employees side */}
-        <div className="flex flex-col items-center gap-2 flex-1">
+        <div className="flex flex-col items-center gap-2 flex-1 min-w-0">
           <div className="flex flex-col gap-1">
-            <div className="flex gap-1">
+            <div className="flex gap-0.5">
               {Array.from({length:5}).map((_,i) => <PersonIcon key={i} />)}
             </div>
-            <div className="flex gap-1">
+            <div className="flex gap-0.5">
               {Array.from({length:5}).map((_,i) => <PersonIcon key={i} />)}
             </div>
           </div>
           <div className="text-center">
-            <div className="text-xs text-white/30 mb-0.5" style={{ fontSize: "10px" }}>10 empleados</div>
-            <div className="font-clash font-bold text-white/45" style={{ fontSize: "13px" }}>$4.000/mes</div>
+            <div className="text-white/30 mb-0.5" style={{ fontSize: "9px" }}>10 empleados</div>
+            <div className="font-clash font-bold text-white/45" style={{ fontSize: "12px" }}>$4.000/mes</div>
           </div>
         </div>
 
         {/* VS divider — centered vertically */}
         <div className="flex flex-col items-center gap-1 flex-shrink-0">
-          <div style={{ width: "1px", height: "28px", background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.15), transparent)" }} />
-          <span className="font-clash text-xs font-bold text-white/22 tracking-widest">VS</span>
-          <div style={{ width: "1px", height: "28px", background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.15), transparent)" }} />
+          <div style={{ width: "1px", height: "22px", background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.15), transparent)" }} />
+          <span className="font-clash font-bold text-white/22 tracking-widest" style={{ fontSize: "10px" }}>VS</span>
+          <div style={{ width: "1px", height: "22px", background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.15), transparent)" }} />
         </div>
 
         {/* AI agent side */}
-        <div className="flex flex-col items-center gap-2 flex-1">
-          <div className="flex items-center justify-center" style={{ width: "52px", height: "52px", borderRadius: "50%", background: "linear-gradient(145deg, #1f0d00, #0d0b18)", border: "1.5px solid rgba(234,88,12,0.7)", boxShadow: "0 0 28px rgba(234,88,12,0.5)" }}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(251,146,60,0.95)" strokeWidth="1.5" strokeLinecap="round">
+        <div className="flex flex-col items-center gap-2 flex-1 min-w-0">
+          <div className="flex items-center justify-center" style={{ width: "48px", height: "48px", borderRadius: "50%", background: "linear-gradient(145deg, #1f0d00, #0d0b18)", border: "1.5px solid rgba(234,88,12,0.7)", boxShadow: "0 0 28px rgba(234,88,12,0.5)" }}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(251,146,60,0.95)" strokeWidth="1.5" strokeLinecap="round">
               <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2z"/>
               <circle cx="9" cy="14" r="1" fill="rgba(251,146,60,0.9)" stroke="none"/>
               <circle cx="15" cy="14" r="1" fill="rgba(251,146,60,0.9)" stroke="none"/>
             </svg>
           </div>
           <div className="text-center">
-            <div style={{ fontSize: "10px", color: "rgba(251,146,60,0.6)", lineHeight: 1.3 }}>Agente IA<br/>Sicentre</div>
-            <div className="font-clash font-bold mt-0.5" style={{ fontSize: "13px", color: "rgba(251,146,60,0.95)", textShadow: "0 0 12px rgba(234,88,12,0.5)" }}>$1.500/mes</div>
+            <div style={{ fontSize: "9px", color: "rgba(251,146,60,0.6)", lineHeight: 1.3 }}>Agente IA<br/>Sicentre</div>
+            <div className="font-clash font-bold mt-0.5" style={{ fontSize: "12px", color: "rgba(251,146,60,0.95)", textShadow: "0 0 12px rgba(234,88,12,0.5)" }}>$1.500/mes</div>
           </div>
         </div>
 
-        {/* Arrow + savings badge — inline horizontally with visible gap */}
-        <div className="flex items-center flex-shrink-0" style={{ gap: "24px" }}>
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        {/* Arrow + savings badge */}
+        <div className="flex flex-col items-center flex-shrink-0 gap-1">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
             <path d="M5 12h14M12 5l7 7-7 7" stroke="rgba(251,146,60,0.85)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
-          <div className="rounded-full text-center" style={{ padding: "8px 16px", background: "rgba(234,88,12,0.75)", border: "1px solid rgba(251,146,60,0.5)", boxShadow: "0 0 18px rgba(234,88,12,0.45)" }}>
-            <div className="font-clash font-bold" style={{ fontSize: "20px", color: "#fff", lineHeight: 1 }}>−63%</div>
-            <div style={{ fontSize: "9px", color: "rgba(255,255,255,0.65)" }}>de costo</div>
+          <div className="rounded-full text-center" style={{ padding: "6px 10px", background: "rgba(234,88,12,0.75)", border: "1px solid rgba(251,146,60,0.5)", boxShadow: "0 0 18px rgba(234,88,12,0.45)" }}>
+            <div className="font-clash font-bold" style={{ fontSize: "16px", color: "#fff", lineHeight: 1 }}>−63%</div>
+            <div style={{ fontSize: "8px", color: "rgba(255,255,255,0.65)" }}>de costo</div>
           </div>
         </div>
 
@@ -220,6 +220,33 @@ export default function ServiceVoiceDetail() {
       <div className="absolute pointer-events-none" style={{ width: "600px", height: "400px", background: "radial-gradient(ellipse, rgba(234,88,12,0.12) 0%, transparent 70%)", top: "-60px", left: "50%", transform: "translateX(-50%)", filter: "blur(70px)" }} />
       <div className="absolute pointer-events-none" style={{ width: "400px", height: "300px", background: "radial-gradient(ellipse, rgba(124,58,237,0.08) 0%, transparent 70%)", bottom: "0", left: "0", filter: "blur(60px)" }} />
 
+      {/* Voice AI decoration — left of title */}
+      <div className="absolute pointer-events-none hidden md:block" style={{ left: "13%", top: "16%", opacity: 0.18, zIndex: 1 }}>
+        <svg width="130" height="130" viewBox="0 0 130 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+          {/* Antenna ball + stem */}
+          <line x1="50" y1="10" x2="50" y2="20" stroke="#EA580C" strokeWidth="1.6" strokeLinecap="round" />
+          <circle cx="50" cy="7" r="4" stroke="#EA580C" strokeWidth="1.5" fill="none" />
+          {/* Head — dome top, flat bottom */}
+          <path d="M 12 55 Q 12 18 50 18 Q 88 18 88 55 L 88 76 Q 88 88 76 88 L 24 88 Q 12 88 12 76 Z" stroke="#EA580C" strokeWidth="1.7" fill="none" />
+          {/* Forehead band */}
+          <line x1="12" y1="62" x2="88" y2="62" stroke="#EA580C" strokeWidth="1" opacity="0.45" />
+          {/* Eyes */}
+          <circle cx="34" cy="45" r="5.5" stroke="#EA580C" strokeWidth="1.5" fill="none" />
+          <circle cx="34" cy="45" r="2.2" fill="#EA580C" />
+          <circle cx="66" cy="45" r="5.5" stroke="#EA580C" strokeWidth="1.5" fill="none" />
+          <circle cx="66" cy="45" r="2.2" fill="#EA580C" />
+          {/* Chin / mouth grille */}
+          <rect x="28" y="68" width="44" height="12" rx="6" stroke="#EA580C" strokeWidth="1.3" fill="none" />
+          <line x1="38" y1="68" x2="38" y2="80" stroke="#EA580C" strokeWidth="0.9" opacity="0.5" />
+          <line x1="50" y1="68" x2="50" y2="80" stroke="#EA580C" strokeWidth="0.9" opacity="0.5" />
+          <line x1="62" y1="68" x2="62" y2="80" stroke="#EA580C" strokeWidth="0.9" opacity="0.5" />
+          {/* Sound waves — right */}
+          <path d="M 94 40 Q 104 53 94 66" stroke="#EA580C" strokeWidth="1.4" fill="none" strokeLinecap="round" />
+          <path d="M 103 30 Q 118 53 103 76" stroke="#EA580C" strokeWidth="1" fill="none" strokeLinecap="round" opacity="0.55" />
+          <path d="M 112 20 Q 132 53 112 86" stroke="#EA580C" strokeWidth="0.8" fill="none" strokeLinecap="round" opacity="0.28" />
+        </svg>
+      </div>
+
       <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10">
 
         {/* Header */}
@@ -227,13 +254,13 @@ export default function ServiceVoiceDetail() {
           <p className="text-xs font-semibold tracking-[0.2em] uppercase mb-4" style={{ color: "rgba(251,146,60,0.7)" }}>
             Agente de Voz IA
           </p>
-          <h2 className="font-clash text-4xl md:text-5xl lg:text-6xl font-bold text-white max-w-3xl mx-auto leading-tight mb-5">
+          <h2 className="font-clash text-3xl md:text-5xl lg:text-6xl font-bold text-white max-w-3xl mx-auto leading-tight mb-5">
             Su negocio atiende.{" "}
             <span style={{ color: "#7C3AED", textShadow: "0 3px 10px rgba(0,0,0,0.5)" }}>Siempre.</span>
             {" "}
             <span style={{ color: "#EA580C", textShadow: "0 3px 10px rgba(0,0,0,0.5)" }}>Sin excusas.</span>
           </h2>
-          <p className="text-white/55 text-lg max-w-xl mx-auto">
+          <p className="text-white/55 text-base md:text-lg max-w-xl mx-auto">
             Nunca se enferma. Nunca pide vacaciones. Nunca deja una llamada sin responder.
           </p>
         </div>

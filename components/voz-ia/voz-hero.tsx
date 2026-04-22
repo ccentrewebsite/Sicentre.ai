@@ -42,7 +42,7 @@ export default function VozHero() {
 
           {/* Headline */}
           <h1
-            className="text-6xl md:text-8xl font-bold text-white leading-[0.95] mb-6"
+            className="text-4xl sm:text-6xl md:text-8xl font-bold text-white leading-[0.95] mb-6"
             style={{ fontFamily: "'AUTOMATA-DISPLAY', sans-serif" }}
           >
             Tu negocio{" "}
@@ -52,7 +52,7 @@ export default function VozHero() {
           </h1>
 
           {/* Subheadline */}
-          <p className="text-lg md:text-xl text-white/60 max-w-2xl mx-auto mb-10 leading-relaxed">
+          <p className="text-base md:text-lg lg:text-xl text-white/60 max-w-2xl mx-auto mb-10 leading-relaxed">
             Nunca se enferma. Nunca duerme. Nunca pide vacaciones.{" "}
             Nuestro agente de voz con IA atiende cada llamada, califica{" "}
             cada lead y agenda cada turno, las 24 horas, los 7 días.{" "}

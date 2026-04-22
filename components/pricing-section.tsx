@@ -194,10 +194,10 @@ function UltraCard({ plan, annual }: { plan: PricingPlan; annual: boolean }) {
           </ul>
 
           {/* CTA */}
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 w-full md:w-auto">
             <a
               href={plan.href}
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full font-bold text-white text-base transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-violet-600/30 whitespace-nowrap"
+              className="flex items-center justify-center px-8 py-4 rounded-full font-bold text-white text-base transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-violet-600/30 whitespace-nowrap w-full md:w-auto"
               style={{
                 background: "linear-gradient(135deg, #7C3AED, #EA580C)",
               }}
@@ -235,7 +235,7 @@ export default function PricingSection() {
             Precios
           </p>
           <h2
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8"
+            className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-8"
             style={{ fontFamily: "'AUTOMATA-DISPLAY', sans-serif" }}
           >
             Planes diseñados{" "}
@@ -245,7 +245,7 @@ export default function PricingSection() {
           </h2>
 
           {/* Toggle */}
-          <div className="inline-flex items-center gap-4">
+          <div className="inline-flex items-center gap-3 md:gap-4">
             <span
               className={cn(
                 "text-sm font-medium transition-colors",
@@ -285,7 +285,7 @@ export default function PricingSection() {
         </div>
 
         {/* Standard plans grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {plans.map((plan) => (
             <PlanCard key={plan.name} plan={plan} annual={annual} />
           ))}
