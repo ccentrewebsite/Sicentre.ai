@@ -1,6 +1,11 @@
 "use client"
 
-import { MeshGradient } from "@paper-design/shaders-react"
+import dynamic from "next/dynamic"
+
+const MeshGradient = dynamic(
+  () => import("@paper-design/shaders-react").then(m => ({ default: m.MeshGradient })),
+  { ssr: false, loading: () => null }
+)
 
 export function GlobalBackground() {
   return (
