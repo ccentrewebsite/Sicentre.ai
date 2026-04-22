@@ -118,5 +118,23 @@
 - Verified all CTA links
 - npm run build — clean
 
-### Build check: OK
-### Final commit: "feat: complete all service pages, pricing, nosotros and contacto"
+### Build check: OK — 11 routes, 0 TypeScript errors
+### Final commit: "feat: task 7 — global nav/footer link verification and cleanup"
+
+---
+
+## Final build output (2026-04-22)
+
+Route (app)
+- / (static)
+- /_not-found (static)
+- /api/voz-demo (dynamic — streaming Anthropic API)
+- /casos (static — kept as legacy)
+- /contacto (static)
+- /motion (static)
+- /nosotros (static)
+- /precios (static)
+- /voz-ia (static)
+- /web (static)
+
+Total: 11 routes · 0 errors · 0 warnings
