@@ -141,21 +141,20 @@ function ComparisonIllustration() {
 
         {/* Employees side */}
         <div className="flex flex-col items-center gap-2 flex-1 min-w-0">
-          <div className="flex flex-col gap-1">
-            <div className="flex gap-0.5">
-              {Array.from({length:5}).map((_,i) => <PersonIcon key={i} />)}
-            </div>
-            <div className="flex gap-0.5">
-              {Array.from({length:5}).map((_,i) => <PersonIcon key={i} />)}
-            </div>
+          <div className="flex flex-col gap-0.5">
+            <div className="flex gap-0.5">{Array.from({length:5}).map((_,i) => <PersonIcon key={i} />)}</div>
+            <div className="flex gap-0.5">{Array.from({length:5}).map((_,i) => <PersonIcon key={i} />)}</div>
+            <div className="flex gap-0.5">{Array.from({length:5}).map((_,i) => <PersonIcon key={i} />)}</div>
+            <div className="flex gap-0.5">{Array.from({length:5}).map((_,i) => <PersonIcon key={i} />)}</div>
+            <div className="flex gap-0.5">{Array.from({length:5}).map((_,i) => <PersonIcon key={i} />)}</div>
           </div>
           <div className="text-center">
-            <div className="text-white/30 mb-0.5" style={{ fontSize: "9px" }}>10 empleados</div>
-            <div className="font-clash font-bold text-white/45" style={{ fontSize: "12px" }}>$4.000/mes</div>
+            <div className="text-white/30 mb-0.5" style={{ fontSize: "9px" }}>25 empleados</div>
+            <div className="font-clash font-bold text-white/45" style={{ fontSize: "12px" }}>$10.000/mes</div>
           </div>
         </div>
 
-        {/* VS divider — centered vertically */}
+        {/* VS divider */}
         <div className="flex flex-col items-center gap-1 flex-shrink-0">
           <div style={{ width: "1px", height: "22px", background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.15), transparent)" }} />
           <span className="font-clash font-bold text-white/22 tracking-widest" style={{ fontSize: "10px" }}>VS</span>
@@ -175,15 +174,9 @@ function ComparisonIllustration() {
             <div style={{ fontSize: "9px", color: "rgba(251,146,60,0.6)", lineHeight: 1.3 }}>Agente IA<br/>Sicentre</div>
             <div className="font-clash font-bold mt-0.5" style={{ fontSize: "12px", color: "rgba(251,146,60,0.95)", textShadow: "0 0 12px rgba(234,88,12,0.5)" }}>$1.500/mes</div>
           </div>
-        </div>
-
-        {/* Arrow + savings badge */}
-        <div className="flex flex-col items-center flex-shrink-0 gap-1">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-            <path d="M5 12h14M12 5l7 7-7 7" stroke="rgba(251,146,60,0.85)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-          <div className="rounded-full text-center" style={{ padding: "6px 10px", background: "rgba(234,88,12,0.75)", border: "1px solid rgba(251,146,60,0.5)", boxShadow: "0 0 18px rgba(234,88,12,0.45)" }}>
-            <div className="font-clash font-bold" style={{ fontSize: "16px", color: "#fff", lineHeight: 1 }}>−63%</div>
+          {/* Badge centré sous le robot */}
+          <div className="rounded-full text-center mt-1" style={{ padding: "6px 12px", background: "rgba(234,88,12,0.75)", border: "1px solid rgba(251,146,60,0.5)", boxShadow: "0 0 18px rgba(234,88,12,0.45)" }}>
+            <div className="font-clash font-bold" style={{ fontSize: "16px", color: "#fff", lineHeight: 1 }}>−85%</div>
             <div style={{ fontSize: "8px", color: "rgba(255,255,255,0.65)" }}>de costo</div>
           </div>
         </div>
