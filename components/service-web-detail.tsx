@@ -398,34 +398,45 @@ export default function ServiceWebDetail() {
             </div>
           ))}
 
-          {/* Pricing card */}
+          {/* Discover card — highlighted */}
           <div
             className={cn(
               "gradient-border flex flex-col justify-between p-7 transition-all duration-500 hover:-translate-y-1",
               visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             )}
-            style={{ transitionDelay: "560ms" }}
+            style={{
+              transitionDelay: "560ms",
+              background: "linear-gradient(135deg, rgba(124,58,237,0.28) 0%, rgba(234,88,12,0.18) 100%)",
+              boxShadow: "0 16px 60px rgba(124,58,237,0.25), 0 0 70px rgba(234,88,12,0.15), inset 0 0 40px rgba(255,255,255,0.04)",
+            }}
           >
             <div>
-              <p className="text-xs font-semibold tracking-[0.18em] uppercase text-white/40 mb-3">
-                Inversión única
-              </p>
-              <div
-                className="font-clash font-bold gradient-text mb-2"
-                style={{ fontSize: "clamp(2.8rem, 5vw, 3.8rem)", lineHeight: 1 }}
+              <p
+                className="text-xs font-semibold tracking-[0.18em] uppercase mb-4 inline-flex items-center gap-2"
+                style={{ color: "rgba(167,139,250,0.95)" }}
               >
-                Desde $500
-              </div>
-              <p className="text-white/50 text-sm leading-relaxed mt-3">
-                Sin suscripciones. Su sitio, para siempre.
+                <span
+                  className="w-1.5 h-1.5 rounded-full"
+                  style={{ background: "#A78BFA", boxShadow: "0 0 8px #A78BFA" }}
+                />
+                ¿Quiere ver más?
+              </p>
+              <h3
+                className="font-clash font-bold mb-3 text-white"
+                style={{ fontSize: "clamp(1.5rem, 2.6vw, 2rem)", lineHeight: 1.05, textShadow: "0 2px 14px rgba(0,0,0,0.4)" }}
+              >
+                Un sitio que es solo suyo. Para siempre.
+              </h3>
+              <p className="text-white/75 text-sm leading-relaxed">
+                Vea cada paso del diseño, hosting, SEO y modificaciones que le entregamos.
               </p>
             </div>
             <Link
               href="/web"
-              className="mt-6 inline-flex items-center justify-center px-6 py-3 rounded-full text-white font-semibold text-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-violet-600/25"
+              className="mt-6 inline-flex items-center justify-center px-6 py-3 rounded-full text-white font-semibold text-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-violet-600/40"
               style={{ background: "linear-gradient(135deg, #7C3AED, #EA580C)" }}
             >
-              Ver todos los planes →
+              Conocer Sitios Web →
             </Link>
           </div>
         </div>

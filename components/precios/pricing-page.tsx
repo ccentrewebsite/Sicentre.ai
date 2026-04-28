@@ -3,6 +3,71 @@
 import { useState, useRef, useEffect } from "react";
 import { Check, ChevronDown, Star, Zap, Globe, Mic, Film } from "lucide-react";
 import { cn } from "@/lib/utils";
+import PricingComparison, { type ComparisonColumn, type ComparisonRow } from "./pricing-comparison";
+
+/* ─── Comparison data ───────────────────────────────────────── */
+const webComparisonCols: ComparisonColumn[] = [
+  { name: "Vitrina" },
+  { name: "E-commerce", highlighted: true },
+];
+const webComparisonRows: ComparisonRow[] = [
+  { feature: "Diseño 100% personalizado",          values: [true, true] },
+  { feature: "Hosting + dominio + SSL",            values: [true, true] },
+  { feature: "Modificaciones por WhatsApp",        values: [true, true] },
+  { feature: "Páginas incluidas",                  values: ["Hasta 5", "Ilimitadas"] },
+  { feature: "Tienda online completa",             values: [false, true] },
+  { feature: "Productos en catálogo",              values: [false, "Ilimitados"] },
+  { feature: "Pasarela de pago",                   values: [false, true] },
+  { feature: "Gestión de stock",                   values: [false, true] },
+  { feature: "SEO básico (estructura, meta)",      values: [true, true] },
+  { feature: "SEO avanzado (schema, ficha local)", values: [false, true] },
+  { feature: "Google Analytics + Search Console",  values: [true, true] },
+  { feature: "Integración WhatsApp Business",      values: [true, true] },
+  { feature: "Soporte post-entrega",               values: ["30 días", "90 días"] },
+];
+
+const vozComparisonCols: ComparisonColumn[] = [
+  { name: "Starter" },
+  { name: "Business", highlighted: true },
+  { name: "Enterprise" },
+];
+const vozComparisonRows: ComparisonRow[] = [
+  { feature: "Configuración a medida del agente",      values: [true, true, true] },
+  { feature: "Voz natural en español rioplatense",     values: [true, true, true] },
+  { feature: "Voz clonada personalizada",              values: [false, true, "Múltiples voces"] },
+  { feature: "Llamadas mensuales",                     values: ["500", "Ilimitadas", "Ilimitadas"] },
+  { feature: "Calificación automática de leads",       values: [false, true, true] },
+  { feature: "Agenda de turnos en tiempo real",        values: [false, true, true] },
+  { feature: "Integración Google Calendar",            values: [true, true, true] },
+  { feature: "CRM automático",                         values: ["Google Sheets", "Completo", "A medida"] },
+  { feature: "Múltiples agentes",                      values: [false, false, true] },
+  { feature: "Múltiples líneas telefónicas",           values: [false, false, true] },
+  { feature: "Reportes",                               values: ["Mensual", "Semanal", "Avanzado"] },
+  { feature: "Soporte",                                values: ["WhatsApp", "Prioritario 24/7", "Dedicado"] },
+  { feature: "Onboarding",                             values: ["Estándar", "Estándar", "Dedicado"] },
+  { feature: "SLA garantizado",                        values: [false, false, true] },
+];
+
+const studioComparisonCols: ComparisonColumn[] = [
+  { name: "Starter" },
+  { name: "Business", highlighted: true },
+  { name: "Enterprise" },
+];
+const studioComparisonRows: ComparisonRow[] = [
+  { feature: "Reels mensuales",                        values: [4, 8, "Ilimitados"] },
+  { feature: "Fotos de producto / lifestyle",          values: [10, 30, "Ilimitadas"] },
+  { feature: "Caption + hashtags optimizados",         values: [true, true, true] },
+  { feature: "Calendario editorial",                   values: [false, true, true] },
+  { feature: "Estrategia de contenido mensual",        values: [false, true, true] },
+  { feature: "Color grading cinematográfico",          values: [false, true, true] },
+  { feature: "Drone 4K",                               values: [false, "A medida", "Incluido"] },
+  { feature: "Virtual staging IA",                     values: [false, "A medida", "Incluido"] },
+  { feature: "Video IA generativo (Kling, Runway, Sora)", values: [false, false, true] },
+  { feature: "Brand guidelines visual",                values: [false, false, true] },
+  { feature: "Dirección creativa dedicada",            values: [false, false, true] },
+  { feature: "Revisiones por entrega",                 values: ["1", "Ilimitadas", "Ilimitadas"] },
+  { feature: "Reportes con ROI",                       values: [false, false, true] },
+];
 
 /* ─── Plan data ─────────────────────────────────────────────── */
 const webPlans = [
@@ -479,6 +544,17 @@ export default function PricingPage() {
             />
           ))}
         </div>
+
+        {/* Comparison */}
+        <div className="mt-12 md:mt-14">
+          <PricingComparison
+            title="¿Qué incluye cada plan web?"
+            columns={webComparisonCols}
+            rows={webComparisonRows}
+            accent="#7C3AED"
+            visible={webVisible}
+          />
+        </div>
       </div>
 
       {/* ── Voz IA plans ──────────────────────────────────────── */}
@@ -503,6 +579,17 @@ export default function PricingPage() {
             />
           ))}
         </div>
+
+        {/* Comparison */}
+        <div className="mt-12 md:mt-14">
+          <PricingComparison
+            title="¿Qué incluye cada plan de Voz IA?"
+            columns={vozComparisonCols}
+            rows={vozComparisonRows}
+            accent="#EA580C"
+            visible={vozVisible}
+          />
+        </div>
       </div>
 
       {/* ── Studio plans ──────────────────────────────────────── */}
@@ -526,6 +613,17 @@ export default function PricingPage() {
               delay={i * 100}
             />
           ))}
+        </div>
+
+        {/* Comparison */}
+        <div className="mt-12 md:mt-14">
+          <PricingComparison
+            title="¿Qué incluye cada plan Studio?"
+            columns={studioComparisonCols}
+            rows={studioComparisonRows}
+            accent="#A78BFA"
+            visible={studioVisible}
+          />
         </div>
       </div>
 
