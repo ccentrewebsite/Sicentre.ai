@@ -11,7 +11,7 @@ const steps = [
     title: "Sesión de onboarding",
     duration: "30 min",
     description:
-      "Una llamada para entender su negocio, su tono de voz y los casos de uso que le importan. Nada técnico — usted nos cuenta, nosotros traducimos.",
+      "Una llamada para entender su negocio, su tono de voz y los casos de uso que le importan. Nada técnico. Usted nos cuenta, nosotros traducimos.",
     color: "violet",
   },
   {
@@ -38,7 +38,7 @@ const steps = [
     title: "Live en 48 horas",
     duration: "Día 2",
     description:
-      "Su agente atiende, califica y agenda — empezando hoy. Usted recibe el resumen de cada conversación por WhatsApp en tiempo real.",
+      "Su agente atiende, califica y agenda desde hoy. Usted recibe el resumen de cada conversación por WhatsApp en tiempo real.",
     color: "orange",
   },
 ];

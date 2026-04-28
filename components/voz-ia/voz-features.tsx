@@ -9,7 +9,7 @@ const features = [
     icon: Mic2,
     title: "Voice Agent IA",
     description:
-      "Agente disponible 24/7 que atiende, califica leads y responde consultas en español natural — con la voz, el tono y el vocabulario de su marca.",
+      "Agente disponible 24/7 que atiende, califica leads y responde consultas en español natural, con la voz, el tono y el vocabulario de su marca.",
     accent: "#EA580C",
   },
   {
@@ -30,14 +30,14 @@ const features = [
     icon: Volume2,
     title: "Voz Clonada",
     description:
-      "Clonamos la voz que usted quiera — la suya, la de su recepcionista actual, o una voz diseñada para su marca. Personalización total.",
+      "Clonamos la voz que usted quiera. La suya, la de su recepcionista actual, o una voz diseñada para su marca. Personalización total.",
     accent: "#FB923C",
   },
   {
     icon: Settings2,
     title: "100% Personalizable",
     description:
-      "Scripts, flujos de calificación, derivaciones y respuestas — todo configurado a la medida de su negocio. Cero soluciones genéricas.",
+      "Scripts, flujos de calificación, derivaciones y respuestas: todo configurado a la medida de su negocio. Cero soluciones genéricas.",
     accent: "#C084FC",
   },
   {

@@ -50,7 +50,7 @@ const sectors = [
   {
     icon: UtensilsCrossed,
     name: "Restaurantes",
-    useCase: "Reservas en tiempo real, información de menú, eventos privados y delivery. Su mesa siempre disponible — incluso en hora pico.",
+    useCase: "Reservas en tiempo real, información de menú, eventos privados y delivery. Su mesa siempre disponible, incluso en hora pico.",
     color: "rgba(253,186,116,1)",
     glow: "rgba(249,115,22,0.16)",
   },

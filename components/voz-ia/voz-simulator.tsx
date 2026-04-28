@@ -417,21 +417,21 @@ export default function VozSimulator() {
       content: (
         <div className="flex flex-col gap-2.5">
           <OptionCard
-            label="Sí — empleado exclusivo para teléfono"
+            label="Sí, empleado exclusivo para teléfono"
             sublabel="~$900/mes en salario + cargas sociales"
             icon="👤"
             selected={answers.employee === "exclusive"}
             onClick={() => next({ employee: "exclusive" })}
           />
           <OptionCard
-            label="Sí — pero también hace otras tareas"
+            label="Sí, pero también hace otras tareas"
             sublabel="~$450/mes en costo parcial estimado"
             icon="🧑‍💻"
             selected={answers.employee === "partial"}
             onClick={() => next({ employee: "partial" })}
           />
           <OptionCard
-            label="No — cada uno atiende cuando puede"
+            label="No, cada uno atiende cuando puede"
             sublabel="El costo es tiempo productivo perdido"
             icon="❌"
             selected={answers.employee === "none"}

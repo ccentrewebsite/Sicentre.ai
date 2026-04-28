@@ -19,7 +19,7 @@ const footerColumns = [
       { label: "Sitios Web", href: "/web" },
       { label: "Voz IA", href: "/voz-ia" },
       { label: "Motion & Content", href: "/motion" },
-      { label: "Plan ULTRA 360", href: "/precios" },
+      { label: "Plan ULTRA", href: "/precios" },
     ],
   },
   {

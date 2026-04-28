@@ -60,7 +60,7 @@ const plans: PricingPlan[] = [
 ];
 
 const ultraPlan: PricingPlan = {
-  name: "ULTRA 360",
+  name: "ULTRA",
   priceMonthly: 3000,
   priceAnnual: 2400,
   badge: "MÁS POPULAR",
@@ -163,7 +163,7 @@ function UltraCard({ plan, annual }: { plan: PricingPlan; annual: boolean }) {
               className="text-3xl md:text-4xl font-bold text-white mb-1"
               style={{ fontFamily: "'AUTOMATA-DISPLAY', sans-serif" }}
             >
-              Plan ULTRA 360
+              Plan ULTRA
             </h3>
             <p className="text-white/50 text-sm mb-6">{plan.subtitle}</p>
             <div className="flex items-baseline gap-1">

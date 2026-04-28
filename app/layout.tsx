@@ -15,7 +15,7 @@ const jakarta = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   title: "Sicentre | Agencia Digital 360° IA",
   description:
-    "Agencia digital 360° con inteligencia artificial. Diseño web a medida, agentes de voz IA y producción visual premium — todo desde Asunción, Paraguay para América Latina.",
+    "Agencia digital 360° con inteligencia artificial. Diseño web a medida, agentes de voz IA y producción visual premium para América Latina.",
   keywords: [
     "agencia digital",
     "inteligencia artificial",

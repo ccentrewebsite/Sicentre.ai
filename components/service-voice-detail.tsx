@@ -322,7 +322,7 @@ export default function ServiceVoiceDetail() {
                 Su agente, en marcha en 48 horas.
               </h3>
               <p className="text-white/75 text-sm leading-relaxed">
-                Vea cómo suena, qué incluye y cuánto le ahorra mes a mes — sin compromiso.
+                Vea cómo suena, qué incluye y cuánto le ahorra mes a mes, sin compromiso.
               </p>
             </div>
             <Link

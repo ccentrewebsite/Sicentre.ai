@@ -170,7 +170,7 @@ export default function MotionTools() {
                             style={{ background: cat.accent }}
                           />
                           <span className="font-semibold text-white/90">{tool.name}</span>
-                          <span className="text-white/45 text-[11px]">— {tool.tag}</span>
+                          <span className="text-white/45 text-[11px]">· {tool.tag}</span>
                         </span>
                       ))}
                     </div>

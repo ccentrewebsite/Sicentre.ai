@@ -31,7 +31,7 @@ const footerColumns = [
       { label: "Diseño Web", href: "#servicios" },
       { label: "Agente de Voz IA", href: "#llamadas" },
       { label: "Studio Visual", href: "#studio" },
-      { label: "Plan ULTRA 360", href: "#precios" },
+      { label: "Plan ULTRA", href: "#precios" },
     ],
   },
   {

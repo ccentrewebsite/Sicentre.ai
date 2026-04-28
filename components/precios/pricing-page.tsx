@@ -350,7 +350,7 @@ function PlanCard({
         "relative flex flex-col rounded-2xl p-6 transition-all duration-300",
         plan.popular
           ? "gradient-border shadow-2xl shadow-violet-600/15"
-          : "bg-white/[0.04] border border-white/30 hover:border-white/55 hover:bg-white/[0.06]",
+          : "bg-white/[0.10] border border-white/35 hover:border-white/60 hover:bg-white/[0.13]",
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
       )}
       style={{ transitionDelay: `${delay}ms` }}
@@ -526,7 +526,7 @@ const sectionTabs = [
   { id: "planes-web",    label: "Sitios Web" },
   { id: "planes-voz",    label: "Agentes de Voz" },
   { id: "planes-studio", label: "Creación Visual" },
-  { id: "planes-ultra",  label: "ULTRA 360" },
+  { id: "planes-ultra",  label: "ULTRA" },
 ];
 
 function SectionTabs() {
@@ -605,28 +605,64 @@ export default function PricingPage() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero */}
-      <div className="pt-40 pb-16 px-6 md:px-10 text-center">
-        <div className="inline-flex items-center gap-2 mb-7 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/20">
-          <Star size={12} className="text-orange-400" />
-          <span className="text-xs font-semibold text-orange-300 tracking-wide">Sin letra chica · Sin sorpresas</span>
-        </div>
-        <h1
-          className="font-bold text-white mb-5 font-clash leading-[0.92] tracking-tight"
-          style={{ fontSize: "clamp(3.4rem, 9vw, 7rem)" }}
+      {/* Hero — wrapped in a horizontal liquid-glass card to clearly
+          separate the page title from the sections below */}
+      <div className="pt-32 md:pt-36 pb-16 px-6 md:px-10">
+        <div
+          className="relative max-w-6xl mx-auto rounded-[28px] md:rounded-[36px] overflow-hidden text-center"
+          style={{
+            background: "rgba(255,255,255,0.045)",
+            border: "1px solid rgba(255,255,255,0.10)",
+            backdropFilter: "blur(28px)",
+            WebkitBackdropFilter: "blur(28px)",
+            boxShadow: "inset 0 1px 0 rgba(255,255,255,0.08), 0 18px 60px rgba(0,0,0,0.35)",
+            padding: "clamp(2.5rem, 6vw, 5rem) clamp(1.5rem, 5vw, 4rem)",
+          }}
         >
-          Planes diseñados para{" "}
-          <span className="gradient-text">crecer.</span>
-        </h1>
-        <p className="text-white/55 text-base md:text-lg max-w-xl mx-auto mb-10">
-          Desde un sitio web hasta su operación digital completa con IA. Precios claros, resultados medibles.
-        </p>
+          <div
+            className="absolute pointer-events-none"
+            style={{
+              width: "720px",
+              height: "420px",
+              background: "radial-gradient(ellipse, rgba(124,58,237,0.18) 0%, transparent 70%)",
+              top: "-160px",
+              left: "50%",
+              transform: "translateX(-50%)",
+              filter: "blur(80px)",
+            }}
+          />
+          <div
+            className="absolute pointer-events-none"
+            style={{
+              width: "520px",
+              height: "320px",
+              background: "radial-gradient(ellipse, rgba(234,88,12,0.12) 0%, transparent 70%)",
+              bottom: "-120px",
+              right: "-80px",
+              filter: "blur(70px)",
+            }}
+          />
 
-        {/* Commitments strip */}
-        <CommitmentsBar />
+          <div className="relative">
+            <p className="uppercase tracking-[0.3em] text-xs font-semibold text-white/45 mb-7">
+              Precios
+            </p>
+            <h1
+              className="font-bold text-white mb-5 font-clash leading-[0.92] tracking-tight"
+              style={{ fontSize: "clamp(3.2rem, 9vw, 7rem)" }}
+            >
+              Planes diseñados
+              <br />
+              para crecer.
+            </h1>
+            <p className="text-white/60 text-base md:text-lg max-w-xl mx-auto mb-9">
+              Desde un sitio web hasta su operación digital completa con IA. Precios claros, resultados medibles.
+            </p>
 
-        {/* Quick-jump tabs */}
-        <SectionTabs />
+            {/* Quick-jump tabs */}
+            <SectionTabs />
+          </div>
+        </div>
       </div>
 
       {/* ── Web plans ─────────────────────────────────────────── */}
@@ -690,7 +726,7 @@ export default function PricingPage() {
               </span>
             </>
           }
-          marketingHook="Su negocio atiende, siempre. Califica leads, agenda turnos y responde preguntas — las 24 horas, los 7 días."
+          marketingHook="Su negocio atiende, siempre. Califica leads, agenda turnos y responde preguntas las 24 horas, los 7 días."
         />
         <BillingToggle annual={vozAnnual} setAnnual={setVozAnnual} />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -763,7 +799,7 @@ export default function PricingPage() {
         </div>
       </div>
 
-      {/* ── ULTRA 360 ─────────────────────────────────────────── */}
+      {/* ── ULTRA ─────────────────────────────────────────── */}
       <div
         id="planes-ultra"
         ref={ultraRef}
@@ -790,7 +826,7 @@ export default function PricingPage() {
               </span>
             </div>
             <h2 className="text-5xl md:text-7xl font-bold font-clash mb-3">
-              <span className="gradient-text">ULTRA 360</span>
+              <span className="gradient-text">ULTRA</span>
             </h2>
             <p className="text-white/60 text-lg max-w-xl mx-auto">
               Web + Voz IA 24/7 + Studio mensual. La solución completa para escalar sin límites.
@@ -809,7 +845,7 @@ export default function PricingPage() {
               <span className="text-white/50 text-xl mb-3">/mes</span>
             </div>
             <p className="text-white/40 text-sm">
-              Plan anual disponible — desde $2.400/mes (ahorre $7.200/año).
+              Plan anual disponible. Desde $2.400/mes, con un ahorro de $7.200/año.
             </p>
           </div>
 
@@ -840,7 +876,7 @@ export default function PricingPage() {
               className="inline-flex items-center gap-2 px-6 md:px-10 py-4 rounded-full bg-gradient-to-r from-violet-600 to-orange-500 text-white font-bold text-base md:text-lg hover:opacity-90 transition-all duration-200 shadow-2xl shadow-violet-600/30 hover:-translate-y-0.5"
             >
               <Zap size={18} fill="currentColor" />
-              Activar ULTRA 360 →
+              Activar ULTRA →
             </a>
             <p className="text-white/30 text-xs mt-4">
               Configuración completa en 10 días · Sin sorpresas

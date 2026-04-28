@@ -139,7 +139,7 @@ export default function VozPricing() {
             </div>
           ))}
 
-          {/* ULTRA 360 / Enterprise mention */}
+          {/* ULTRA / Enterprise mention */}
           <div className="p-8 rounded-2xl bg-gradient-to-br from-violet-600/10 to-orange-500/10 border border-orange-500/20">
             <div className="flex items-center gap-2 mb-1">
               <span className="text-xs font-bold tracking-widest uppercase text-orange-400">Enterprise</span>
@@ -148,7 +148,7 @@ export default function VozPricing() {
               className="text-2xl font-bold text-white mb-3"
               style={{ fontFamily: "'AUTOMATA-DISPLAY', sans-serif" }}
             >
-              ULTRA 360
+              ULTRA
             </h3>
             <p className="text-white/50 text-sm leading-relaxed mb-6">
               Voz IA + Sitio web + Content mensual. El paquete completo para escalar su negocio. Precio sur devis.
@@ -165,7 +165,7 @@ export default function VozPricing() {
               href="/precios"
               className="block text-center w-full py-3.5 rounded-full font-semibold text-sm bg-gradient-to-r from-violet-600 to-orange-500 text-white hover:opacity-90 transition-all duration-200"
             >
-              Ver ULTRA 360 →
+              Ver ULTRA →
             </a>
           </div>
         </div>

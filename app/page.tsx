@@ -21,7 +21,7 @@ export default function Home() {
         id="servicios"
         imageSide="right"
         imageSrc="/images/service-voz.jpg.png"
-        imageAlt="Agente de voz IA Sicentre — disponible 24/7"
+        imageAlt="Agente de voz IA Sicentre, disponible 24/7"
         serviceTitle={
           <>
             Agentes de{" "}
@@ -34,7 +34,7 @@ export default function Home() {
         titleAccent="Siempre."
         titleAccentColor="#EA580C"
         hook="Un agente de voz que nunca cierra los ojos."
-        description="Atiende cada llamada, califica leads y agenda turnos — las 24 horas, los 7 días, en perfecto castellano. Configurado para hablar como su marca habla, sin formularios ni colas de espera. El primer empleado que no se enferma, no pide vacaciones y no deja a nadie esperando."
+        description="Atiende cada llamada, califica leads y agenda turnos las 24 horas, los 7 días, en perfecto castellano. Configurado para hablar como su marca habla, sin formularios ni colas de espera. El primer empleado que no se enferma, no pide vacaciones y no deja a nadie esperando."
         accentColor="#EA580C"
         accentColorSoft="rgba(234,88,12,0.18)"
       />
@@ -45,7 +45,7 @@ export default function Home() {
       <ServiceIntroBlock
         imageSide="left"
         imageSrc="/images/service-web.jpg.png"
-        imageAlt="Sitio web a medida — diseñado desde cero para su empresa"
+        imageAlt="Sitio web a medida, diseñado desde cero para su empresa"
         serviceTitle={
           <>
             Sitios Web{" "}
@@ -61,7 +61,7 @@ export default function Home() {
         titleAccent="exactamente para usted."
         titleAccentColor="#A78BFA"
         hook="Sin templates. Sin estética genérica. Sin atajos."
-        description="Diseñamos cada pieza desde cero, para reflejar quién es su empresa, qué vende y a quién atiende. Hosting, dominio, certificado SSL y modificaciones instantáneas vía WhatsApp incluidos. Su sitio queda suyo — sin suscripciones ni dependencias eternas."
+        description="Diseñamos cada pieza desde cero, para reflejar quién es su empresa, qué vende y a quién atiende. Hosting, dominio, certificado SSL y modificaciones instantáneas vía WhatsApp incluidos. Su sitio queda suyo, sin suscripciones ni dependencias eternas."
         accentColor="#7C3AED"
         accentColorSoft="rgba(124,58,237,0.18)"
       />
@@ -72,7 +72,7 @@ export default function Home() {
       <ServiceIntroBlock
         imageSide="right"
         imageSrc="/images/service-studio.jpg.png"
-        imageAlt="Creación visual surrealista — fotografía editorial y video IA"
+        imageAlt="Creación visual surrealista, fotografía editorial y video IA"
         serviceTitle={
           <>
             Creación{" "}
@@ -88,7 +88,7 @@ export default function Home() {
         titleAccent="detienen el scroll."
         titleAccentColor="#EA580C"
         hook="Producción cinematográfica, sin presupuesto de rodaje."
-        description="Fotografía editorial, video IA de nivel internacional y contenido mensual para sus redes. Cada pieza pensada para que su marca se vea exactamente como debe verse — desde la concept hasta los archivos listos para publicar. Lo imposible de filmar, nosotros lo producimos."
+        description="Fotografía editorial, video IA de nivel internacional y contenido mensual para sus redes. Cada pieza pensada para que su marca se vea exactamente como debe verse, desde la concept hasta los archivos listos para publicar. Lo imposible de filmar, nosotros lo producimos."
         accentColor="#7C3AED"
         accentColorSoft="rgba(124,58,237,0.18)"
       />
