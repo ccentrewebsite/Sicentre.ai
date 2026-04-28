@@ -101,7 +101,21 @@ export default function HeroSection() {
             Diseño web, automatización de llamadas con IA<br className="hidden sm:block" /> y producción visual premium, para América Latina.
           </p>
 
-          <div className="flex items-center justify-center w-full">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full">
+            <button
+              onClick={() =>
+                document.querySelector("#servicios")?.scrollIntoView({ behavior: "smooth" })
+              }
+              className="inline-flex items-center justify-center rounded-full px-10 py-5 text-base md:text-lg font-semibold tracking-tight text-white/85 hover:text-white whitespace-nowrap transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/10"
+              style={{
+                background: "rgba(255,255,255,0.045)",
+                border: "1px solid rgba(255,255,255,0.18)",
+                backdropFilter: "blur(20px)",
+                WebkitBackdropFilter: "blur(20px)",
+              }}
+            >
+              Ver servicios
+            </button>
             <HablemosButton />
           </div>
         </div>
