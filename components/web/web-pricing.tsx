@@ -7,7 +7,7 @@ const plans = [
   {
     name: "Plan Vitrina",
     price: 500,
-    desc: "Presencia profesional online, lista en 72h.",
+    desc: "Presencia profesional online, a medida.",
     features: [
       "Hasta 5 páginas",
       "Diseño 100% custom",

@@ -22,7 +22,7 @@ const steps = [
   {
     number: "04",
     title: "Lanzamiento",
-    description: "Su sitio live en 72h. Con hosting, dominio y SSL.",
+    description: "Su sitio live rápido. Con hosting, dominio y SSL.",
   },
 ];
 

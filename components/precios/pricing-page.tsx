@@ -197,7 +197,7 @@ const faqs = [
   },
   {
     q: "¿Cuánto tiempo tarda en verse resultados?",
-    a: "El sitio web se entrega en 72 horas. El agente de voz en 5-7 días. El contenido del mes 1 está listo en 7 días. Resultados medibles (más tráfico, más llamadas, más ventas) se ven a partir del mes 2.",
+    a: "El sitio web se entrega rápido. El agente de voz en 5-7 días. El contenido del mes 1 está listo en 7 días. Resultados medibles (más tráfico, más llamadas, más ventas) se ven a partir del mes 2.",
   },
   {
     q: "¿Puedo cancelar los servicios mensuales cuando quiera?",

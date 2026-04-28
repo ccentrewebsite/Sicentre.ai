@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 const faqs = [
   {
     q: "¿Cuánto tarda realmente?",
-    a: "72 horas desde el brief aprobado. Una vez que confirma el diseño, su sitio está live en 3 días hábiles.",
+    a: "Trabajamos rápido. Una vez que confirma el diseño, su sitio está live en pocos días hábiles.",
   },
   {
     q: "¿Puedo pedir cambios?",

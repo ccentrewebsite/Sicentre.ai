@@ -16,7 +16,7 @@ export default function WebHero() {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
             </span>
             <span className="text-xs font-semibold text-green-400 tracking-wide">
-              Entrega garantizada en 72h
+              Diseño web a medida
             </span>
           </div>
 
@@ -27,7 +27,7 @@ export default function WebHero() {
           >
             Tu sitio web,{" "}
             <span className="bg-gradient-to-r from-violet-400 via-fuchsia-300 to-orange-400 bg-clip-text text-transparent">
-              en 72 horas.
+              a tu medida.
             </span>
           </h1>
 
@@ -58,7 +58,7 @@ export default function WebHero() {
 
           {/* Mini stats */}
           <div className="flex flex-wrap items-center justify-center gap-3">
-            {["72h entrega", "100% custom", "SSL + hosting incluido"].map((stat) => (
+            {["Entrega rápida", "100% custom", "SSL + hosting incluido"].map((stat) => (
               <div
                 key={stat}
                 className="px-4 py-2 rounded-full backdrop-blur-xl bg-violet-600/[0.06] border border-violet-600/20 text-sm text-white/70"

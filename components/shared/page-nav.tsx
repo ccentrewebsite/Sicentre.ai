@@ -7,9 +7,9 @@ import { Menu, X, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const serviceLinks = [
-  { label: "Web", href: "/web", desc: "Sitios web en 72h" },
-  { label: "Voz IA", href: "/voz-ia", desc: "Agente de voz 24/7" },
-  { label: "Motion", href: "/motion", desc: "Contenido que vende" },
+  { label: "Sitios Web",       href: "/web",    desc: "Diseño web a medida" },
+  { label: "Agente de Voz IA", href: "/voz-ia", desc: "Atiende llamadas 24/7" },
+  { label: "Motion & Content", href: "/motion", desc: "Contenido que vende" },
 ];
 
 const navLinks = [
