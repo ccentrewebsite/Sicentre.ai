@@ -8,9 +8,9 @@ import { cn } from "@/lib/utils";
 
 function FilmFrameIllustration() {
   const photos = [
-    { src: "/images/butterfly-macro-blue.png",    alt: "Macro butterfly wing — iridescent blue" },
-    { src: "/images/butterfly-golden-hour.png",   alt: "Butterfly in flight — golden hour" },
-    { src: "/images/butterfly-violet-orange.png", alt: "Butterfly — violet & orange" },
+    { src: "/images/butterfly-macro-blue.png",  alt: "Macro butterfly wing — iridescent blue" },
+    { src: "/images/robot-cinematic.jpg",        alt: "Futuristic AI robot portrait" },
+    { src: "/images/real-estate-luxury.jpg",     alt: "Luxury villa at golden hour" },
   ];
   return (
     <div className="w-full h-full flex gap-1.5 px-1.5 pb-1.5 overflow-hidden">
@@ -221,6 +221,41 @@ function SurrealIllustration() {
   );
 }
 
+function CampaignPhotoGrid() {
+  return (
+    <div className="w-full h-full p-2 grid grid-cols-2 grid-rows-2 gap-1.5 overflow-hidden">
+      <div className="relative overflow-hidden rounded-lg row-span-2" style={{ border: "1px solid rgba(255,255,255,0.08)" }}>
+        <img src="/images/campaign-portrait.jpg" alt="Fashion campaign portrait" className="w-full h-full object-cover" />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(124,58,237,0.35) 0%, transparent 50%)" }} />
+      </div>
+      <div className="relative overflow-hidden rounded-lg" style={{ border: "1px solid rgba(255,255,255,0.08)" }}>
+        <img src="/images/campaign-perfume.jpg" alt="Luxury perfume product shot" className="w-full h-full object-cover" />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(234,88,12,0.3) 0%, transparent 60%)" }} />
+      </div>
+      <div className="relative overflow-hidden rounded-lg" style={{ border: "1px solid rgba(255,255,255,0.08)" }}>
+        <img src="/images/real-estate-luxury.jpg" alt="Luxury real estate" className="w-full h-full object-cover" />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(124,58,237,0.25) 0%, transparent 60%)" }} />
+      </div>
+    </div>
+  );
+}
+
+function SurrealPhotoFill() {
+  return (
+    <div className="relative w-full h-full overflow-hidden">
+      <img
+        src="/images/surreal-city.jpg"
+        alt="Impossible floating city — surreal AI scene"
+        className="w-full h-full object-cover"
+        style={{ display: "block" }}
+      />
+      {/* Gradient blend with card edges */}
+      <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(13,11,24,0.55) 0%, transparent 25%, transparent 70%, rgba(13,11,24,0.4) 100%)" }} />
+      <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to right, rgba(124,58,237,0.12) 0%, transparent 40%, transparent 60%, rgba(234,88,12,0.08) 100%)" }} />
+    </div>
+  );
+}
+
 // ── Card styles ────────────────────────────────────────────────────────────────
 
 const CARD_BG = "rgba(124,58,237,0.22)";
@@ -304,7 +339,7 @@ export default function ServiceStudioDetail() {
               <p className="text-white/50 text-sm leading-relaxed">Desde la concept hasta los archivos listos para publicar. Todo incluido, todo a medida.</p>
             </div>
             <div className="relative w-full flex-1" style={{ minHeight: "130px" }}>
-              <CampaignGridIllustration />
+              <CampaignPhotoGrid />
             </div>
           </div>
 
@@ -334,7 +369,7 @@ export default function ServiceStudioDetail() {
               <p className="text-white/50 text-sm leading-relaxed">Mundos inexistentes, física imposible, atmósferas únicas. Lo que su imaginación concibe, nosotros lo producimos.</p>
             </div>
             <div className="relative w-full flex-1" style={{ minHeight: "160px" }}>
-              <SurrealIllustration />
+              <SurrealPhotoFill />
             </div>
           </div>
 
