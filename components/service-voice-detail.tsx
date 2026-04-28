@@ -6,89 +6,107 @@ import { cn } from "@/lib/utils";
 
 // ── Illustrations ──────────────────────────────────────────────────────────────
 
-function PulseOrbitalIllustration() {
+function LiveStatusIllustration() {
   return (
-    <div className="relative w-full h-full flex items-center justify-center overflow-hidden" style={{ WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 35%)", maskImage: "linear-gradient(to bottom, transparent 0%, black 35%)" }}>
-      {/* Ambient glow */}
-      <div className="absolute" style={{ width: "260px", height: "260px", background: "radial-gradient(circle, rgba(234,88,12,0.38) 0%, rgba(124,58,237,0.12) 55%, transparent 70%)", filter: "blur(42px)" }} />
-
-      {/* Static concentric arcs */}
-      <div className="absolute rounded-full" style={{ width: "210px", height: "210px", border: "1.5px solid rgba(234,88,12,0.42)", opacity: 0.38 }} />
-      <div className="absolute rounded-full" style={{ width: "162px", height: "162px", border: "1.5px solid rgba(167,139,250,0.40)", opacity: 0.28 }} />
-      <div className="absolute rounded-full" style={{ width: "116px", height: "116px", border: "1.5px solid rgba(234,88,12,0.36)", opacity: 0.22 }} />
-
-      {/* 2 orbital dots: 90° (top) and 270° (bottom), on the 162px ring trace */}
-      <div className="absolute" style={{ width: "170px", height: "170px" }}>
-        <div className="absolute" style={{ top: "0px", left: "81px", width: "8px", height: "8px", borderRadius: "50%", background: "#FB923C", boxShadow: "0 0 10px rgba(234,88,12,0.8), 0 0 4px rgba(234,88,12,0.8)" }} />
-        <div className="absolute" style={{ top: "162px", left: "81px", width: "8px", height: "8px", borderRadius: "50%", background: "#FB923C", boxShadow: "0 0 10px rgba(234,88,12,0.8), 0 0 4px rgba(234,88,12,0.8)" }} />
+    <div className="relative w-full h-full flex items-center justify-center overflow-hidden px-3 py-2">
+      <div className="absolute" style={{ width: "200px", height: "120px", background: "radial-gradient(ellipse, rgba(234,88,12,0.2) 0%, transparent 70%)", filter: "blur(24px)" }} />
+      <div className="relative z-10 w-full max-w-[260px]" style={{ background: "linear-gradient(145deg, rgba(25,12,0,0.95), rgba(13,11,24,0.95))", borderRadius: "14px", border: "1px solid rgba(234,88,12,0.3)", boxShadow: "0 0 30px rgba(234,88,12,0.15)", overflow: "hidden" }}>
+        <div className="flex items-center justify-between px-3 py-2" style={{ borderBottom: "1px solid rgba(234,88,12,0.15)", background: "rgba(234,88,12,0.08)" }}>
+          <div className="flex items-center gap-1.5">
+            <div className="w-2 h-2 rounded-full" style={{ background: "#22c55e", boxShadow: "0 0 6px rgba(34,197,94,0.8)" }} />
+            <span style={{ fontSize: "8px", color: "rgba(251,146,60,0.9)", fontFamily: "monospace", letterSpacing: "0.08em" }}>AGENTE ACTIVO</span>
+          </div>
+          <span style={{ fontSize: "7px", color: "rgba(255,255,255,0.3)", fontFamily: "monospace" }}>02:47 AM</span>
+        </div>
+        <div className="grid grid-cols-3 divide-x py-2.5" style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
+          {[{ label: "Llamadas hoy", value: "47" }, { label: "Disponibilidad", value: "100%" }, { label: "Duración media", value: "3m 12s" }].map((s, i) => (
+            <div key={i} className="text-center px-2">
+              <div className="font-clash font-bold" style={{ fontSize: "13px", color: i === 1 ? "rgba(251,146,60,0.95)" : "rgba(255,255,255,0.8)" }}>{s.value}</div>
+              <div style={{ fontSize: "6.5px", color: "rgba(255,255,255,0.3)", marginTop: "1px" }}>{s.label}</div>
+            </div>
+          ))}
+        </div>
+        <div className="mx-2 my-2 px-2.5 py-1.5 rounded-lg flex items-center gap-2" style={{ background: "rgba(234,88,12,0.12)", border: "1px solid rgba(234,88,12,0.25)" }}>
+          <div className="flex gap-0.5 items-end" style={{ height: "14px" }}>
+            {[4,7,11,8,5,9,6].map((h, i) => (
+              <div key={i} style={{ width: "2px", height: `${h}px`, background: `rgba(251,146,60,${0.5 + i * 0.06})`, borderRadius: "1px" }} />
+            ))}
+          </div>
+          <span style={{ fontSize: "8px", color: "rgba(251,146,60,0.85)", fontFamily: "monospace" }}>En llamada activa — 1m 33s</span>
+          <div className="ml-auto w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: "#FB923C", boxShadow: "0 0 5px rgba(251,146,60,0.9)" }} />
+        </div>
       </div>
-
-      {/* Central glowing circle */}
-      <div className="relative z-10 flex items-center justify-center" style={{ width: "88px", height: "88px", borderRadius: "50%", background: "linear-gradient(145deg, #2d0e00, #1a0800)", border: "2px solid rgba(234,88,12,0.78)", boxShadow: "0 0 44px rgba(234,88,12,0.65), 0 0 90px rgba(234,88,12,0.18), inset 0 1px 0 rgba(255,255,255,0.09)" }}>
-        <span className="font-clash font-bold" style={{ fontSize: "22px", letterSpacing: "-0.02em", color: "#FB923C", textShadow: "0 0 18px rgba(234,88,12,0.95)" }}>24/7</span>
-      </div>
-
     </div>
   );
 }
 
-function MultiCallIllustration() {
-  const lines = [
-    ["50%","50%","18%","22%","rgba(234,88,12,0.6)"],
-    ["50%","50%","80%","18%","rgba(251,146,60,0.55)"],
-    ["50%","50%","85%","72%","rgba(234,88,12,0.5)"],
-    ["50%","50%","15%","76%","rgba(251,146,60,0.5)"],
-    ["50%","50%","52%","8%","rgba(234,88,12,0.55)"],
+function ActiveCallsIllustration() {
+  const calls = [
+    { name: "Carlos M.", duration: "4:22", status: "ACTIVO", active: true },
+    { name: "Ana García", duration: "2:07", status: "ACTIVO", active: true },
+    { name: "Luis R.", duration: "0:43", status: "ACTIVO", active: true },
+    { name: "María L.", duration: "—", status: "EN COLA", active: false },
   ];
   return (
-    <div className="relative w-full h-full overflow-hidden">
-      <div className="absolute" style={{ width: "160px", height: "160px", background: "radial-gradient(circle, rgba(234,88,12,0.28) 0%, transparent 70%)", top: "50%", left: "50%", transform: "translate(-50%,-50%)", filter: "blur(22px)" }} />
-      <svg className="absolute inset-0 w-full h-full">
-        {lines.map(([x1,y1,x2,y2,stroke], i) => (
-          <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke={stroke} strokeWidth="1.2" strokeDasharray="4 5" />
-        ))}
-      </svg>
-      <div className="absolute z-10 flex items-center justify-center" style={{ top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: "44px", height: "44px", background: "linear-gradient(145deg, #1f0d00, #0d0b18)", borderRadius: "50%", border: "1.5px solid rgba(234,88,12,0.75)", boxShadow: "0 0 22px rgba(234,88,12,0.55)" }}>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(251,146,60,0.95)" strokeWidth="1.8" strokeLinecap="round">
-          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.44 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l1.06-1.06a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
-        </svg>
-      </div>
-      {[
-        { style: { top: "8%", left: "8%" } },
-        { style: { top: "6%", right: "10%" } },
-        { style: { bottom: "14%", right: "6%" } },
-        { style: { bottom: "12%", left: "5%" } },
-        { style: { top: "0%", left: "44%" } },
-      ].map((n, i) => (
-        <div key={i} className="absolute z-10 flex items-center justify-center" style={{ ...n.style, width: "26px", height: "26px", background: "linear-gradient(145deg, #1a0800, #0d0b18)", borderRadius: "50%", border: "1.5px solid rgba(234,88,12,0.55)", boxShadow: "0 0 10px rgba(234,88,12,0.35)" }}>
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(251,146,60,0.85)" strokeWidth="2" strokeLinecap="round">
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.44 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l1.06-1.06a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
-          </svg>
+    <div className="relative w-full h-full flex items-center justify-center overflow-hidden px-3 py-2">
+      <div className="absolute" style={{ width: "180px", height: "100px", background: "radial-gradient(ellipse, rgba(234,88,12,0.18) 0%, transparent 70%)", filter: "blur(20px)", top: "30%" }} />
+      <div className="relative z-10 w-full" style={{ background: "rgba(15,8,0,0.85)", borderRadius: "12px", border: "1px solid rgba(234,88,12,0.2)", overflow: "hidden" }}>
+        <div className="px-3 py-1.5 flex items-center justify-between" style={{ borderBottom: "1px solid rgba(234,88,12,0.1)", background: "rgba(234,88,12,0.06)" }}>
+          <span style={{ fontSize: "7.5px", color: "rgba(251,146,60,0.7)", fontFamily: "monospace", letterSpacing: "0.1em" }}>LLAMADAS EN CURSO</span>
+          <div className="flex items-center gap-1">
+            <div className="w-1.5 h-1.5 rounded-full" style={{ background: "#22c55e", boxShadow: "0 0 5px rgba(34,197,94,0.8)" }} />
+            <span style={{ fontSize: "7px", color: "rgba(255,255,255,0.4)", fontFamily: "monospace" }}>3 activas</span>
+          </div>
         </div>
-      ))}
+        {calls.map((c, i) => (
+          <div key={i} className="flex items-center gap-2 px-3 py-1.5" style={{ borderBottom: i < calls.length - 1 ? "1px solid rgba(255,255,255,0.04)" : "none" }}>
+            <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "rgba(234,88,12,0.12)", border: "1px solid rgba(234,88,12,0.25)" }}>
+              <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="rgba(251,146,60,0.7)" strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0 1 12 0v2"/></svg>
+            </div>
+            <span style={{ fontSize: "8.5px", color: "rgba(255,255,255,0.65)", flex: 1, fontFamily: "monospace" }}>{c.name}</span>
+            <span style={{ fontSize: "8px", color: "rgba(255,255,255,0.3)", fontFamily: "monospace" }}>{c.duration}</span>
+            <div className="px-1.5 py-0.5 rounded" style={{ background: c.active ? "rgba(34,197,94,0.12)" : "rgba(251,146,60,0.12)", border: `1px solid ${c.active ? "rgba(34,197,94,0.3)" : "rgba(251,146,60,0.3)"}` }}>
+              <span style={{ fontSize: "6px", color: c.active ? "rgba(34,197,94,0.9)" : "rgba(251,146,60,0.75)", letterSpacing: "0.08em", fontFamily: "monospace" }}>{c.status}</span>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
 
-function FunnelIllustration() {
+function LeadPipelineIllustration() {
+  const stages = [
+    { label: "NUEVO", count: 8, color: "rgba(255,255,255,0.3)", leads: ["Juan P.", "Ana M."], pct: 35 },
+    { label: "CALIFICADO", count: 3, color: "rgba(251,146,60,0.8)", leads: ["Carlos R."], pct: 72 },
+    { label: "AGENDADO", count: 1, color: "rgba(34,197,94,0.85)", leads: ["María L."], pct: 100 },
+  ];
   return (
-    <div className="relative w-full h-full flex items-center justify-center">
-      <svg width="96" height="136" viewBox="0 0 96 136" fill="none" xmlns="http://www.w3.org/2000/svg">
-        {/* Trapèze inversé (haut de l'entonnoir) */}
-        <path d="M 4 14 L 92 14 L 60 52 L 36 52 Z" stroke="#EA580C" strokeWidth="1.8" strokeLinejoin="round" fill="none" />
-        {/* Triangle pointu (corps resserré) */}
-        <path d="M 60 52 L 48 82 L 36 52 Z" stroke="#EA580C" strokeWidth="1.8" strokeLinejoin="round" fill="none" />
-        {/* Ligne verticale pointillée descendante */}
-        <line x1="48" y1="82" x2="48" y2="118" stroke="#EA580C" strokeWidth="1.5" strokeDasharray="4 4" strokeLinecap="round" />
-        {/* Cercle à la pointe */}
-        <circle cx="48" cy="124" r="5" stroke="#EA580C" strokeWidth="1.8" fill="none" />
-        {/* Points dans le haut de l'entonnoir */}
-        <circle cx="26" cy="26" r="3" fill="#EA580C" />
-        <circle cx="50" cy="20" r="3" fill="#EA580C" />
-        <circle cx="72" cy="28" r="3" fill="#EA580C" />
-        {/* Lead qualifié sorti de l'entonnoir, sur la ligne pointillée */}
-        <circle cx="48" cy="65" r="4.5" fill="#FF9A2E" />
-      </svg>
+    <div className="relative w-full h-full flex items-center justify-center overflow-hidden px-3 py-2">
+      <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 60%, rgba(234,88,12,0.1) 0%, transparent 70%)" }} />
+      <div className="relative z-10 w-full flex gap-1.5">
+        {stages.map((stage, si) => (
+          <div key={si} className="flex-1 flex flex-col gap-1.5">
+            <div className="flex items-center justify-between mb-0.5">
+              <span style={{ fontSize: "6.5px", color: stage.color, fontFamily: "monospace", letterSpacing: "0.05em" }}>{stage.label}</span>
+              <div className="w-3.5 h-3.5 rounded-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.05)" }}>
+                <span style={{ fontSize: "6px", color: "rgba(255,255,255,0.4)" }}>{stage.count}</span>
+              </div>
+            </div>
+            {stage.leads.map((lead, li) => (
+              <div key={li} className="px-2 py-1.5" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "6px" }}>
+                <div style={{ fontSize: "7.5px", color: "rgba(255,255,255,0.6)", fontFamily: "monospace" }}>{lead}</div>
+                <div className="mt-1 h-0.5 rounded-full" style={{ background: "rgba(255,255,255,0.08)", width: "100%" }}>
+                  <div style={{ width: `${stage.pct}%`, height: "100%", background: si === 0 ? "rgba(255,255,255,0.2)" : si === 1 ? "rgba(251,146,60,0.7)" : "rgba(34,197,94,0.75)", borderRadius: "999px" }} />
+                </div>
+              </div>
+            ))}
+            <div className="px-2 py-1.5 rounded" style={{ background: "rgba(255,255,255,0.02)", border: "1px dashed rgba(255,255,255,0.06)" }}>
+              <div style={{ fontSize: "6.5px", color: "rgba(255,255,255,0.18)", fontFamily: "monospace" }}>+{stage.count - stage.leads.length} más</div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -244,7 +262,7 @@ export default function ServiceVoiceDetail() {
               <h3 className="font-clash text-white font-bold text-lg leading-snug mb-1.5">365 días. 24 horas.</h3>
               <p className="text-white/50 text-sm leading-relaxed">Responde cada llamada, cada día del año. Sin excepciones, sin horarios, sin ausencias.</p>
             </div>
-            <div className="relative w-full flex-1 h-44"><PulseOrbitalIllustration /></div>
+            <div className="relative w-full flex-1 h-44"><LiveStatusIllustration /></div>
           </div>
 
           {/* Card 2 — Múltiples llamadas (unchanged) */}
@@ -253,7 +271,7 @@ export default function ServiceVoiceDetail() {
               <h3 className="font-clash text-white font-bold text-lg leading-snug mb-1.5">Múltiples llamadas simultáneas</h3>
               <p className="text-white/50 text-sm leading-relaxed">Mientras su equipo descansa, el agente atiende a todos a la vez. Sin colas, sin esperas.</p>
             </div>
-            <div className="relative w-full flex-1 min-h-[160px]"><MultiCallIllustration /></div>
+            <div className="relative w-full flex-1 min-h-[160px]"><ActiveCallsIllustration /></div>
           </div>
 
           {/* Card 3 — Funnel */}
@@ -262,7 +280,7 @@ export default function ServiceVoiceDetail() {
               <h3 className="font-clash text-white font-bold text-lg leading-snug mb-1.5">Califica leads automáticamente</h3>
               <p className="text-white/50 text-sm leading-relaxed">Filtra, identifica y prioriza los clientes con más potencial antes de que lleguen a su equipo.</p>
             </div>
-            <div className="relative w-full flex-1 h-40"><FunnelIllustration /></div>
+            <div className="relative w-full flex-1 h-40"><LeadPipelineIllustration /></div>
           </div>
 
           {/* Card 4 — Calendar */}

@@ -6,57 +6,85 @@ import { cn } from "@/lib/utils";
 
 // ── Illustrations ──────────────────────────────────────────────────────────────
 
-function DesignIllustration() {
+function BrowserMockupIllustration() {
   return (
-    <div className="relative w-full h-full overflow-hidden flex items-center justify-center">
-      <div className="absolute" style={{ width: "220px", height: "180px", background: "radial-gradient(ellipse, rgba(124,58,237,0.30) 0%, transparent 70%)", top: "0", left: "30%", filter: "blur(24px)" }} />
-      <div className="absolute" style={{ width: "160px", height: "140px", background: "radial-gradient(ellipse, rgba(234,88,12,0.25) 0%, transparent 70%)", bottom: "5%", right: "10%", filter: "blur(20px)" }} />
-      {/* Blob violet */}
-      <div className="absolute" style={{ width: "115px", height: "105px", background: "linear-gradient(135deg, rgba(124,58,237,0.85), rgba(139,92,246,0.55))", borderRadius: "62% 38% 46% 54% / 55% 48% 52% 45%", top: "12%", left: "10%", boxShadow: "0 0 32px rgba(124,58,237,0.55)" }} />
-      {/* Blob orange */}
-      <div className="absolute" style={{ width: "95px", height: "88px", background: "linear-gradient(135deg, rgba(234,88,12,0.85), rgba(251,146,60,0.55))", borderRadius: "38% 62% 55% 45% / 48% 55% 45% 52%", top: "18%", right: "14%", boxShadow: "0 0 28px rgba(234,88,12,0.55)" }} />
-      {/* Small accent */}
-      <div className="absolute" style={{ width: "58px", height: "54px", background: "linear-gradient(135deg, rgba(167,139,250,0.75), rgba(124,58,237,0.45))", borderRadius: "55% 45% 38% 62% / 45% 62% 38% 55%", bottom: "22%", left: "32%", boxShadow: "0 0 18px rgba(124,58,237,0.45)" }} />
-      <svg className="absolute inset-0 w-full h-full" style={{ opacity: 0.45 }}>
-        <line x1="22%" y1="38%" x2="68%" y2="32%" stroke="rgba(167,139,250,0.8)" strokeWidth="1" strokeDasharray="3 6" />
-        <line x1="28%" y1="58%" x2="56%" y2="76%" stroke="rgba(251,146,60,0.7)" strokeWidth="1" strokeDasharray="4 5" />
-        <circle cx="22%" cy="38%" r="3.5" fill="rgba(167,139,250,0.95)" />
-        <circle cx="68%" cy="32%" r="2.8" fill="rgba(251,146,60,0.95)" />
-        <circle cx="56%" cy="76%" r="2.2" fill="rgba(167,139,250,0.8)" />
-      </svg>
+    <div className="relative w-full h-full flex items-center justify-center overflow-hidden px-4 py-3" style={{ WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 20%)", maskImage: "linear-gradient(to bottom, transparent 0%, black 20%)" }}>
+      <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 40%, rgba(124,58,237,0.2) 0%, transparent 65%)" }} />
+      <div className="relative z-10 w-full max-w-[290px]" style={{ background: "rgba(15,12,28,0.95)", borderRadius: "10px", border: "1px solid rgba(124,58,237,0.3)", boxShadow: "0 8px 32px rgba(0,0,0,0.5)", overflow: "hidden" }}>
+        {/* Browser chrome */}
+        <div className="flex items-center gap-1.5 px-2.5 py-2" style={{ background: "rgba(20,14,38,0.95)", borderBottom: "1px solid rgba(124,58,237,0.15)" }}>
+          <div className="flex gap-1">
+            {["#ff5f57","#ffbd2e","#28c840"].map((c, i) => <div key={i} style={{ width: "6px", height: "6px", borderRadius: "50%", background: c, opacity: 0.85 }} />)}
+          </div>
+          <div className="flex-1 mx-2 px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.07)" }}>
+            <span style={{ fontSize: "7px", color: "rgba(255,255,255,0.3)", fontFamily: "monospace" }}>sicentre.com/mi-negocio</span>
+          </div>
+        </div>
+        {/* Fake website content */}
+        <div className="px-3 py-2.5">
+          <div className="flex items-center justify-between mb-2.5">
+            <div className="w-14 h-2.5 rounded" style={{ background: "rgba(124,58,237,0.55)" }} />
+            <div className="flex gap-2">
+              {[1,2,3].map(i => <div key={i} style={{ width: "22px", height: "1.5px", background: "rgba(255,255,255,0.18)", borderRadius: "1px" }} />)}
+            </div>
+          </div>
+          <div className="rounded-lg p-3 mb-2.5" style={{ background: "linear-gradient(135deg, rgba(124,58,237,0.28), rgba(234,88,12,0.22))", border: "1px solid rgba(124,58,237,0.2)" }}>
+            <div className="w-4/5 h-3 rounded mb-2" style={{ background: "rgba(255,255,255,0.6)" }} />
+            <div className="w-1/2 h-2 rounded mb-3" style={{ background: "rgba(255,255,255,0.2)" }} />
+            <div className="w-20 h-5 rounded-full" style={{ background: "linear-gradient(90deg, rgba(124,58,237,0.85), rgba(234,88,12,0.85))" }} />
+          </div>
+          <div className="grid grid-cols-3 gap-1.5">
+            {[["rgba(124,58,237,0.25)"],["rgba(234,88,12,0.2)"],["rgba(167,139,250,0.2)"]].map(([bg], i) => (
+              <div key={i} className="rounded-lg p-2" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)" }}>
+                <div className="w-full h-7 rounded mb-1.5" style={{ background: bg }} />
+                <div className="w-full h-1.5 rounded" style={{ background: "rgba(255,255,255,0.12)" }} />
+                <div className="w-2/3 h-1 rounded mt-1" style={{ background: "rgba(255,255,255,0.07)" }} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
 
-function SecurityIllustration() {
+function HostingSecurityIllustration() {
   return (
-    <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
-      <div className="absolute" style={{ width: "190px", height: "190px", background: "radial-gradient(circle, rgba(124,58,237,0.35) 0%, transparent 70%)", filter: "blur(22px)" }} />
-      <svg className="absolute inset-0 w-full h-full" style={{ opacity: 0.55 }}>
-        {/* Horizontal lines */}
-        <line x1="0" y1="35%" x2="29%" y2="35%" stroke="rgba(124,58,237,0.8)" strokeWidth="1.2" />
-        <line x1="71%" y1="35%" x2="100%" y2="35%" stroke="rgba(124,58,237,0.8)" strokeWidth="1.2" />
-        <line x1="0" y1="65%" x2="27%" y2="65%" stroke="rgba(124,58,237,0.65)" strokeWidth="1.2" />
-        <line x1="73%" y1="65%" x2="100%" y2="65%" stroke="rgba(124,58,237,0.65)" strokeWidth="1.2" />
-        {/* Vertical lines */}
-        <line x1="35%" y1="0" x2="35%" y2="27%" stroke="rgba(124,58,237,0.8)" strokeWidth="1.2" />
-        <line x1="65%" y1="0" x2="65%" y2="27%" stroke="rgba(124,58,237,0.65)" strokeWidth="1.2" />
-        <line x1="35%" y1="73%" x2="35%" y2="100%" stroke="rgba(124,58,237,0.8)" strokeWidth="1.2" />
-        <line x1="65%" y1="73%" x2="65%" y2="100%" stroke="rgba(124,58,237,0.65)" strokeWidth="1.2" />
-        {/* Corner dots */}
-        <circle cx="0" cy="35%" r="3.5" fill="rgba(167,139,250,0.9)" />
-        <circle cx="100%" cy="35%" r="3.5" fill="rgba(167,139,250,0.9)" />
-        <circle cx="0" cy="65%" r="3" fill="rgba(124,58,237,0.9)" />
-        <circle cx="100%" cy="65%" r="3" fill="rgba(124,58,237,0.9)" />
-        <circle cx="35%" cy="0" r="3.5" fill="rgba(167,139,250,0.9)" />
-        <circle cx="65%" cy="0" r="3" fill="rgba(124,58,237,0.9)" />
-      </svg>
-      {/* Chip */}
-      <div className="relative z-10 flex items-center justify-center" style={{ width: "76px", height: "76px", background: "linear-gradient(145deg, #1a1040, #0d0b18)", borderRadius: "18px", border: "1px solid rgba(124,58,237,0.6)", boxShadow: "0 0 32px rgba(124,58,237,0.55), inset 0 1px 0 rgba(255,255,255,0.08)" }}>
-        <svg width="38" height="38" viewBox="0 0 36 36" fill="none">
-          <path d="M18 3 L30 8.5 L30 18.5 Q30 27.5 18 33 Q6 27.5 6 18.5 L6 8.5 Z" fill="rgba(124,58,237,0.25)" stroke="rgba(167,139,250,0.95)" strokeWidth="1.5" />
-          <path d="M12.5 18.5 L16 22 L23.5 14" stroke="rgba(167,139,250,1)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
+    <div className="relative w-full h-full flex items-center justify-center overflow-hidden px-3 py-2">
+      <div className="absolute" style={{ width: "180px", height: "120px", background: "radial-gradient(ellipse, rgba(124,58,237,0.25) 0%, transparent 70%)", filter: "blur(22px)" }} />
+      <div className="relative z-10 w-full max-w-[210px] flex flex-col gap-2">
+        <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl" style={{ background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.28)" }}>
+          <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: "rgba(34,197,94,0.12)", border: "1px solid rgba(34,197,94,0.25)" }}>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(34,197,94,0.9)" strokeWidth="2" strokeLinecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <div>
+            <div style={{ fontSize: "9px", color: "rgba(34,197,94,0.9)", fontFamily: "monospace", fontWeight: "bold" }}>SSL Activo</div>
+            <div style={{ fontSize: "6.5px", color: "rgba(255,255,255,0.35)", marginTop: "1px" }}>Certificado válido · HTTPS</div>
+          </div>
+          <div className="ml-auto flex-shrink-0">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(34,197,94,0.7)" strokeWidth="2.5" strokeLinecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+        </div>
+        <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl" style={{ background: "rgba(124,58,237,0.08)", border: "1px solid rgba(124,58,237,0.22)" }}>
+          <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: "rgba(124,58,237,0.14)" }}>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(167,139,250,0.9)" strokeWidth="2" strokeLinecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div className="flex-1">
+            <div style={{ fontSize: "9px", color: "rgba(167,139,250,0.9)", fontFamily: "monospace", fontWeight: "bold" }}>99.9% Uptime</div>
+            <div className="mt-1.5 w-full h-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.07)" }}>
+              <div style={{ width: "99.9%", height: "100%", background: "rgba(124,58,237,0.8)", borderRadius: "999px" }} />
+            </div>
+          </div>
+        </div>
+        <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl" style={{ background: "rgba(234,88,12,0.07)", border: "1px solid rgba(234,88,12,0.18)" }}>
+          <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: "rgba(234,88,12,0.12)" }}>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(251,146,60,0.9)" strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <div>
+            <div style={{ fontSize: "9px", color: "rgba(251,146,60,0.9)", fontFamily: "monospace", fontWeight: "bold" }}>Dominio incluido</div>
+            <div style={{ fontSize: "6.5px", color: "rgba(255,255,255,0.35)", marginTop: "1px" }}>Hosting gestionado · CDN global</div>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -176,40 +204,26 @@ function AnalyticsIllustration() {
   );
 }
 
-function ConnectionIllustration() {
-  const satellites: { style: React.CSSProperties; color: "violet" | "orange" }[] = [
-    { style: { top: "8%", left: "8%" },   color: "violet" },
-    { style: { top: "8%", right: "8%" },  color: "orange" },
-    { style: { bottom: "12%", right: "6%" }, color: "violet" },
-    { style: { bottom: "10%", left: "6%" }, color: "orange" },
-    { style: { top: "2%", left: "44%" },  color: "violet" },
+function SocialIntegrationIllustration() {
+  const channels = [
+    { label: "WhatsApp", border: "rgba(37,211,102,0.25)", bg: "rgba(37,211,102,0.08)", icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="rgba(37,211,102,0.9)"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/></svg>, color: "rgba(37,211,102,0.7)" },
+    { label: "Instagram", border: "rgba(225,48,108,0.22)", bg: "rgba(225,48,108,0.07)", icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(225,48,108,0.9)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>, color: "rgba(225,48,108,0.7)" },
+    { label: "Facebook", border: "rgba(24,119,242,0.22)", bg: "rgba(24,119,242,0.07)", icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="rgba(24,119,242,0.9)"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>, color: "rgba(24,119,242,0.7)" },
+    { label: "TikTok", border: "rgba(255,255,255,0.12)", bg: "rgba(255,255,255,0.04)", icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="rgba(255,255,255,0.8)"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.75a8.16 8.16 0 0 0 4.77 1.52V6.82a4.85 4.85 0 0 1-1.01-.13z"/></svg>, color: "rgba(255,255,255,0.45)" },
+    { label: "LinkedIn", border: "rgba(10,102,194,0.22)", bg: "rgba(10,102,194,0.07)", icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="rgba(10,102,194,0.9)"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>, color: "rgba(10,102,194,0.7)" },
+    { label: "Google", border: "rgba(234,88,12,0.2)", bg: "rgba(234,88,12,0.07)", icon: <svg width="20" height="20" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="rgba(66,133,244,0.9)"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="rgba(52,168,83,0.9)"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="rgba(251,188,5,0.9)"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="rgba(234,67,53,0.9)"/></svg>, color: "rgba(251,146,60,0.7)" },
   ];
   return (
-    <div className="relative w-full h-full overflow-hidden">
-      <div className="absolute" style={{ width: "170px", height: "170px", background: "radial-gradient(circle, rgba(124,58,237,0.3) 0%, transparent 70%)", top: "50%", left: "50%", transform: "translate(-50%,-50%)", filter: "blur(22px)" }} />
-      <svg className="absolute inset-0 w-full h-full" style={{ opacity: 0.28 }}>
-        <circle cx="50%" cy="50%" r="36%" fill="none" stroke="rgba(124,58,237,0.7)" strokeWidth="0.8" />
-        <circle cx="50%" cy="50%" r="22%" fill="none" stroke="rgba(124,58,237,0.5)" strokeWidth="0.8" />
-      </svg>
-      <svg className="absolute inset-0 w-full h-full">
-        {[["15%","25%","violet"],["82%","20%","orange"],["88%","72%","violet"],["12%","76%","orange"],["50%","8%","violet"]].map(([x, y, c], i) => (
-          <line key={i} x1="50%" y1="50%" x2={x} y2={y} stroke={c === "violet" ? "rgba(124,58,237,0.5)" : "rgba(234,88,12,0.5)"} strokeWidth="1" strokeDasharray="4 5" />
+    <div className="relative w-full h-full flex items-center justify-center overflow-hidden px-3 py-2">
+      <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(124,58,237,0.13) 0%, transparent 70%)" }} />
+      <div className="relative z-10 w-full grid grid-cols-3 gap-2">
+        {channels.map((ch, i) => (
+          <div key={i} className="flex flex-col items-center gap-1.5 px-1 py-2.5 rounded-xl" style={{ background: ch.bg, border: `1px solid ${ch.border}` }}>
+            {ch.icon}
+            <span style={{ fontSize: "6.5px", color: ch.color, fontFamily: "monospace" }}>{ch.label}</span>
+          </div>
         ))}
-      </svg>
-      {/* Central node */}
-      <div className="absolute z-10 flex items-center justify-center" style={{ top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: "58px", height: "58px", background: "linear-gradient(145deg, #1a1040, #0d0b18)", borderRadius: "50%", border: "1.5px solid rgba(124,58,237,0.7)", boxShadow: "0 0 24px rgba(124,58,237,0.55)" }}>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(167,139,250,0.95)" strokeWidth="1.5" strokeLinecap="round">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-        </svg>
       </div>
-      {/* Satellite nodes */}
-      {satellites.map((s, i) => (
-        <div key={i} className="absolute z-10 flex items-center justify-center" style={{ ...s.style, width: "30px", height: "30px", background: "linear-gradient(145deg, #12101e, #0d0b18)", borderRadius: "50%", border: `1.5px solid ${s.color === "violet" ? "rgba(124,58,237,0.65)" : "rgba(234,88,12,0.65)"}`, boxShadow: `0 0 12px ${s.color === "violet" ? "rgba(124,58,237,0.4)" : "rgba(234,88,12,0.4)"}` }}>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={s.color === "violet" ? "rgba(167,139,250,0.85)" : "rgba(251,146,60,0.85)"} strokeWidth="2" strokeLinecap="round">
-            <circle cx="12" cy="8" r="4" /><path d="M6 20v-2a6 6 0 0 1 12 0v2" />
-          </svg>
-        </div>
-      ))}
     </div>
   );
 }
@@ -220,14 +234,14 @@ const features = [
   {
     title: "Diseño único y personalizado",
     description: "Sin estéticas genéricas de IA. Su sitio refleja exactamente quién es su empresa.",
-    illustration: <DesignIllustration />,
+    illustration: <BrowserMockupIllustration />,
     colSpan: "md:col-span-2",
     illustrationHeight: "h-44",
   },
   {
     title: "Hosting, dominio y seguridad incluidos",
     description: "Todo listo desde el primer día. Sin configuraciones técnicas de su parte.",
-    illustration: <SecurityIllustration />,
+    illustration: <HostingSecurityIllustration />,
     colSpan: "",
     illustrationHeight: "h-44",
   },
@@ -255,7 +269,7 @@ const features = [
   {
     title: "Integración con WhatsApp Business y redes",
     description: "Su sitio conectado con todos sus canales de comunicación.",
-    illustration: <ConnectionIllustration />,
+    illustration: <SocialIntegrationIllustration />,
     colSpan: "md:col-span-2",
     illustrationHeight: "h-44",
   },
