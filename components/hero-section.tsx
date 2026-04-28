@@ -1,7 +1,49 @@
 "use client";
 
+import { useState } from "react";
 import { HeroBackground } from "@/components/ui/hero-background";
-import { LiquidButton } from "@/components/ui/liquid-glass-button";
+
+function HablemosButton() {
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <a
+      href="/contacto"
+      onMouseMove={(e) => {
+        const r = e.currentTarget.getBoundingClientRect();
+        setPos({ x: e.clientX - r.left, y: e.clientY - r.top });
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="group relative inline-flex items-center justify-center overflow-hidden rounded-full px-12 py-5 text-base md:text-lg font-bold tracking-tight text-white whitespace-nowrap transition-transform duration-200 hover:-translate-y-0.5"
+      style={{
+        background: "linear-gradient(135deg, #F97316 0%, #EA580C 50%, #C2410C 100%)",
+        boxShadow:
+          "0 14px 40px rgba(234,88,12,0.45), 0 0 0 1px rgba(255,255,255,0.15) inset, 0 -2px 8px rgba(0,0,0,0.25) inset",
+      }}
+    >
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-0 transition-opacity duration-300"
+        style={{
+          opacity: hovered ? 1 : 0,
+          background: `radial-gradient(120px circle at ${pos.x}px ${pos.y}px, rgba(255,255,255,0.45), transparent 65%)`,
+          mixBlendMode: "screen",
+        }}
+      />
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-x-6 top-0 h-px"
+        style={{
+          background:
+            "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.6) 50%, transparent 100%)",
+        }}
+      />
+      <span className="relative z-10">Hablemos →</span>
+    </a>
+  );
+}
 
 export default function HeroSection() {
   return (
@@ -59,24 +101,8 @@ export default function HeroSection() {
             Diseño web, automatización de llamadas con IA<br className="hidden sm:block" /> y producción visual premium, para América Latina.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full px-4 sm:px-0">
-            <LiquidButton
-              size="xxl"
-              onClick={() =>
-                document.querySelector("#servicios")?.scrollIntoView({ behavior: "smooth" })
-              }
-              className="text-base font-semibold tracking-tight whitespace-nowrap text-white w-full sm:w-auto"
-            >
-              Ver servicios
-            </LiquidButton>
-            <LiquidButton
-              size="xxl"
-              accent="orange"
-              onClick={() => window.location.href = "/contacto"}
-              className="text-base font-semibold tracking-tight whitespace-nowrap text-white w-full sm:w-auto"
-            >
-              Hablemos
-            </LiquidButton>
+          <div className="flex items-center justify-center w-full">
+            <HablemosButton />
           </div>
         </div>
       </div>

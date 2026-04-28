@@ -269,7 +269,7 @@ function SurrealPhotoFill() {
 
 // ── Card styles ────────────────────────────────────────────────────────────────
 
-const CARD_STYLE = { background: "rgba(255,255,255,0.14)", borderColor: "rgba(255,255,255,0.20)" };
+const CARD_STYLE = { background: "rgba(20,16,38,0.55)", borderColor: "rgba(255,255,255,0.22)" };
 
 // ── Component ──────────────────────────────────────────────────────────────────
 

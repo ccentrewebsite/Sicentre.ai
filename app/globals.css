@@ -68,10 +68,14 @@ body {
   border-radius: 20px;
 }
 
-/* Service block — liquid glass pane behind each full service section */
+/* Service block — liquid glass card encompassing title + advantage cards */
 .service-block {
   position: relative;
   isolation: isolate;
+  max-width: 1320px;
+  margin: 48px auto;
+  border-radius: 36px;
+  overflow: hidden;
 }
 .service-block::before {
   content: '';
@@ -79,20 +83,26 @@ body {
   inset: 0;
   background: linear-gradient(
     to bottom,
-    transparent 0%,
-    rgba(255, 255, 255, 0.028) 6%,
-    rgba(255, 255, 255, 0.028) 94%,
-    transparent 100%
+    rgba(255, 255, 255, 0.035) 0%,
+    rgba(255, 255, 255, 0.055) 50%,
+    rgba(255, 255, 255, 0.035) 100%
   );
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
   pointer-events: none;
   z-index: -1;
-  border-top: 1px solid rgba(255, 255, 255, 0.14);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: inherit;
   box-shadow:
-    0 -1px 0 rgba(255, 255, 255, 0.04),
-    0 1px 0 rgba(255, 255, 255, 0.04);
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 24px 70px rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 768px) {
+  .service-block {
+    margin: 32px 12px;
+    border-radius: 28px;
+  }
 }
 
 .glass-nav {

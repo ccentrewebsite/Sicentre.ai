@@ -220,7 +220,7 @@ export default function ServiceVoiceDetail() {
   }, []);
 
   const cardBase = "glass-card flex flex-col overflow-hidden transition-all duration-500 hover:-translate-y-1";
-  const cardStyle = { borderColor: "rgba(255,255,255,0.20)", background: "rgba(255,255,255,0.14)" };
+  const cardStyle = { borderColor: "rgba(255,255,255,0.22)", background: "rgba(20,16,38,0.55)" };
   const vis = (delay: number) => ({
     style: { transitionDelay: `${delay}ms`, ...cardStyle },
     className: cn(cardBase, visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"),
