@@ -382,7 +382,7 @@ export default function ServiceWebDetail() {
                 f.colSpan,
                 visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}
-              style={{ transitionDelay: `${i * 80}ms`, background: "rgba(255,255,255,0.07)", borderColor: "rgba(255,255,255,0.12)" }}
+              style={{ transitionDelay: `${i * 80}ms`, background: "rgba(255,255,255,0.14)", borderColor: "rgba(255,255,255,0.20)" }}
             >
               {/* Text */}
               <div className="px-5 pt-5 pb-3">

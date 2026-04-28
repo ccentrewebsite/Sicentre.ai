@@ -16,6 +16,7 @@ export default function Home() {
       <HeroSection />
       <SectorTicker />
 
+      <div className="service-block">
       <ServiceIntroBlock
         id="servicios"
         imageSide="right"
@@ -38,7 +39,9 @@ export default function Home() {
         accentColorSoft="rgba(234,88,12,0.18)"
       />
       <ServiceVoiceDetail />
+      </div>
 
+      <div className="service-block">
       <ServiceIntroBlock
         imageSide="left"
         imageSrc="/images/service-web.jpg.png"
@@ -63,7 +66,9 @@ export default function Home() {
         accentColorSoft="rgba(124,58,237,0.18)"
       />
       <ServiceWebDetail />
+      </div>
 
+      <div className="service-block">
       <ServiceIntroBlock
         imageSide="right"
         imageSrc="/images/service-studio.jpg.png"
@@ -88,6 +93,7 @@ export default function Home() {
         accentColorSoft="rgba(124,58,237,0.18)"
       />
       <ServiceStudioDetail />
+      </div>
 
       <PricingSection />
       <PortfolioSection />
