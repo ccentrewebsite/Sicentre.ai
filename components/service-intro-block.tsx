@@ -54,7 +54,7 @@ export default function ServiceIntroBlock({
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className={cn(
-              "relative aspect-[4/5] md:aspect-[5/6] w-full overflow-hidden rounded-[28px] md:col-span-3",
+              "relative aspect-[4/5] md:aspect-[5/6] w-full overflow-hidden rounded-[28px] md:col-span-3 group",
               imageSide === "right" ? "md:order-2" : "md:order-1"
             )}
             style={{
@@ -62,12 +62,31 @@ export default function ServiceIntroBlock({
               boxShadow: `0 30px 80px rgba(0,0,0,0.5), 0 0 60px ${accentColorSoft}`,
             }}
           >
-            <img
+            <motion.img
               src={imageSrc}
               alt={imageAlt}
-              className="w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-cover will-change-transform"
               loading="lazy"
+              animate={{
+                scale: [1.02, 1.08, 1.02],
+                x: ["0%", "-1.5%", "0%"],
+                y: ["0%", "1.2%", "0%"],
+              }}
+              transition={{
+                duration: 20,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              style={{ transformOrigin: imageSide === "right" ? "65% 50%" : "35% 50%" }}
             />
+
+            <motion.div
+              className="absolute inset-0 pointer-events-none rounded-[28px]"
+              animate={{ opacity: [0.55, 1, 0.55] }}
+              transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
+              style={{ boxShadow: `inset 0 0 90px ${accentColor}40` }}
+            />
+
             <div
               className="absolute inset-0 pointer-events-none"
               style={{

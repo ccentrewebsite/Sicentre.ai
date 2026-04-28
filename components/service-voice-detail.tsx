@@ -234,18 +234,16 @@ export default function ServiceVoiceDetail() {
       <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10">
 
         {/* Header */}
-        <div className={cn("text-center mb-14 transition-all duration-700", visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")}>
-          <p className="text-xs font-semibold tracking-[0.2em] uppercase mb-4" style={{ color: "rgba(251,146,60,0.7)" }}>
-            Agente de Voz IA
-          </p>
-          <h2 className="font-clash text-3xl md:text-5xl lg:text-6xl font-bold text-white max-w-3xl mx-auto leading-tight mb-5">
-            Su negocio atiende.{" "}
-            <span style={{ color: "#7C3AED", textShadow: "0 3px 10px rgba(0,0,0,0.5)" }}>Siempre.</span>
-            {" "}
-            <span style={{ color: "#EA580C", textShadow: "0 3px 10px rgba(0,0,0,0.5)" }}>Sin excusas.</span>
+        <div className={cn("text-center mb-16 transition-all duration-700", visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")}>
+          <h2
+            className="font-clash font-bold text-white leading-[0.95] tracking-tight mb-6"
+            style={{ fontSize: "clamp(2.8rem, 7vw, 5.6rem)" }}
+          >
+            Agentes de{" "}
+            <span style={{ color: "#EA580C", textShadow: "0 4px 22px rgba(234,88,12,0.45)" }}>Voz</span>
           </h2>
-          <p className="text-white/55 text-base md:text-lg max-w-xl mx-auto">
-            Nunca se enferma. Nunca pide vacaciones. Nunca deja una llamada sin responder.
+          <p className="text-white/65 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+            Su negocio atiende, siempre. Un agente que nunca se enferma, nunca pide vacaciones, nunca deja una llamada sin responder.
           </p>
         </div>
 

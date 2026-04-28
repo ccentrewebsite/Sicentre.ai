@@ -294,14 +294,18 @@ export default function ServiceStudioDetail() {
       <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10">
 
         {/* Header */}
-        <div className={cn("text-center mb-14 transition-all duration-700", visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")}>
-          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-violet-400/70 mb-4">Studio Visual</p>
-          <h2 className="font-clash text-3xl md:text-5xl lg:text-6xl font-bold text-white max-w-3xl mx-auto leading-tight mb-5">
-            Contenido que{" "}
-            <span className="gradient-text" style={{ filter: "drop-shadow(0 3px 10px rgba(0,0,0,0.7))" }}>detiene el scroll.</span>
+        <div className={cn("text-center mb-16 transition-all duration-700", visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")}>
+          <h2
+            className="font-clash font-bold text-white leading-[0.95] tracking-tight mb-6"
+            style={{ fontSize: "clamp(2.8rem, 7vw, 5.6rem)" }}
+          >
+            Creación{" "}
+            <span className="gradient-text" style={{ filter: "drop-shadow(0 4px 22px rgba(234,88,12,0.45))" }}>
+              Visual
+            </span>
           </h2>
-          <p className="text-white/55 text-base md:text-lg max-w-xl mx-auto">
-            Imágenes y videos que no parecen generados. Parecen filmados.
+          <p className="text-white/65 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+            Contenido que detiene el scroll. Imágenes y videos que no parecen generados — parecen filmados.
           </p>
         </div>
 

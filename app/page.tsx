@@ -19,7 +19,7 @@ export default function Home() {
       <ServiceIntroBlock
         id="servicios"
         imageSide="right"
-        imageSrc="/images/robot-cinematic.jpg"
+        imageSrc="/images/service-voz.jpg.png"
         imageAlt="Agente de voz IA Sicentre — disponible 24/7"
         title="Su negocio responde."
         titleAccent="Siempre."
@@ -33,7 +33,7 @@ export default function Home() {
 
       <ServiceIntroBlock
         imageSide="left"
-        imageSrc="/images/butterfly-violet-orange.png"
+        imageSrc="/images/service-web.jpg.png"
         imageAlt="Sitio web a medida — diseñado desde cero para su empresa"
         title="Un sitio hecho"
         titleAccent="exactamente para usted."
@@ -47,7 +47,7 @@ export default function Home() {
 
       <ServiceIntroBlock
         imageSide="right"
-        imageSrc="/images/surreal-city.jpg"
+        imageSrc="/images/service-studio.jpg.png"
         imageAlt="Creación visual surrealista — fotografía editorial y video IA"
         title="Imágenes y videos que"
         titleAccent="detienen el scroll."
