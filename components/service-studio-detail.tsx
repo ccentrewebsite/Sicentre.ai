@@ -269,7 +269,7 @@ function SurrealPhotoFill() {
 
 // ── Card styles ────────────────────────────────────────────────────────────────
 
-const CARD_BG = "rgba(124,58,237,0.44)";
+const CARD_STYLE = { background: "rgba(255,255,255,0.07)", borderColor: "rgba(255,255,255,0.12)" };
 
 // ── Component ──────────────────────────────────────────────────────────────────
 
@@ -315,7 +315,7 @@ export default function ServiceStudioDetail() {
           {/* Card 1 — col-span-2 */}
           <div
             className={cn("glass-card flex flex-col overflow-hidden transition-all duration-500 hover:-translate-y-1 md:col-span-2", visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8")}
-            style={{ transitionDelay: "0ms", background: CARD_BG, minHeight: "280px" }}
+            style={{ transitionDelay: "0ms", ...CARD_STYLE,minHeight: "280px" }}
           >
             <div className="px-5 pt-5 pb-3">
               <h3 className="font-clash text-white font-bold text-lg leading-snug mb-1.5">Imágenes que parecen filmadas</h3>
@@ -329,7 +329,7 @@ export default function ServiceStudioDetail() {
           {/* Card 2 — row-span-2 (rows 1 & 2) */}
           <div
             className={cn("glass-card flex flex-col overflow-hidden transition-all duration-500 hover:-translate-y-1 md:row-span-2", visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8")}
-            style={{ transitionDelay: "80ms", background: CARD_BG }}
+            style={{ transitionDelay: "80ms", ...CARD_STYLE }}
           >
             <div className="px-5 pt-5 pb-3">
               <h3 className="font-clash text-white font-bold text-lg leading-snug mb-1.5">Video IA de nivel cinematográfico</h3>
@@ -343,7 +343,7 @@ export default function ServiceStudioDetail() {
           {/* Card 3 */}
           <div
             className={cn("glass-card flex flex-col overflow-hidden transition-all duration-500 hover:-translate-y-1", visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8")}
-            style={{ transitionDelay: "160ms", background: CARD_BG, minHeight: "280px" }}
+            style={{ transitionDelay: "160ms", ...CARD_STYLE,minHeight: "280px" }}
           >
             <div className="px-5 pt-5 pb-3">
               <h3 className="font-clash text-white font-bold text-lg leading-snug mb-1.5">Campañas visuales completas</h3>
@@ -357,7 +357,7 @@ export default function ServiceStudioDetail() {
           {/* Card 4 */}
           <div
             className={cn("glass-card flex flex-col overflow-hidden transition-all duration-500 hover:-translate-y-1", visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8")}
-            style={{ transitionDelay: "240ms", background: CARD_BG, minHeight: "280px" }}
+            style={{ transitionDelay: "240ms", ...CARD_STYLE,minHeight: "280px" }}
           >
             <div className="px-5 pt-5 pb-3">
               <h3 className="font-clash text-white font-bold text-lg leading-snug mb-1.5">Contenido mensual para redes</h3>
@@ -371,7 +371,7 @@ export default function ServiceStudioDetail() {
           {/* Card 5 — col-span-2 */}
           <div
             className={cn("glass-card flex flex-col overflow-hidden transition-all duration-500 hover:-translate-y-1 md:col-span-2", visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8")}
-            style={{ transitionDelay: "320ms", background: CARD_BG, minHeight: "220px", maxHeight: "320px" }}
+            style={{ transitionDelay: "320ms", ...CARD_STYLE,minHeight: "220px", maxHeight: "320px" }}
           >
             <div className="px-5 pt-5 pb-2">
               <h3 className="font-clash text-white font-bold leading-snug mb-1" style={{ fontSize: "clamp(0.95rem, 2vw, 1.125rem)" }}>

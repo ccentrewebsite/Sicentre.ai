@@ -384,11 +384,11 @@ export default function ServiceWebDetail() {
             <div
               key={f.title}
               className={cn(
-                "glass-card flex flex-col overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:border-violet-500/40",
+                "glass-card flex flex-col overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:border-white/30",
                 f.colSpan,
                 visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}
-              style={{ transitionDelay: `${i * 80}ms`, background: "rgba(124,58,237,0.36)" }}
+              style={{ transitionDelay: `${i * 80}ms`, background: "rgba(255,255,255,0.07)", borderColor: "rgba(255,255,255,0.12)" }}
             >
               {/* Text */}
               <div className="px-5 pt-5 pb-3">

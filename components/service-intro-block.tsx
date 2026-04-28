@@ -46,7 +46,7 @@ export default function ServiceIntroBlock({
       />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-14 items-center">
 
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -54,7 +54,7 @@ export default function ServiceIntroBlock({
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className={cn(
-              "relative aspect-[4/3] w-full overflow-hidden rounded-[28px]",
+              "relative aspect-[4/5] md:aspect-[5/6] w-full overflow-hidden rounded-[28px] md:col-span-3",
               imageSide === "right" ? "md:order-2" : "md:order-1"
             )}
             style={{
@@ -88,7 +88,7 @@ export default function ServiceIntroBlock({
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.7, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
             className={cn(
-              "flex flex-col gap-5",
+              "flex flex-col gap-5 md:col-span-2",
               imageSide === "right" ? "md:order-1" : "md:order-2"
             )}
           >
