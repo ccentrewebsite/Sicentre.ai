@@ -148,7 +148,7 @@ function calculate(a: Answers) {
   const afterHoursLoss = Math.round(afterHoursMissed * a.ticket * conversionRate);
 
   const totalLoss = lostRevenue + employeeCost + afterHoursLoss;
-  const iaCost = 300;
+  const iaCost = 500;
   const netSavings = totalLoss - iaCost;
   const roi = iaCost > 0 ? Math.round(totalLoss / iaCost) : 0;
 

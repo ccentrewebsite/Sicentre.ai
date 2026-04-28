@@ -291,7 +291,7 @@ export default function ServiceVoiceDetail() {
             <div>
               <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-3" style={{ color: "rgba(251,146,60,0.5)" }}>Inversión mensual</p>
               <div className="font-clash font-bold mb-2" style={{ fontSize: "clamp(2rem, 4vw, 2.8rem)", lineHeight: 1, color: "#EA580C", textShadow: "0 0 30px rgba(234,88,12,0.45)" }}>
-                Desde $1.500
+                Desde $500
                 <span className="text-lg text-white/40">/mes</span>
               </div>
               <p className="text-white/50 text-sm leading-relaxed mt-3">Configuración incluida. Sin permanencia.</p>

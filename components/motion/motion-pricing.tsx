@@ -6,10 +6,10 @@ import { cn } from "@/lib/utils";
 
 const plans = [
   {
-    name: "Básico",
+    name: "Studio Starter",
     tagline: "4 reels/mes",
-    priceMonthly: 199,
-    priceAnnual: 159,
+    priceMonthly: 500,
+    priceAnnual: 400,
     features: [
       "4 reels mensuales",
       "Edición cinematográfica",
@@ -18,36 +18,39 @@ const plans = [
       "Entrega en 5 días",
     ],
     highlight: false,
+    enterprise: false,
   },
   {
-    name: "Pro",
+    name: "Studio Business",
     tagline: "8 reels + fotografía",
-    priceMonthly: 299,
-    priceAnnual: 239,
+    priceMonthly: 1500,
+    priceAnnual: 1200,
     features: [
       "8 reels mensuales",
-      "10 fotos de producto/lifestyle",
-      "Edición IA enhancement",
+      "30 fotos de producto/lifestyle",
+      "Edición IA avanzada",
       "Calendario editorial",
       "Stories y captions incluidos",
       "Soporte prioritario",
     ],
     highlight: true,
+    enterprise: false,
   },
   {
-    name: "Marca Completa",
-    tagline: "360° content",
-    priceMonthly: 399,
-    priceAnnual: 319,
+    name: "Studio Enterprise",
+    tagline: "Producción ilimitada",
+    priceMonthly: 0,
+    priceAnnual: 0,
     features: [
-      "Todo Pro",
-      "1 brand video/mes",
-      "Fotografía ilimitada",
-      "Content calendar completo",
-      "Estrategia de contenido",
-      "Reportes de performance",
+      "Producción sin límite",
+      "Equipo dedicado",
+      "Campañas multicanal",
+      "Brand guidelines",
+      "Dirección creativa",
+      "Reportería con ROI",
     ],
     highlight: false,
+    enterprise: true,
   },
 ];
 
@@ -126,10 +129,16 @@ export default function MotionPricing() {
               </div>
 
               <div className="flex items-end gap-1 mb-6">
-                <span className="text-4xl font-bold text-white">
-                  ${annual ? plan.priceAnnual : plan.priceMonthly}
-                </span>
-                <span className="text-white/40 mb-1">/mes</span>
+                {plan.enterprise ? (
+                  <span className="text-2xl font-bold text-white">Sur devis</span>
+                ) : (
+                  <>
+                    <span className="text-4xl font-bold text-white">
+                      ${annual ? plan.priceAnnual.toLocaleString("es-AR") : plan.priceMonthly.toLocaleString("es-AR")}
+                    </span>
+                    <span className="text-white/40 mb-1">/mes</span>
+                  </>
+                )}
               </div>
 
               <ul className="space-y-2.5 mb-7">
@@ -150,7 +159,7 @@ export default function MotionPricing() {
                     : "bg-white/5 text-white hover:bg-white/10 border border-white/10"
                 )}
               >
-                Empezar con {plan.name}
+                {plan.enterprise ? "Contactar →" : `Empezar con ${plan.name}`}
               </a>
             </div>
           ))}

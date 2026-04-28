@@ -4,13 +4,35 @@ import { useState } from "react";
 import { Check, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const features = [
-  "Agente vocal 24/7",
-  "Calificación de leads",
-  "Agenda automática",
-  "Resumen diario WhatsApp",
-  "Soporte prioritario",
-  "Setup incluido",
+const plans = [
+  {
+    name: "Plan Starter",
+    priceMonthly: 500,
+    priceAnnual: 400,
+    features: [
+      "Agente vocal 24/7",
+      "Hasta 500 llamadas/mes",
+      "Calificación de leads",
+      "Resumen diario WhatsApp",
+      "Horario personalizable",
+      "Setup incluido",
+    ],
+    highlight: false,
+  },
+  {
+    name: "Plan Business",
+    priceMonthly: 1500,
+    priceAnnual: 1200,
+    features: [
+      "Agente 24/7 sin límites",
+      "Llamadas ilimitadas",
+      "Calificación de leads",
+      "Agenda automática",
+      "Integración CRM",
+      "Soporte prioritario",
+    ],
+    highlight: true,
+  },
 ];
 
 export default function VozPricing() {
@@ -28,7 +50,7 @@ export default function VozPricing() {
             className="text-4xl md:text-6xl font-bold text-white mb-8"
             style={{ fontFamily: "'AUTOMATA-DISPLAY', sans-serif" }}
           >
-            Un plan. Todo incluido.
+            Planes Voz IA.
           </h2>
 
           {/* Toggle */}
@@ -61,47 +83,66 @@ export default function VozPricing() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-3xl mx-auto">
-          {/* Main plan card */}
-          <div className="p-8 rounded-2xl bg-violet-600/10 border border-violet-500/40 shadow-xl shadow-violet-600/10">
-            <div className="flex items-center gap-2 mb-1">
-              <Zap size={18} className="text-violet-400" />
-              <h3
-                className="text-2xl font-bold text-white"
-                style={{ fontFamily: "'AUTOMATA-DISPLAY', sans-serif" }}
-              >
-                Plan Voz IA
-              </h3>
-            </div>
-
-            <div className="flex items-end gap-1 mb-6 mt-4">
-              <span className="text-5xl font-bold text-white">
-                ${annual ? 319 : 399}
-              </span>
-              <span className="text-white/40 mb-1.5">/mes</span>
-            </div>
-
-            <ul className="space-y-3 mb-8">
-              {features.map((f) => (
-                <li key={f} className="flex items-center gap-3 text-white/70 text-sm">
-                  <Check size={16} className="text-violet-400 shrink-0" />
-                  {f}
-                </li>
-              ))}
-            </ul>
-
-            <a
-              href="/contacto"
-              className="block text-center w-full py-3.5 rounded-full font-semibold text-sm bg-violet-600 text-white hover:bg-violet-500 shadow-lg shadow-violet-600/25 transition-all duration-200"
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-4xl mx-auto">
+          {plans.map((plan) => (
+            <div
+              key={plan.name}
+              className={cn(
+                "relative p-8 rounded-2xl backdrop-blur-xl transition-all duration-300 group hover:-translate-y-1",
+                plan.highlight
+                  ? "bg-violet-600/10 border border-violet-500/40 shadow-xl shadow-violet-600/10"
+                  : "bg-violet-600/[0.06] border border-violet-600/20 hover:border-violet-500/40"
+              )}
             >
-              Activar Voz IA →
-            </a>
-          </div>
+              {plan.highlight && (
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-violet-600 to-orange-500 text-white text-xs font-semibold">
+                  Más popular
+                </div>
+              )}
+              <div className="flex items-center gap-2 mb-1">
+                <Zap size={18} className="text-violet-400" />
+                <h3
+                  className="text-2xl font-bold text-white"
+                  style={{ fontFamily: "'AUTOMATA-DISPLAY', sans-serif" }}
+                >
+                  {plan.name}
+                </h3>
+              </div>
 
-          {/* ULTRA 360 mention */}
+              <div className="flex items-end gap-1 mb-6 mt-4">
+                <span className="text-5xl font-bold text-white">
+                  ${annual ? plan.priceAnnual.toLocaleString("es-AR") : plan.priceMonthly.toLocaleString("es-AR")}
+                </span>
+                <span className="text-white/40 mb-1.5">/mes</span>
+              </div>
+
+              <ul className="space-y-3 mb-8">
+                {plan.features.map((f) => (
+                  <li key={f} className="flex items-center gap-3 text-white/70 text-sm">
+                    <Check size={16} className="text-violet-400 shrink-0" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+
+              <a
+                href="/contacto"
+                className={cn(
+                  "block text-center w-full py-3.5 rounded-full font-semibold text-sm transition-all duration-200",
+                  plan.highlight
+                    ? "bg-violet-600 text-white hover:bg-violet-500 shadow-lg shadow-violet-600/25"
+                    : "bg-white/5 text-white hover:bg-white/10 border border-white/10"
+                )}
+              >
+                Activar {plan.name} →
+              </a>
+            </div>
+          ))}
+
+          {/* ULTRA 360 / Enterprise mention */}
           <div className="p-8 rounded-2xl bg-gradient-to-br from-violet-600/10 to-orange-500/10 border border-orange-500/20">
             <div className="flex items-center gap-2 mb-1">
-              <span className="text-xs font-bold tracking-widest uppercase text-orange-400">Ultra</span>
+              <span className="text-xs font-bold tracking-widest uppercase text-orange-400">Enterprise</span>
             </div>
             <h3
               className="text-2xl font-bold text-white mb-3"
@@ -110,10 +151,10 @@ export default function VozPricing() {
               ULTRA 360
             </h3>
             <p className="text-white/50 text-sm leading-relaxed mb-6">
-              Voz IA + Sitio web + Content mensual. El paquete completo para escalar su negocio desde el día 1.
+              Voz IA + Sitio web + Content mensual. El paquete completo para escalar su negocio. Precio sur devis.
             </p>
             <ul className="space-y-2 mb-8 text-sm">
-              {["Voz IA incluida", "Sitio web 15 páginas", "8 reels/mes", "Soporte prioritario"].map((f) => (
+              {["Voz IA ilimitada", "Sitio web 15 páginas", "8 reels/mes", "Soporte prioritario"].map((f) => (
                 <li key={f} className="flex items-center gap-3 text-white/60">
                   <Check size={14} className="text-orange-400 shrink-0" />
                   {f}

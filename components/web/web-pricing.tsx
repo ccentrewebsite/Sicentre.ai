@@ -5,8 +5,8 @@ import { cn } from "@/lib/utils";
 
 const plans = [
   {
-    name: "Web Vitrina",
-    price: 499,
+    name: "Plan Vitrina",
+    price: 500,
     desc: "Presencia profesional online, lista en 72h.",
     features: [
       "Hasta 5 páginas",
@@ -21,11 +21,11 @@ const plans = [
     cta: "Quiero mi vitrina",
   },
   {
-    name: "Tienda Online",
-    price: 999,
+    name: "Plan E-commerce",
+    price: 1000,
     desc: "Tienda online completa para vender desde el día 1.",
     features: [
-      "Todo Web Vitrina",
+      "Todo Plan Vitrina",
       "Tienda con pasarela de pago",
       "Gestión de productos",
       "SEO avanzado",
@@ -85,7 +85,7 @@ export default function WebPricing() {
 
               <div className="flex items-end gap-1.5 mb-1">
                 <span className="text-sm text-white/40">desde</span>
-                <span className="text-5xl font-bold text-white">${plan.price}</span>
+                <span className="text-5xl font-bold text-white">${plan.price.toLocaleString("es-AR")}</span>
                 <span className="text-white/40 mb-1.5">USD</span>
               </div>
               <p className="text-xs text-violet-400/70 mb-6">Pago único · Sin mensualidades</p>
