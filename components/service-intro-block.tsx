@@ -1,10 +1,12 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface ServiceIntroBlockProps {
   id?: string;
+  serviceTitle: ReactNode;
   title: string;
   hook: string;
   description: string;
@@ -19,6 +21,7 @@ interface ServiceIntroBlockProps {
 
 export default function ServiceIntroBlock({
   id,
+  serviceTitle,
   title,
   hook,
   description,
@@ -31,7 +34,7 @@ export default function ServiceIntroBlock({
   titleAccentColor,
 }: ServiceIntroBlockProps) {
   return (
-    <section id={id} className="relative py-20 md:py-28 overflow-hidden planet-section">
+    <section id={id} className="relative pt-24 pb-20 md:pt-32 md:pb-28 overflow-hidden planet-section">
       <div
         className="absolute pointer-events-none"
         style={{
@@ -46,6 +49,18 @@ export default function ServiceIntroBlock({
       />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10">
+
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="font-clash font-bold text-white text-center leading-[0.95] tracking-tight mb-14 md:mb-20"
+          style={{ fontSize: "clamp(2.8rem, 7vw, 5.6rem)" }}
+        >
+          {serviceTitle}
+        </motion.h2>
+
         <div className="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-14 items-center">
 
           <motion.div

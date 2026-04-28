@@ -21,6 +21,14 @@ export default function Home() {
         imageSide="right"
         imageSrc="/images/service-voz.jpg.png"
         imageAlt="Agente de voz IA Sicentre — disponible 24/7"
+        serviceTitle={
+          <>
+            Agentes de{" "}
+            <span style={{ color: "#EA580C", textShadow: "0 4px 22px rgba(234,88,12,0.45)" }}>
+              Voz
+            </span>
+          </>
+        }
         title="Su negocio responde."
         titleAccent="Siempre."
         titleAccentColor="#EA580C"
@@ -35,6 +43,17 @@ export default function Home() {
         imageSide="left"
         imageSrc="/images/service-web.jpg.png"
         imageAlt="Sitio web a medida — diseñado desde cero para su empresa"
+        serviceTitle={
+          <>
+            Sitios Web{" "}
+            <span
+              className="gradient-text"
+              style={{ filter: "drop-shadow(0 4px 22px rgba(124,58,237,0.45))" }}
+            >
+              a Medida
+            </span>
+          </>
+        }
         title="Un sitio hecho"
         titleAccent="exactamente para usted."
         titleAccentColor="#A78BFA"
@@ -49,6 +68,17 @@ export default function Home() {
         imageSide="right"
         imageSrc="/images/service-studio.jpg.png"
         imageAlt="Creación visual surrealista — fotografía editorial y video IA"
+        serviceTitle={
+          <>
+            Creación{" "}
+            <span
+              className="gradient-text"
+              style={{ filter: "drop-shadow(0 4px 22px rgba(234,88,12,0.45))" }}
+            >
+              Visual
+            </span>
+          </>
+        }
         title="Imágenes y videos que"
         titleAccent="detienen el scroll."
         titleAccentColor="#EA580C"

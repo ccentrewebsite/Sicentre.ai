@@ -293,19 +293,13 @@ export default function ServiceStudioDetail() {
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10">
 
-        {/* Header */}
-        <div className={cn("text-center mb-16 transition-all duration-700", visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")}>
-          <h2
-            className="font-clash font-bold text-white leading-[0.95] tracking-tight mb-6"
-            style={{ fontSize: "clamp(2.8rem, 7vw, 5.6rem)" }}
+        {/* Marketing hook above the bento */}
+        <div className={cn("text-center mb-12 md:mb-14 transition-all duration-700", visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")}>
+          <p
+            className="font-clash font-semibold text-white/85 mx-auto max-w-3xl leading-tight"
+            style={{ fontSize: "clamp(1.2rem, 2.4vw, 1.8rem)" }}
           >
-            Creación{" "}
-            <span className="gradient-text" style={{ filter: "drop-shadow(0 4px 22px rgba(234,88,12,0.45))" }}>
-              Visual
-            </span>
-          </h2>
-          <p className="text-white/65 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-            Contenido que detiene el scroll. Imágenes y videos que no parecen generados — parecen filmados.
+            Fotografía editorial. Video cinematográfico. Contenido mensual.
           </p>
         </div>
 
