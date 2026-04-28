@@ -213,33 +213,6 @@ export default function ServiceVoiceDetail() {
       <div className="absolute pointer-events-none" style={{ width: "600px", height: "400px", background: "radial-gradient(ellipse, rgba(234,88,12,0.12) 0%, transparent 70%)", top: "-60px", left: "50%", transform: "translateX(-50%)", filter: "blur(70px)" }} />
       <div className="absolute pointer-events-none" style={{ width: "400px", height: "300px", background: "radial-gradient(ellipse, rgba(124,58,237,0.08) 0%, transparent 70%)", bottom: "0", left: "0", filter: "blur(60px)" }} />
 
-      {/* Voice AI decoration — left of title */}
-      <div className="absolute pointer-events-none hidden md:block" style={{ left: "13%", top: "16%", opacity: 0.18, zIndex: 1 }}>
-        <svg width="130" height="130" viewBox="0 0 130 130" fill="none" xmlns="http://www.w3.org/2000/svg">
-          {/* Antenna ball + stem */}
-          <line x1="50" y1="10" x2="50" y2="20" stroke="#EA580C" strokeWidth="1.6" strokeLinecap="round" />
-          <circle cx="50" cy="7" r="4" stroke="#EA580C" strokeWidth="1.5" fill="none" />
-          {/* Head — dome top, flat bottom */}
-          <path d="M 12 55 Q 12 18 50 18 Q 88 18 88 55 L 88 76 Q 88 88 76 88 L 24 88 Q 12 88 12 76 Z" stroke="#EA580C" strokeWidth="1.7" fill="none" />
-          {/* Forehead band */}
-          <line x1="12" y1="62" x2="88" y2="62" stroke="#EA580C" strokeWidth="1" opacity="0.45" />
-          {/* Eyes */}
-          <circle cx="34" cy="45" r="5.5" stroke="#EA580C" strokeWidth="1.5" fill="none" />
-          <circle cx="34" cy="45" r="2.2" fill="#EA580C" />
-          <circle cx="66" cy="45" r="5.5" stroke="#EA580C" strokeWidth="1.5" fill="none" />
-          <circle cx="66" cy="45" r="2.2" fill="#EA580C" />
-          {/* Chin / mouth grille */}
-          <rect x="28" y="68" width="44" height="12" rx="6" stroke="#EA580C" strokeWidth="1.3" fill="none" />
-          <line x1="38" y1="68" x2="38" y2="80" stroke="#EA580C" strokeWidth="0.9" opacity="0.5" />
-          <line x1="50" y1="68" x2="50" y2="80" stroke="#EA580C" strokeWidth="0.9" opacity="0.5" />
-          <line x1="62" y1="68" x2="62" y2="80" stroke="#EA580C" strokeWidth="0.9" opacity="0.5" />
-          {/* Sound waves — right */}
-          <path d="M 94 40 Q 104 53 94 66" stroke="#EA580C" strokeWidth="1.4" fill="none" strokeLinecap="round" />
-          <path d="M 103 30 Q 118 53 103 76" stroke="#EA580C" strokeWidth="1" fill="none" strokeLinecap="round" opacity="0.55" />
-          <path d="M 112 20 Q 132 53 112 86" stroke="#EA580C" strokeWidth="0.8" fill="none" strokeLinecap="round" opacity="0.28" />
-        </svg>
-      </div>
-
       <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10">
 
         {/* Header */}
