@@ -526,7 +526,6 @@ const sectionTabs = [
   { id: "planes-web",    label: "Sitios Web" },
   { id: "planes-voz",    label: "Agentes de Voz" },
   { id: "planes-studio", label: "Creación Visual" },
-  { id: "planes-ultra",  label: "ULTRA" },
 ];
 
 function SectionTabs() {
@@ -535,9 +534,9 @@ function SectionTabs() {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   };
   return (
-    <div className="flex justify-center mt-2">
+    <div className="flex justify-center">
       <div
-        className="inline-flex items-center gap-1.5 p-1.5 rounded-full max-w-full overflow-x-auto scroll-hide"
+        className="inline-flex items-center gap-2 p-1.5 rounded-full max-w-full overflow-x-auto scroll-hide"
         style={{
           background: "rgba(255,255,255,0.045)",
           border: "1px solid rgba(255,255,255,0.10)",
@@ -549,11 +548,17 @@ function SectionTabs() {
           <button
             key={tab.id}
             onClick={() => handleClick(tab.id)}
-            className="cursor-pointer whitespace-nowrap px-4 md:px-5 py-2 rounded-full text-xs md:text-sm font-semibold text-white/65 hover:text-white hover:bg-white/8 transition-all duration-200"
+            className="cursor-pointer whitespace-nowrap px-4 md:px-5 py-2 rounded-full text-xs md:text-sm font-semibold text-white/70 hover:text-white hover:bg-white/[0.12] hover:scale-[1.06] hover:-translate-y-0.5 hover:shadow-[0_8px_22px_rgba(124,58,237,0.35)] transition-all duration-200 ease-out"
           >
             {tab.label}
           </button>
         ))}
+        <button
+          onClick={() => handleClick("planes-ultra")}
+          className="animate-ultra-pulse cursor-pointer whitespace-nowrap px-5 md:px-6 py-2.5 rounded-full text-sm md:text-base font-extrabold tracking-wide text-white bg-gradient-to-r from-violet-600 via-fuchsia-500 to-orange-500 hover:scale-[1.08] hover:-translate-y-0.5 transition-transform duration-200 ease-out"
+        >
+          Plan ULTRA
+        </button>
       </div>
     </div>
   );
@@ -607,7 +612,7 @@ export default function PricingPage() {
     <div className="min-h-screen">
       {/* Hero — wrapped in a horizontal liquid-glass card to clearly
           separate the page title from the sections below */}
-      <div className="pt-32 md:pt-36 pb-16 px-6 md:px-10">
+      <div className="pt-32 md:pt-36 pb-10 px-6 md:px-10">
         <div
           className="relative max-w-6xl mx-auto rounded-[28px] md:rounded-[36px] overflow-hidden text-center"
           style={{
@@ -616,7 +621,7 @@ export default function PricingPage() {
             backdropFilter: "blur(28px)",
             WebkitBackdropFilter: "blur(28px)",
             boxShadow: "inset 0 1px 0 rgba(255,255,255,0.08), 0 18px 60px rgba(0,0,0,0.35)",
-            padding: "clamp(2.5rem, 6vw, 5rem) clamp(1.5rem, 5vw, 4rem)",
+            padding: "clamp(2rem, 4.5vw, 3.75rem) clamp(1.5rem, 5vw, 4rem)",
           }}
         >
           <div
@@ -644,24 +649,23 @@ export default function PricingPage() {
           />
 
           <div className="relative">
-            <p className="uppercase tracking-[0.3em] text-xs font-semibold text-white/45 mb-7">
-              Precios
-            </p>
             <h1
-              className="font-bold text-white mb-5 font-clash leading-[0.92] tracking-tight"
-              style={{ fontSize: "clamp(3.2rem, 9vw, 7rem)" }}
+              className="font-bold text-white mb-5 font-clash leading-[0.95] tracking-tight"
+              style={{ fontSize: "clamp(2.5rem, 6vw, 4.8rem)" }}
             >
               Planes diseñados
               <br />
               para crecer.
             </h1>
-            <p className="text-white/60 text-base md:text-lg max-w-xl mx-auto mb-9">
+            <p className="text-white/60 text-base md:text-lg max-w-xl mx-auto">
               Desde un sitio web hasta su operación digital completa con IA. Precios claros, resultados medibles.
             </p>
-
-            {/* Quick-jump tabs */}
-            <SectionTabs />
           </div>
+        </div>
+
+        {/* Quick-jump tabs — outside the hero card */}
+        <div className="max-w-6xl mx-auto mt-8 md:mt-10">
+          <SectionTabs />
         </div>
       </div>
 
