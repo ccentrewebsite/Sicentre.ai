@@ -1,4 +1,4 @@
-import { VozHero, VozProblem, VozHow, VozDemo, VozUsecases, VozPricing, VozFaq } from "@/components/voz-ia";
+import { VozHero, VozProblem, VozSimulator, VozHow, VozDemo, VozUsecases, VozPricing, VozFaq } from "@/components/voz-ia";
 import PageFooter from "@/components/shared/page-footer";
 import WhatsAppButton from "@/components/whatsapp-button";
 
@@ -13,6 +13,7 @@ export default function VozIAPage() {
     <main>
       <VozHero />
       <VozProblem />
+      <VozSimulator />
       <VozHow />
       <VozDemo />
       <VozUsecases />
