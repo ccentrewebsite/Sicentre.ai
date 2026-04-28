@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 const serviceDropdown = [
   { label: "Sitios Web",       href: "/web",    desc: "Diseño web a medida" },
   { label: "Agente de Voz IA", href: "/voz-ia", desc: "Atiende llamadas 24/7" },
-  { label: "Motion & Content", href: "/motion", desc: "Contenido que vende" },
+  { label: "Creación Visual", href: "/motion", desc: "Contenido que vende" },
 ];
 
 const navLinks = [

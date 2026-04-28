@@ -50,16 +50,40 @@ export default function ServiceIntroBlock({
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10">
 
-        <motion.h2
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="font-clash font-bold text-white text-center leading-[0.95] tracking-tight mb-14 md:mb-20"
-          style={{ fontSize: "clamp(2.8rem, 7vw, 5.6rem)" }}
+          className="relative mx-auto mb-14 md:mb-20 rounded-[28px] md:rounded-[36px] overflow-hidden text-center"
+          style={{
+            background: "rgba(255,255,255,0.045)",
+            border: "1px solid rgba(255,255,255,0.10)",
+            backdropFilter: "blur(28px)",
+            WebkitBackdropFilter: "blur(28px)",
+            boxShadow: "inset 0 1px 0 rgba(255,255,255,0.08), 0 18px 60px rgba(0,0,0,0.35)",
+            padding: "clamp(2rem, 4.5vw, 3.25rem) clamp(1.5rem, 5vw, 4rem)",
+          }}
         >
-          {serviceTitle}
-        </motion.h2>
+          <div
+            className="absolute pointer-events-none"
+            style={{
+              width: "640px",
+              height: "360px",
+              background: `radial-gradient(ellipse, ${accentColorSoft} 0%, transparent 70%)`,
+              top: "-140px",
+              left: "50%",
+              transform: "translateX(-50%)",
+              filter: "blur(70px)",
+            }}
+          />
+          <h2
+            className="relative font-clash font-bold text-white leading-[0.95] tracking-tight"
+            style={{ fontSize: "clamp(2.4rem, 6vw, 4.8rem)" }}
+          >
+            {serviceTitle}
+          </h2>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-14 items-center">
 

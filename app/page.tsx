@@ -5,7 +5,6 @@ import ServiceVoiceDetail from "@/components/service-voice-detail";
 import ServiceWebDetail from "@/components/service-web-detail";
 import ServiceStudioDetail from "@/components/service-studio-detail";
 import PricingSection from "@/components/pricing-section";
-import PortfolioSection from "@/components/portfolio-section";
 import CTASection from "@/components/cta-section";
 import FooterSection from "@/components/footer-section";
 import WhatsAppButton from "@/components/whatsapp-button";
@@ -96,7 +95,6 @@ export default function Home() {
       </div>
 
       <PricingSection />
-      <PortfolioSection />
       <CTASection />
       <FooterSection />
       <WhatsAppButton />

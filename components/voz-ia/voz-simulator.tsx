@@ -447,16 +447,12 @@ export default function VozSimulator() {
       <div className="max-w-2xl mx-auto">
         {/* Section header */}
         <div className="text-center mb-12">
-          <p className="text-xs font-semibold tracking-[0.2em] uppercase mb-4" style={{ color: "rgba(251,146,60,0.7)" }}>
-            Simulador de pérdidas
-          </p>
           <h2 className="font-clash text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4">
-            ¿Cuánto dinero estás
-            <br />
-            <span style={{ color: "#EA580C" }}>perdiendo ahora mismo?</span>
+            Calcule cuánto puede{" "}
+            <span style={{ color: "#EA580C" }}>ganar con un agente IA.</span>
           </h2>
           <p className="text-white/50 text-base max-w-md mx-auto">
-            Responde 6 preguntas y te mostramos el cálculo exacto en tu sector.
+            Responda 6 preguntas y le mostramos el potencial real de su negocio.
           </p>
         </div>
 

@@ -29,17 +29,6 @@ export default function VozHero() {
 
       <div className="relative z-10 flex-1 flex items-center justify-center px-6 md:px-10 pt-24 pb-20">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-full bg-violet-600/10 border border-violet-500/20">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-violet-500" />
-            </span>
-            <span className="text-xs font-semibold text-violet-300 tracking-wide">
-              Disponible 24/7 · 365 días
-            </span>
-          </div>
-
           {/* Headline */}
           <h1
             className="text-4xl sm:text-6xl md:text-8xl font-bold text-white leading-[0.95] mb-6"

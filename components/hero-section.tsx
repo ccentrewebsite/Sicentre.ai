@@ -71,6 +71,7 @@ export default function HeroSection() {
             </LiquidButton>
             <LiquidButton
               size="xxl"
+              accent="orange"
               onClick={() => window.location.href = "/contacto"}
               className="text-base font-semibold tracking-tight whitespace-nowrap text-white w-full sm:w-auto"
             >

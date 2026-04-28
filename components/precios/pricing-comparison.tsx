@@ -63,10 +63,11 @@ export default function PricingComparison({
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
       )}
       style={{
-        background: "rgba(255,255,255,0.035)",
-        border: "1px solid rgba(255,255,255,0.08)",
-        backdropFilter: "blur(24px)",
-        WebkitBackdropFilter: "blur(24px)",
+        background: "rgba(20,16,38,0.65)",
+        border: "1px solid rgba(255,255,255,0.14)",
+        backdropFilter: "blur(28px)",
+        WebkitBackdropFilter: "blur(28px)",
+        boxShadow: "inset 0 1px 0 rgba(255,255,255,0.08), 0 24px 60px rgba(0,0,0,0.4)",
       }}
     >
       {/* Header */}
@@ -118,10 +119,10 @@ export default function PricingComparison({
           {rows.map((row, i) => (
             <div
               key={row.feature}
-              className="grid items-center px-6 md:px-8 py-4 transition-colors hover:bg-white/[0.025]"
+              className="grid items-center px-6 md:px-8 py-4 transition-colors hover:bg-white/[0.05]"
               style={{
                 gridTemplateColumns: gridCols,
-                borderTop: "1px solid rgba(255,255,255,0.05)",
+                borderTop: "1px solid rgba(255,255,255,0.10)",
               }}
             >
               <span className="text-white/75 text-sm leading-snug pr-4">

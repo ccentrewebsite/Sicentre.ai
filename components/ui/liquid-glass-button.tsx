@@ -54,9 +54,13 @@ export function LiquidButton({
   size,
   asChild = false,
   children,
+  accent = "default",
   ...props
 }: React.ComponentProps<"button"> &
-  VariantProps<typeof liquidbuttonVariants> & { asChild?: boolean }) {
+  VariantProps<typeof liquidbuttonVariants> & {
+    asChild?: boolean
+    accent?: "default" | "orange"
+  }) {
   const Comp = asChild ? Slot : "button"
   const [mousePos, setMousePos] = React.useState({ x: 0, y: 0 })
   const [hovered, setHovered] = React.useState(false)
@@ -66,6 +70,9 @@ export function LiquidButton({
     setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top })
   }
 
+  const isOrange = accent === "orange"
+  const glowRgba = isOrange ? "rgba(251,146,60,0.42)" : "rgba(255,255,255,0.18)"
+
   return (
     <Comp
       data-slot="button"
@@ -73,6 +80,14 @@ export function LiquidButton({
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      style={
+        isOrange
+          ? {
+              background:
+                "linear-gradient(135deg, rgba(234,88,12,0.32) 0%, rgba(251,146,60,0.20) 60%, rgba(234,88,12,0.32) 100%)",
+            }
+          : undefined
+      }
       {...props}
     >
       {/* Glass shadow ring */}
@@ -92,7 +107,7 @@ export function LiquidButton({
         className="pointer-events-none absolute inset-0 rounded-full transition-opacity duration-300"
         style={{
           opacity: hovered ? 1 : 0,
-          background: `radial-gradient(80px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255,255,255,0.18), transparent 70%)`,
+          background: `radial-gradient(80px circle at ${mousePos.x}px ${mousePos.y}px, ${glowRgba}, transparent 70%)`,
         }}
       />
 
