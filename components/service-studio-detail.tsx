@@ -51,87 +51,38 @@ function FilmFrameIllustration() {
   );
 }
 
-function TimelineIllustration() {
-  const tracks: { label: string; clips: { left: number; width: number; color: string; glow: string }[]; keys: { pos: number; color: string }[] }[] = [
-    {
-      label: "VID",
-      clips: [
-        { left: 0,  width: 34, color: "rgba(124,58,237,0.80)", glow: "rgba(124,58,237,0.55)" },
-        { left: 37, width: 44, color: "rgba(167,139,250,0.65)", glow: "rgba(167,139,250,0.45)" },
-        { left: 84, width: 14, color: "rgba(124,58,237,0.72)", glow: "rgba(124,58,237,0.5)" },
-      ],
-      keys: [{ pos: 10, color: "rgba(167,139,250,0.95)" }, { pos: 54, color: "rgba(167,139,250,0.95)" }, { pos: 85, color: "rgba(167,139,250,0.95)" }],
-    },
-    {
-      label: "MUS",
-      clips: [{ left: 0, width: 99, color: "rgba(234,88,12,0.52)", glow: "rgba(234,88,12,0.38)" }],
-      keys: [{ pos: 25, color: "rgba(251,146,60,0.95)" }, { pos: 70, color: "rgba(251,146,60,0.95)" }],
-    },
-    {
-      label: "FX",
-      clips: [
-        { left: 4,  width: 22, color: "rgba(139,92,246,0.70)", glow: "rgba(139,92,246,0.5)" },
-        { left: 48, width: 30, color: "rgba(251,146,60,0.60)", glow: "rgba(251,146,60,0.42)" },
-        { left: 81, width: 17, color: "rgba(139,92,246,0.65)", glow: "rgba(139,92,246,0.48)" },
-      ],
-      keys: [{ pos: 15, color: "rgba(167,139,250,0.95)" }, { pos: 62, color: "rgba(251,146,60,0.95)" }, { pos: 90, color: "rgba(167,139,250,0.95)" }],
-    },
+function VideoEditorIllustration() {
+  const scenes = [
+    { label: "Scene 01", bg: "linear-gradient(135deg, rgba(124,58,237,0.7), rgba(30,14,60,0.9))" },
+    { label: "Scene 02", bg: "linear-gradient(135deg, rgba(234,88,12,0.65), rgba(60,20,5,0.9))" },
+    { label: "Scene 03", bg: "linear-gradient(135deg, rgba(59,130,246,0.6), rgba(10,20,50,0.9))" },
+    { label: "Scene 04", bg: "linear-gradient(135deg, rgba(167,139,250,0.65), rgba(40,20,70,0.9))" },
   ];
-
-  const PLAYHEAD = 22;
-
+  const specs = ["4K ULTRA HD", "IA Color", "Auto-Cut", "60fps"];
   return (
-    <div className="relative w-full h-full flex flex-col justify-center overflow-hidden px-3 py-3">
-      <div className="absolute" style={{ width: "200px", height: "80px", background: "radial-gradient(ellipse, rgba(124,58,237,0.2) 0%, transparent 70%)", filter: "blur(20px)", bottom: "10%", left: "35%" }} />
-
-      {/* Timecode bar */}
-      <div className="relative z-10 flex items-center gap-2 mb-2">
-        <div className="flex items-center gap-1.5 px-2 py-0.5 rounded" style={{ background: "rgba(0,0,0,0.45)", border: "1px solid rgba(124,58,237,0.3)" }}>
-          <div className="w-1.5 h-1.5 rounded-full" style={{ background: "#EA580C", boxShadow: "0 0 5px rgba(234,88,12,0.9)" }} />
-          <span style={{ fontFamily: "monospace", fontSize: "8px", color: "rgba(251,146,60,0.9)", letterSpacing: "0.07em" }}>00:02:14:08</span>
-        </div>
-        <div className="flex items-center gap-1 ml-auto">
-          {(["▶","■","◀▶"] as const).map((icon, i) => (
-            <div key={i} className="flex items-center justify-center" style={{ width: "15px", height: "15px", borderRadius: "3px", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", fontSize: "5px", color: "rgba(255,255,255,0.4)" }}>{icon}</div>
-          ))}
-        </div>
-      </div>
-
-      {/* Ruler */}
-      <div className="relative z-10 flex items-end mb-1 pl-9">
-        {Array.from({length:11}).map((_,i) => (
-          <div key={i} className="flex flex-col items-center" style={{ flex: 1 }}>
-            <span style={{ fontSize: "6px", color: "rgba(255,255,255,0.2)", marginBottom: "1px" }}>{i*10}</span>
-            <div style={{ width: "1px", height: i%5===0?"6px":"3px", background: i%5===0?"rgba(255,255,255,0.18)":"rgba(255,255,255,0.08)" }} />
+    <div className="w-full h-full flex flex-col gap-2 px-3 pt-1 pb-3">
+      {/* Scene thumbnail strip */}
+      <div className="flex gap-1.5 flex-shrink-0">
+        {scenes.map((s, i) => (
+          <div key={i} className="flex-1 rounded-md overflow-hidden flex flex-col items-center justify-center gap-0.5 py-1.5" style={{ background: s.bg, border: "1px solid rgba(255,255,255,0.09)", height: "42px" }}>
+            <div style={{ width: "16px", height: "11px", background: "rgba(255,255,255,0.12)", borderRadius: "2px", border: "1px solid rgba(255,255,255,0.2)" }} />
+            <span style={{ fontSize: "6px", color: "rgba(255,255,255,0.45)", fontFamily: "monospace", letterSpacing: "0.05em" }}>{s.label}</span>
           </div>
         ))}
       </div>
-
-      {/* Track lanes */}
-      <div className="relative z-10 flex flex-col gap-1.5">
-        {tracks.map((track, ti) => (
-          <div key={ti} className="flex items-center gap-2">
-            <div style={{ width: "28px", flexShrink: 0, textAlign: "right" }}>
-              <span style={{ fontFamily: "monospace", fontSize: "7px", fontWeight: 700, color: "rgba(255,255,255,0.27)", letterSpacing: "0.05em" }}>{track.label}</span>
-            </div>
-            <div className="relative flex-1 rounded-sm" style={{ height: "20px", background: "rgba(0,0,0,0.38)", border: "1px solid rgba(255,255,255,0.07)" }}>
-              {track.clips.map((clip, ci) => (
-                <div key={ci} className="absolute inset-y-0.5 rounded-sm overflow-hidden" style={{ left: `${clip.left}%`, width: `${clip.width}%`, background: clip.color, border: "1px solid rgba(255,255,255,0.14)", boxShadow: `inset 0 1px 0 rgba(255,255,255,0.14), 0 0 6px ${clip.glow}` }}>
-                  <div className="absolute inset-0" style={{ background: "repeating-linear-gradient(90deg, transparent, transparent 5px, rgba(255,255,255,0.04) 5px, rgba(255,255,255,0.04) 6px)" }} />
-                </div>
-              ))}
-              {track.keys.map((kf, ki) => (
-                <div key={ki} className="absolute" style={{ left: `${kf.pos}%`, top: "50%", transform: "translate(-50%,-50%) rotate(45deg)", width: "5px", height: "5px", background: kf.color, boxShadow: `0 0 5px ${kf.color}`, zIndex: 5 }} />
-              ))}
-              {/* Playhead per lane */}
-              <div className="absolute top-0 bottom-0" style={{ left: `${PLAYHEAD}%`, width: "1.5px", background: "rgba(251,146,60,0.9)", boxShadow: "0 0 5px rgba(234,88,12,0.8)", zIndex: 10 }} />
-            </div>
-          </div>
+      {/* Main video editor image */}
+      <div className="relative flex-1 rounded-xl overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.1)", minHeight: 0 }}>
+        <img src="/images/video-editor-ui.jpg" alt="Futuristic AI video editor" className="w-full h-full object-cover object-top" />
+        <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to bottom, transparent 60%, rgba(13,11,24,0.5) 100%)" }} />
+      </div>
+      {/* Tech specs */}
+      <div className="flex gap-1.5 flex-wrap flex-shrink-0">
+        {specs.map((s, i) => (
+          <span key={i} className="px-2 py-0.5 rounded-full text-white/50" style={{ fontSize: "9px", fontFamily: "monospace", fontWeight: 600, letterSpacing: "0.06em", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
+            {s}
+          </span>
         ))}
       </div>
-
-      {/* Playhead cap (above ruler) */}
-      <div className="absolute" style={{ top: "calc(38% - 2px)", left: `calc(36px + ${PLAYHEAD / 100} * (100% - 44px))`, transform: "translateX(-50%)", width: "9px", height: "9px", background: "#EA580C", clipPath: "polygon(50% 100%, 0% 0%, 100% 0%)", boxShadow: "0 0 8px rgba(234,88,12,0.9)", zIndex: 20 }} />
     </div>
   );
 }
@@ -158,36 +109,82 @@ function CampaignGridIllustration() {
   );
 }
 
-function SocialWavesIllustration() {
+function SocialPlatformsGrid() {
   const platforms = [
-    { x: "50%", y: "15%", icon: "IG", color: "rgba(167,139,250,0.9)" },
-    { x: "82%", y: "48%", icon: "TT", color: "rgba(234,88,12,0.9)" },
-    { x: "65%", y: "82%", icon: "FB", color: "rgba(124,58,237,0.9)" },
-    { x: "20%", y: "75%", icon: "YT", color: "rgba(251,146,60,0.9)" },
-    { x: "12%", y: "38%", icon: "LI", color: "rgba(139,92,246,0.9)" },
-  ];
-  return (
-    <div className="relative w-full h-full overflow-hidden">
-      <div className="absolute" style={{ width: "160px", height: "160px", background: "radial-gradient(circle, rgba(124,58,237,0.25) 0%, transparent 70%)", top: "50%", left: "50%", transform: "translate(-50%,-50%)", filter: "blur(20px)" }} />
-      <svg className="absolute inset-0 w-full h-full" style={{ opacity: 0.3 }}>
-        <circle cx="50%" cy="50%" r="35%" fill="none" stroke="rgba(124,58,237,0.5)" strokeWidth="0.7" strokeDasharray="5 4" />
-        <circle cx="50%" cy="50%" r="22%" fill="none" stroke="rgba(124,58,237,0.4)" strokeWidth="0.7" />
-      </svg>
-      <svg className="absolute inset-0 w-full h-full">
-        {platforms.map((p, i) => (
-          <line key={i} x1="50%" y1="50%" x2={p.x} y2={p.y} stroke={p.color.replace("0.9","0.4")} strokeWidth="1" strokeDasharray="3 5" />
-        ))}
-      </svg>
-      <div className="absolute z-10 flex items-center justify-center" style={{ top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: "44px", height: "44px", background: "linear-gradient(145deg, #1a0c2e, #0d0b18)", borderRadius: "50%", border: "1.5px solid rgba(124,58,237,0.7)", boxShadow: "0 0 20px rgba(124,58,237,0.5)" }}>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(167,139,250,0.95)" strokeWidth="1.6" strokeLinecap="round">
-          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+    {
+      name: "Instagram", freq: "3× / sem",
+      bg: "linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045)",
+      logo: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <rect x="2" y="2" width="20" height="20" rx="5" stroke="white" strokeWidth="1.8"/>
+          <circle cx="12" cy="12" r="4.5" stroke="white" strokeWidth="1.8"/>
+          <circle cx="17.5" cy="6.5" r="1.2" fill="white"/>
         </svg>
+      ),
+    },
+    {
+      name: "TikTok", freq: "2× / sem",
+      bg: "linear-gradient(135deg, #010101, #2d2d2d)",
+      logo: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+          <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.88a8.18 8.18 0 004.78 1.52V7.01a4.85 4.85 0 01-1.01-.32z"/>
+        </svg>
+      ),
+    },
+    {
+      name: "YouTube", freq: "1× / sem",
+      bg: "linear-gradient(135deg, #ff0000, #cc0000)",
+      logo: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+          <path d="M23 7s-.3-1.9-1.2-2.7c-1.1-1.2-2.4-1.2-3-1.3C16.3 3 12 3 12 3s-4.3 0-6.8.1c-.6.1-1.9.1-3 1.3C1.3 5.2 1 7 1 7S.7 9.2.7 11.3v2c0 2.2.3 4.3.3 4.3s.3 1.9 1.2 2.7c1.1 1.2 2.6 1.1 3.3 1.2C7.3 21.7 12 21.7 12 21.7s4.3 0 6.8-.2c.6-.1 1.9-.1 3-1.3.9-.8 1.2-2.7 1.2-2.7s.3-2.1.3-4.3v-2C23.3 9.2 23 7 23 7zM9.7 15.5V8.4l6.6 3.6-6.6 3.5z"/>
+        </svg>
+      ),
+    },
+    {
+      name: "Facebook", freq: "3× / sem",
+      bg: "linear-gradient(135deg, #1877f2, #0d5fbd)",
+      logo: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+      ),
+    },
+    {
+      name: "LinkedIn", freq: "2× / sem",
+      bg: "linear-gradient(135deg, #0077b5, #005580)",
+      logo: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+      ),
+    },
+    {
+      name: "X / Twitter", freq: "5× / sem",
+      bg: "linear-gradient(135deg, #000000, #1a1a1a)",
+      logo: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.745l7.73-8.835L1.254 2.25H8.08l4.259 5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+      ),
+    },
+  ];
+
+  return (
+    <div className="w-full h-full flex flex-col justify-center gap-2 px-4 py-3">
+      <div className="grid grid-cols-3 gap-2">
+        {platforms.map((p, i) => (
+          <div key={i} className="flex items-center gap-2 px-2 py-2 rounded-xl" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
+            <div className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-lg" style={{ background: p.bg }}>
+              {p.logo}
+            </div>
+            <div className="min-w-0">
+              <div className="text-white/80 font-semibold truncate" style={{ fontSize: "10px" }}>{p.name}</div>
+              <div className="text-white/35" style={{ fontSize: "9px" }}>{p.freq}</div>
+            </div>
+          </div>
+        ))}
       </div>
-      {platforms.map((p, i) => (
-        <div key={i} className="absolute z-10 flex items-center justify-center" style={{ top: p.y, left: p.x, transform: "translate(-50%,-50%)", width: "30px", height: "30px", background: "linear-gradient(145deg, #12101e, #0d0b18)", borderRadius: "8px", border: `1.5px solid ${p.color.replace("0.9","0.55")}`, boxShadow: `0 0 10px ${p.color.replace("0.9","0.35")}`, fontSize: "7px", fontWeight: 700, color: p.color, fontFamily: "monospace" }}>
-          {p.icon}
-        </div>
-      ))}
+      <p className="text-center text-white/25 mt-1" style={{ fontSize: "10px", letterSpacing: "0.06em" }}>Publicación automática · Todo incluido</p>
     </div>
   );
 }
@@ -241,17 +238,31 @@ function CampaignPhotoGrid() {
 }
 
 function SurrealPhotoFill() {
+  const tags = ["Ciudad flotante", "Física imposible", "Mundos inexistentes", "Atmósferas únicas", "Efectos VFX"];
   return (
-    <div className="relative w-full h-full overflow-hidden">
-      <img
-        src="/images/surreal-city.jpg"
-        alt="Impossible floating city — surreal AI scene"
-        className="w-full h-full object-cover"
-        style={{ display: "block" }}
-      />
-      {/* Gradient blend with card edges */}
-      <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(13,11,24,0.55) 0%, transparent 25%, transparent 70%, rgba(13,11,24,0.4) 100%)" }} />
-      <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to right, rgba(124,58,237,0.12) 0%, transparent 40%, transparent 60%, rgba(234,88,12,0.08) 100%)" }} />
+    <div className="w-full h-full flex flex-col gap-2 px-3 pb-3">
+      {/* Image cropped */}
+      <div className="relative flex-1 rounded-xl overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.08)", minHeight: 0 }}>
+        <img
+          src="/images/surreal-city.jpg"
+          alt="Impossible floating city — surreal AI scene"
+          className="w-full h-full object-cover object-center"
+        />
+        <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to bottom, transparent 60%, rgba(13,11,24,0.45) 100%)" }} />
+        {/* "GENERADO CON IA" stamp */}
+        <div className="absolute top-2 right-2 flex items-center gap-1 px-2 py-0.5 rounded-full" style={{ background: "rgba(0,0,0,0.55)", border: "1px solid rgba(255,255,255,0.15)", backdropFilter: "blur(8px)" }}>
+          <div className="w-1.5 h-1.5 rounded-full" style={{ background: "#7C3AED", boxShadow: "0 0 4px rgba(124,58,237,0.9)" }} />
+          <span style={{ fontSize: "8px", color: "rgba(255,255,255,0.6)", fontFamily: "monospace", letterSpacing: "0.08em" }}>GENERADO CON IA</span>
+        </div>
+      </div>
+      {/* Effect tags */}
+      <div className="flex flex-wrap gap-1.5 flex-shrink-0">
+        {tags.map((t, i) => (
+          <span key={i} className="px-2.5 py-0.5 rounded-full text-white/50" style={{ fontSize: "10px", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
+            {t}
+          </span>
+        ))}
+      </div>
     </div>
   );
 }
@@ -325,7 +336,7 @@ export default function ServiceStudioDetail() {
               <p className="text-white/50 text-sm leading-relaxed">Producción audiovisual de alto impacto sin presupuesto de rodaje tradicional.</p>
             </div>
             <div className="relative w-full flex-1" style={{ minHeight: "200px" }}>
-              <TimelineIllustration />
+              <VideoEditorIllustration />
             </div>
           </div>
 
@@ -353,22 +364,22 @@ export default function ServiceStudioDetail() {
               <p className="text-white/50 text-sm leading-relaxed">Su marca presente cada semana en todos sus canales. Sin esfuerzo de su parte.</p>
             </div>
             <div className="relative w-full flex-1" style={{ minHeight: "130px" }}>
-              <SocialWavesIllustration />
+              <SocialPlatformsGrid />
             </div>
           </div>
 
           {/* Card 5 — col-span-2 */}
           <div
             className={cn("glass-card flex flex-col overflow-hidden transition-all duration-500 hover:-translate-y-1 md:col-span-2", visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8")}
-            style={{ transitionDelay: "320ms", background: CARD_BG, minHeight: "280px" }}
+            style={{ transitionDelay: "320ms", background: CARD_BG, minHeight: "220px", maxHeight: "320px" }}
           >
-            <div className="px-5 pt-5 pb-3">
-              <h3 className="font-clash text-white font-bold leading-snug mb-1.5" style={{ fontSize: "clamp(0.95rem, 2vw, 1.125rem)" }}>
+            <div className="px-5 pt-5 pb-2">
+              <h3 className="font-clash text-white font-bold leading-snug mb-1" style={{ fontSize: "clamp(0.95rem, 2vw, 1.125rem)" }}>
                 Efectos y escenas imposibles de filmar en el mundo real. Solo con IA.
               </h3>
               <p className="text-white/50 text-sm leading-relaxed">Mundos inexistentes, física imposible, atmósferas únicas. Lo que su imaginación concibe, nosotros lo producimos.</p>
             </div>
-            <div className="relative w-full flex-1" style={{ minHeight: "160px" }}>
+            <div className="relative w-full flex-1" style={{ minHeight: "120px" }}>
               <SurrealPhotoFill />
             </div>
           </div>
