@@ -1,5 +1,6 @@
 export { default as VozHero } from "./voz-hero";
 export { default as VozProblem } from "./voz-problem";
+export { default as VozFeatures } from "./voz-features";
 export { default as VozSimulator } from "./voz-simulator";
 export { default as VozHow } from "./voz-how";
 export { default as VozDemo } from "./voz-demo";

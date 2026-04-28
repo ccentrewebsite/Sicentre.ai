@@ -1,89 +1,80 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Film, Camera, Scissors, Cpu, ChevronDown, type LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const tools = [
+interface ToolCategory {
+  icon: LucideIcon;
+  title: string;
+  count: string;
+  accent: string;
+  tools: { name: string; tag: string }[];
+}
+
+const categories: ToolCategory[] = [
   {
-    name: "Kling AI",
-    category: "Generación de video",
-    description: "Generamos videos publicitarios realistas a partir de texto e imágenes. Ideal para campañas de producto sin rodaje.",
-    color: "#7C3AED",
-    icon: (
-      <svg viewBox="0 0 40 40" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-        <rect width="40" height="40" rx="10" fill="#7C3AED" fillOpacity="0.2" />
-        <path d="M10 28 L20 12 L30 28" stroke="#7C3AED" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-        <circle cx="20" cy="20" r="3" fill="#7C3AED" />
-      </svg>
-    ),
+    icon: Film,
+    title: "Video IA Generativa",
+    count: "5 herramientas",
+    accent: "#EA580C",
+    tools: [
+      { name: "Kling AI", tag: "Video cinemático" },
+      { name: "Runway ML", tag: "Motion & efectos" },
+      { name: "Pika Labs", tag: "Imagen a video" },
+      { name: "Hailuo AI", tag: "Realismo extremo" },
+      { name: "Sora (OpenAI)", tag: "Larga duración" },
+    ],
   },
   {
-    name: "Runway ML",
-    category: "Edición con IA",
-    description: "Rotoscopia automática, extensión de video y efectos visuales imposibles de lograr con herramientas tradicionales.",
-    color: "#EA580C",
-    icon: (
-      <svg viewBox="0 0 40 40" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-        <rect width="40" height="40" rx="10" fill="#EA580C" fillOpacity="0.2" />
-        <rect x="8" y="17" width="24" height="6" rx="3" fill="#EA580C" fillOpacity="0.7" />
-        <circle cx="20" cy="20" r="4" fill="#EA580C" />
-        <line x1="20" y1="8" x2="20" y2="13" stroke="#EA580C" strokeWidth="2" />
-        <line x1="20" y1="27" x2="20" y2="32" stroke="#EA580C" strokeWidth="2" />
-      </svg>
-    ),
+    icon: Camera,
+    title: "Foto & Imagen IA",
+    count: "5 herramientas",
+    accent: "#7C3AED",
+    tools: [
+      { name: "Midjourney", tag: "Arquitectura" },
+      { name: "Stable Diffusion", tag: "Post-producción" },
+      { name: "Adobe Firefly", tag: "Retoque IA" },
+      { name: "Flux", tag: "Alta resolución" },
+      { name: "Topaz AI", tag: "Upscaling 4K" },
+    ],
   },
   {
-    name: "Midjourney",
-    category: "Fotografía IA",
-    description: "Generamos fotos de producto, lifestyle y team shots de nivel editorial sin sesión fotográfica. Retoque incluido.",
-    color: "#3B82F6",
-    icon: (
-      <svg viewBox="0 0 40 40" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-        <rect width="40" height="40" rx="10" fill="#3B82F6" fillOpacity="0.2" />
-        <path d="M14 28 Q14 16 20 12 Q26 16 26 28" stroke="#3B82F6" strokeWidth="2" fill="none" />
-        <path d="M20 12 Q20 20 20 28" stroke="#3B82F6" strokeWidth="1.5" fill="none" />
-        <ellipse cx="20" cy="28" rx="6" ry="2" fill="#3B82F6" fillOpacity="0.3" />
-      </svg>
-    ),
+    icon: Scissors,
+    title: "Edición & Post-producción",
+    count: "5 herramientas",
+    accent: "#A78BFA",
+    tools: [
+      { name: "DaVinci Resolve", tag: "Color grading" },
+      { name: "Adobe Premiere Pro", tag: "Montaje" },
+      { name: "After Effects", tag: "Motion graphics" },
+      { name: "CapCut Pro", tag: "Redes sociales" },
+      { name: "ElevenLabs", tag: "Voz IA multilingüe" },
+    ],
   },
   {
-    name: "Sora",
-    category: "Video generativo",
-    description: "Videos de alta fidelidad generados por OpenAI. Escenas complejas, cinematografía imposible de producir en set.",
-    color: "#10B981",
-    icon: (
-      <svg viewBox="0 0 40 40" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-        <rect width="40" height="40" rx="10" fill="#10B981" fillOpacity="0.2" />
-        <circle cx="20" cy="20" r="10" stroke="#10B981" strokeWidth="1.5" fill="none" />
-        <circle cx="20" cy="20" r="6" stroke="#10B981" strokeWidth="1.5" fill="none" />
-        <circle cx="20" cy="20" r="2.5" fill="#10B981" fillOpacity="0.7" />
-      </svg>
-    ),
-  },
-  {
-    name: "Pika Labs",
-    category: "Animación de imagen",
-    description: "Damos vida a fotos estáticas y diseños. Animaciones fluidas para redes sociales, motion logos y contenido dinámico.",
-    color: "#F59E0B",
-    icon: (
-      <svg viewBox="0 0 40 40" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-        <rect width="40" height="40" rx="10" fill="#F59E0B" fillOpacity="0.2" />
-        <path d="M15 10 L15 30 L30 20 Z" fill="#F59E0B" fillOpacity="0.7" />
-        <path d="M10 14 L10 26" stroke="#F59E0B" strokeWidth="2.5" strokeLinecap="round" />
-      </svg>
-    ),
+    icon: Cpu,
+    title: "Hardware Cinemático",
+    count: "5 equipos",
+    accent: "#FB923C",
+    tools: [
+      { name: "DJI Mavic 3 Pro", tag: "Drone 4K" },
+      { name: "Sony FX3", tag: "Cámara full-frame" },
+      { name: "DJI RS3 Pro", tag: "Gimbal" },
+      { name: "Aputure LED", tag: "Iluminación pro" },
+      { name: "Sigma Art", tag: "Óptica cinemática" },
+    ],
   },
 ];
 
 export default function MotionTools() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+  const [openIndex, setOpenIndex] = useState<number>(0);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setVisible(true);
-      },
+      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
       { threshold: 0.05 }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
@@ -99,96 +90,105 @@ export default function MotionTools() {
       <div className="max-w-5xl mx-auto">
         <div
           className={cn(
-            "text-center mb-14 transition-all duration-700",
+            "mb-12 md:mb-14 transition-all duration-700",
             visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           )}
         >
-          <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/20">
-            <span className="text-xs font-semibold text-orange-300 tracking-wide">
-              Herramientas de vanguardia
-            </span>
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white font-clash mb-4">
-            Producimos con las{" "}
-            <span className="gradient-text">mejores IAs.</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-white font-clash leading-tight">
+            Herramientas de{" "}
+            <span className="gradient-text">nivel mundial.</span>
           </h2>
-          <p className="text-white/50 text-base max-w-xl mx-auto">
-            Combinamos las herramientas de IA más avanzadas del mercado con criterio creativo humano para producir contenido que ningún otro estudio puede igualar.
+          <p className="text-white/55 text-base md:text-lg max-w-2xl mt-4">
+            Combinamos IA generativa, software profesional y hardware cinematográfico para resultados de nivel internacional.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {tools.map((tool, i) => (
-            <div
-              key={tool.name}
-              className={cn(
-                "group relative p-6 rounded-2xl transition-all duration-700 hover:scale-[1.02]",
-                visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              )}
-              style={{
-                transitionDelay: `${i * 80}ms`,
-                background: `${tool.color}08`,
-                border: `1px solid ${tool.color}25`,
-              }}
-            >
-              {/* Hover glow */}
+        <div className="flex flex-col gap-3">
+          {categories.map((cat, i) => {
+            const Icon = cat.icon;
+            const isOpen = openIndex === i;
+            return (
               <div
-                className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                style={{ background: `radial-gradient(ellipse at top left, ${tool.color}12 0%, transparent 70%)` }}
-              />
-
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 flex-shrink-0">
-                  {tool.icon}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-0.5 flex-wrap">
-                    <h3 className="text-white font-bold text-base font-clash">{tool.name}</h3>
-                    <span
-                      className="text-[10px] px-2 py-0.5 rounded-full font-semibold"
-                      style={{ background: tool.color + "20", color: tool.color }}
+                key={cat.title}
+                className={cn(
+                  "rounded-2xl border overflow-hidden transition-all duration-500",
+                  visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+                )}
+                style={{
+                  transitionDelay: `${i * 80}ms`,
+                  background: isOpen ? `${cat.accent}10` : "rgba(255,255,255,0.04)",
+                  borderColor: isOpen ? `${cat.accent}55` : "rgba(255,255,255,0.10)",
+                }}
+              >
+                <button
+                  onClick={() => setOpenIndex(isOpen ? -1 : i)}
+                  className="w-full flex items-center justify-between gap-4 px-5 md:px-7 py-5 md:py-6 cursor-pointer"
+                >
+                  <div className="flex items-center gap-4 md:gap-5 min-w-0">
+                    <div
+                      className="w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center shrink-0 transition-colors"
+                      style={{
+                        background: `${cat.accent}20`,
+                        color: cat.accent,
+                        border: `1px solid ${cat.accent}40`,
+                      }}
                     >
-                      {tool.category}
-                    </span>
+                      <Icon size={22} />
+                    </div>
+                    <div className="min-w-0 text-left">
+                      <h3
+                        className="text-lg md:text-xl font-bold text-white leading-tight"
+                        style={{ fontFamily: "'AUTOMATA-DISPLAY', sans-serif" }}
+                      >
+                        {cat.title}
+                      </h3>
+                      <p className="text-xs md:text-sm text-white/45 mt-0.5">{cat.count}</p>
+                    </div>
                   </div>
-                  <p className="text-white/50 text-sm leading-relaxed">
-                    {tool.description}
-                  </p>
+                  <ChevronDown
+                    size={22}
+                    className={cn("text-white/55 transition-transform duration-300 shrink-0", isOpen && "rotate-180")}
+                    style={{ color: isOpen ? cat.accent : undefined }}
+                  />
+                </button>
+
+                <div
+                  className={cn(
+                    "grid transition-all duration-500 ease-out",
+                    isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                  )}
+                >
+                  <div className="overflow-hidden">
+                    <div className="px-5 md:px-7 pb-6 pt-1 flex flex-wrap gap-2">
+                      {cat.tools.map((tool) => (
+                        <span
+                          key={tool.name}
+                          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs md:text-sm bg-white/[0.05] border border-white/10 text-white/80"
+                        >
+                          <span
+                            className="w-1.5 h-1.5 rounded-full shrink-0"
+                            style={{ background: cat.accent }}
+                          />
+                          <span className="font-semibold text-white/90">{tool.name}</span>
+                          <span className="text-white/45 text-[11px]">— {tool.tag}</span>
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-
-          {/* Fifth tool spans full on some layouts — add sixth item CTA */}
-          <div
-            className={cn(
-              "relative p-6 rounded-2xl transition-all duration-700 flex items-center gap-4 cursor-pointer",
-              "border border-dashed border-violet-500/20 bg-violet-500/4 hover:border-violet-500/40",
-              visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            )}
-            style={{ transitionDelay: `${5 * 80}ms` }}
-          >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-600/20 to-orange-500/20 flex items-center justify-center flex-shrink-0">
-              <span className="text-lg">+</span>
-            </div>
-            <div>
-              <p className="text-white/70 font-semibold text-sm">Y muchas más</p>
-              <p className="text-white/35 text-xs">Adobe Creative Suite · DaVinci Resolve · After Effects</p>
-            </div>
-          </div>
+            );
+          })}
         </div>
 
-        {/* Quote */}
-        <div
+        <p
           className={cn(
-            "mt-12 text-center transition-all duration-700 delay-500",
-            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            "mt-10 text-center text-sm text-white/35 italic transition-all duration-700 delay-300",
+            visible ? "opacity-100" : "opacity-0"
           )}
         >
-          <p className="text-white/30 text-sm italic">
-            "No reemplazamos la creatividad humana con IA. Usamos la IA para amplificarla."
-          </p>
-        </div>
+          No reemplazamos la creatividad humana con IA. Usamos la IA para amplificarla.
+        </p>
       </div>
     </section>
   );

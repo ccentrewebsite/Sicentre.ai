@@ -5,7 +5,7 @@ import WhatsAppButton from "@/components/whatsapp-button";
 export const metadata = {
   title: "Motion & Content | Sicentre",
   description:
-    "Video cinematográfico, fotografía IA y content mensual para redes. Producción de nivel internacional desde Asunción.",
+    "Video cinematográfico, fotografía IA y content mensual para redes. Producción de nivel internacional para marcas latinoamericanas.",
 };
 
 export default function MotionPage() {

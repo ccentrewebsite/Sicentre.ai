@@ -39,7 +39,7 @@ export default function MotionHero() {
           {/* Subheadline */}
           <p className="text-base md:text-lg lg:text-xl text-white/60 max-w-2xl mx-auto mb-10 leading-relaxed">
             Video cinematográfico, fotografía IA y content mensual para redes.
-            Producción de nivel internacional desde Asunción.
+            Producción de nivel internacional para marcas que quieren ser referentes.
           </p>
 
           {/* CTAs */}
