@@ -20,7 +20,7 @@ export default function Home() {
       <ServiceIntroBlock
         id="servicios"
         imageSide="right"
-        imageSrc="/images/service-voz.jpg.png"
+        imageSrc="/images/service-voz.jpg"
         imageAlt="Agente de voz IA Sicentre, disponible 24/7"
         serviceTitle={
           <>
@@ -44,7 +44,7 @@ export default function Home() {
       <div className="service-block">
       <ServiceIntroBlock
         imageSide="left"
-        imageSrc="/images/service-web.jpg.png"
+        imageSrc="/images/service-web.jpg"
         imageAlt="Sitio web a medida, diseñado desde cero para su empresa"
         serviceTitle={
           <>
@@ -71,7 +71,7 @@ export default function Home() {
       <div className="service-block">
       <ServiceIntroBlock
         imageSide="right"
-        imageSrc="/images/service-studio.jpg.png"
+        imageSrc="/images/service-studio.jpg"
         imageAlt="Creación visual surrealista, fotografía editorial y video IA"
         serviceTitle={
           <>
