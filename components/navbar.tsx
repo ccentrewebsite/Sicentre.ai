@@ -1,11 +1,10 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { LiquidGlassNavButton } from "@/components/ui/liquid-glass-nav";
 
 const serviceDropdown = [
   { label: "Sitios Web",       href: "/web",    desc: "Diseño web a medida" },
@@ -22,9 +21,6 @@ const navLinks = [
 export default function Navbar() {
   const [servicesOpen,       setServicesOpen]       = useState(false);
   const [mobileMenuOpen,     setMobileMenuOpen]     = useState(false);
-  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
-  const [visible,            setVisible]            = useState(true);
-  const lastScrollY = useRef(0);
   const servicesTriggerRef = useRef<HTMLLIElement>(null);
   const navRef = useRef<HTMLElement>(null);
   const [dropdownLeft, setDropdownLeft] = useState(0);
@@ -44,19 +40,6 @@ export default function Navbar() {
     closeTimer.current = setTimeout(() => setServicesOpen(false), 150);
   };
   const router = useRouter();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentY = window.scrollY;
-      const isAtTop = currentY < 20;
-      const isScrollingUp = currentY < lastScrollY.current;
-      setVisible(isAtTop || isScrollingUp);
-      lastScrollY.current = currentY;
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
     <>
@@ -122,13 +105,8 @@ export default function Navbar() {
         </div>
       )}
 
-      {/* ── Navbar pill ── */}
-      <div
-        className={cn(
-          "fixed top-0 left-0 right-0 z-[100] px-5 md:px-8 pt-4 flex items-center justify-center transition-transform duration-300 ease-in-out",
-          visible ? "translate-y-0" : "-translate-y-[calc(100%+1.5rem)]"
-        )}
-      >
+      {/* ── Navbar pill — always visible ── */}
+      <div className="fixed top-0 left-0 right-0 z-[100] px-5 md:px-8 pt-4 flex items-center justify-center">
         <nav ref={navRef} className="w-full max-w-2xl relative">
           <div
             className="flex items-center gap-8 px-5 md:px-6 h-[62px] rounded-full"

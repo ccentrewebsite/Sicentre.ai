@@ -29,44 +29,34 @@ const webComparisonRows: ComparisonRow[] = [
 const vozComparisonCols: ComparisonColumn[] = [
   { name: "Starter" },
   { name: "Business", highlighted: true },
-  { name: "Enterprise" },
 ];
 const vozComparisonRows: ComparisonRow[] = [
-  { feature: "Configuración a medida del agente",      values: [true, true, true] },
-  { feature: "Voz natural en español rioplatense",     values: [true, true, true] },
-  { feature: "Voz clonada personalizada",              values: [false, true, "Múltiples voces"] },
-  { feature: "Llamadas mensuales",                     values: ["500", "Ilimitadas", "Ilimitadas"] },
-  { feature: "Calificación automática de leads",       values: [false, true, true] },
-  { feature: "Agenda de turnos en tiempo real",        values: [false, true, true] },
-  { feature: "Integración Google Calendar",            values: [true, true, true] },
-  { feature: "CRM automático",                         values: ["Google Sheets", "Completo", "A medida"] },
-  { feature: "Múltiples agentes",                      values: [false, false, true] },
-  { feature: "Múltiples líneas telefónicas",           values: [false, false, true] },
-  { feature: "Reportes",                               values: ["Mensual", "Semanal", "Avanzado"] },
-  { feature: "Soporte",                                values: ["WhatsApp", "Prioritario 24/7", "Dedicado"] },
-  { feature: "Onboarding",                             values: ["Estándar", "Estándar", "Dedicado"] },
-  { feature: "SLA garantizado",                        values: [false, false, true] },
+  { feature: "Configuración a medida del agente",      values: [true, true] },
+  { feature: "Voz natural en español rioplatense",     values: [true, true] },
+  { feature: "Voz clonada personalizada",              values: [false, true] },
+  { feature: "Llamadas mensuales",                     values: ["500", "Ilimitadas"] },
+  { feature: "Calificación automática de leads",       values: [false, true] },
+  { feature: "Agenda de turnos en tiempo real",        values: [false, true] },
+  { feature: "Integración Google Calendar",            values: [true, true] },
+  { feature: "CRM automático",                         values: ["Google Sheets", "Completo"] },
+  { feature: "Reportes",                               values: ["Mensual", "Semanal"] },
+  { feature: "Soporte",                                values: ["WhatsApp", "Prioritario 24/7"] },
 ];
 
 const studioComparisonCols: ComparisonColumn[] = [
   { name: "Starter" },
   { name: "Business", highlighted: true },
-  { name: "Enterprise" },
 ];
 const studioComparisonRows: ComparisonRow[] = [
-  { feature: "Reels mensuales",                        values: [4, 8, "Ilimitados"] },
-  { feature: "Fotos de producto / lifestyle",          values: [10, 30, "Ilimitadas"] },
-  { feature: "Caption + hashtags optimizados",         values: [true, true, true] },
-  { feature: "Calendario editorial",                   values: [false, true, true] },
-  { feature: "Estrategia de contenido mensual",        values: [false, true, true] },
-  { feature: "Color grading cinematográfico",          values: [false, true, true] },
-  { feature: "Drone 4K",                               values: [false, "A medida", "Incluido"] },
-  { feature: "Virtual staging IA",                     values: [false, "A medida", "Incluido"] },
-  { feature: "Video IA generativo (Kling, Runway, Sora)", values: [false, false, true] },
-  { feature: "Brand guidelines visual",                values: [false, false, true] },
-  { feature: "Dirección creativa dedicada",            values: [false, false, true] },
-  { feature: "Revisiones por entrega",                 values: ["1", "Ilimitadas", "Ilimitadas"] },
-  { feature: "Reportes con ROI",                       values: [false, false, true] },
+  { feature: "Reels mensuales",                        values: [4, 8] },
+  { feature: "Fotos de producto / lifestyle",          values: [10, 30] },
+  { feature: "Caption + hashtags optimizados",         values: [true, true] },
+  { feature: "Calendario editorial",                   values: [false, true] },
+  { feature: "Estrategia de contenido mensual",        values: [false, true] },
+  { feature: "Color grading cinematográfico",          values: [false, true] },
+  { feature: "Drone 4K",                               values: [false, "A medida"] },
+  { feature: "Virtual staging IA",                     values: [false, "A medida"] },
+  { feature: "Revisiones por entrega",                 values: ["1", "Ilimitadas"] },
 ];
 
 /* ─── Plan data ─────────────────────────────────────────────── */
@@ -304,10 +294,10 @@ function PlanCard({
   return (
     <div
       className={cn(
-        "relative flex flex-col rounded-2xl p-6 transition-all duration-700",
+        "relative flex flex-col rounded-2xl p-6 transition-all duration-300",
         plan.popular
-          ? "gradient-border shadow-2xl shadow-violet-600/10"
-          : "bg-violet-600/[0.06] border border-violet-600/20",
+          ? "gradient-border shadow-2xl shadow-violet-600/15"
+          : "bg-white/[0.04] border border-white/30 hover:border-white/55 hover:bg-white/[0.06]",
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
       )}
       style={{ transitionDelay: `${delay}ms` }}
@@ -409,26 +399,25 @@ function FaqItem({ faq }: { faq: typeof faqs[0] }) {
   );
 }
 
-/* ─── Section header ─────────────────────────────────────────── */
-function SectionHeader({
-  icon,
-  label,
-  title,
-  sub,
+/* ─── Service title header — big, like landing intro blocks ──── */
+function ServiceTitleHeader({
+  serviceTitle,
+  marketingHook,
 }: {
-  icon: React.ReactNode;
-  label: string;
-  title: React.ReactNode;
-  sub: string;
+  serviceTitle: React.ReactNode;
+  marketingHook: string;
 }) {
   return (
-    <div className="text-center mb-12">
-      <div className="inline-flex items-center gap-2 mb-5 px-4 py-2 rounded-full bg-violet-600/10 border border-violet-500/20">
-        {icon}
-        <span className="text-xs font-semibold text-violet-300 tracking-wide">{label}</span>
-      </div>
-      <h2 className="text-3xl md:text-5xl font-bold text-white mb-3 font-clash">{title}</h2>
-      <p className="text-white/50 text-base max-w-xl mx-auto">{sub}</p>
+    <div className="text-center mb-12 md:mb-14">
+      <h2
+        className="font-clash font-bold text-white leading-[0.95] tracking-tight mb-5"
+        style={{ fontSize: "clamp(2.6rem, 6vw, 5rem)" }}
+      >
+        {serviceTitle}
+      </h2>
+      <p className="text-white/65 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+        {marketingHook}
+      </p>
     </div>
   );
 }
@@ -527,11 +516,19 @@ export default function PricingPage() {
         ref={webRef}
         className="px-6 md:px-10 pb-24 max-w-5xl mx-auto"
       >
-        <SectionHeader
-          icon={<Globe size={12} className="text-violet-400" />}
-          label="Sitios Web"
-          title={<>Su presencia online.</>}
-          sub="Diseño 100% personalizado. Pago único, sin sorpresas."
+        <ServiceTitleHeader
+          serviceTitle={
+            <>
+              Sitios Web{" "}
+              <span
+                className="gradient-text"
+                style={{ filter: "drop-shadow(0 4px 22px rgba(124,58,237,0.45))" }}
+              >
+                a Medida
+              </span>
+            </>
+          }
+          marketingHook="Su presencia online sin compromisos. Diseño 100% personalizado, pago único, sin sorpresas."
         />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-3xl mx-auto">
           {webPlans.map((plan, i) => (
@@ -562,11 +559,16 @@ export default function PricingPage() {
         ref={vozRef}
         className="px-6 md:px-10 pb-24 max-w-5xl mx-auto"
       >
-        <SectionHeader
-          icon={<Mic size={12} className="text-violet-400" />}
-          label="Agente de Voz IA"
-          title={<>Su negocio atiende solo.</>}
-          sub="Califica leads, agenda turnos y responde preguntas — 24/7."
+        <ServiceTitleHeader
+          serviceTitle={
+            <>
+              Agentes de{" "}
+              <span style={{ color: "#EA580C", textShadow: "0 4px 22px rgba(234,88,12,0.45)" }}>
+                Voz
+              </span>
+            </>
+          }
+          marketingHook="Su negocio atiende, siempre. Califica leads, agenda turnos y responde preguntas — las 24 horas, los 7 días."
         />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {vozPlans.map((plan, i) => (
@@ -597,11 +599,19 @@ export default function PricingPage() {
         ref={studioRef}
         className="px-6 md:px-10 pb-24 max-w-5xl mx-auto"
       >
-        <SectionHeader
-          icon={<Film size={12} className="text-orange-400" />}
-          label="Motion Studio"
-          title={<>Contenido que <span className="gradient-text">vende.</span></>}
-          sub="Reels, fotos y estrategia de contenido mensual con IA."
+        <ServiceTitleHeader
+          serviceTitle={
+            <>
+              Creación{" "}
+              <span
+                className="gradient-text"
+                style={{ filter: "drop-shadow(0 4px 22px rgba(234,88,12,0.45))" }}
+              >
+                Visual
+              </span>
+            </>
+          }
+          marketingHook="Producción cinematográfica, sin presupuesto de rodaje. Reels, fotos y estrategia de contenido mensual con IA."
         />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {studioPlans.map((plan, i) => (
