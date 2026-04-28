@@ -399,7 +399,7 @@ function FaqItem({ faq }: { faq: typeof faqs[0] }) {
   );
 }
 
-/* ─── Service title header — big, like landing intro blocks ──── */
+/* ─── Service title header — sub to the page H1 ──────────────── */
 function ServiceTitleHeader({
   serviceTitle,
   marketingHook,
@@ -408,23 +408,103 @@ function ServiceTitleHeader({
   marketingHook: string;
 }) {
   return (
-    <div className="text-center mb-12 md:mb-14">
+    <div className="text-center mb-10 md:mb-12">
       <h2
-        className="font-clash font-bold text-white leading-[0.95] tracking-tight mb-5"
-        style={{ fontSize: "clamp(2.6rem, 6vw, 5rem)" }}
+        className="font-clash font-bold text-white leading-[1] tracking-tight mb-4"
+        style={{ fontSize: "clamp(1.85rem, 4vw, 3.2rem)" }}
       >
         {serviceTitle}
       </h2>
-      <p className="text-white/65 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+      <p className="text-white/60 text-sm md:text-base max-w-xl mx-auto leading-relaxed">
         {marketingHook}
       </p>
     </div>
   );
 }
 
+/* ─── Independent monthly/annual toggle ──────────────────────── */
+function BillingToggle({
+  annual,
+  setAnnual,
+}: {
+  annual: boolean;
+  setAnnual: (v: boolean) => void;
+}) {
+  return (
+    <div className="flex justify-center mb-10 md:mb-12">
+      <div className="inline-flex items-center gap-2 p-1.5 rounded-full bg-white/5 border border-white/10">
+        <button
+          onClick={() => setAnnual(false)}
+          className={cn(
+            "px-5 py-2 rounded-full text-sm font-medium transition-all duration-200",
+            !annual
+              ? "bg-violet-600 text-white shadow-lg shadow-violet-600/25"
+              : "text-white/50 hover:text-white"
+          )}
+        >
+          Mensual
+        </button>
+        <button
+          onClick={() => setAnnual(true)}
+          className={cn(
+            "px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 flex items-center gap-2",
+            annual
+              ? "bg-violet-600 text-white shadow-lg shadow-violet-600/25"
+              : "text-white/50 hover:text-white"
+          )}
+        >
+          Anual
+          <span className="text-xs px-2 py-0.5 rounded-full bg-green-500/20 text-green-400 font-semibold">
+            -20%
+          </span>
+        </button>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Quick-jump tabs under the page H1 ──────────────────────── */
+const sectionTabs = [
+  { id: "planes-web",    label: "Sitios Web" },
+  { id: "planes-voz",    label: "Agentes de Voz" },
+  { id: "planes-studio", label: "Creación Visual" },
+  { id: "planes-ultra",  label: "ULTRA 360" },
+];
+
+function SectionTabs() {
+  const handleClick = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+  return (
+    <div className="flex justify-center mt-2">
+      <div
+        className="inline-flex items-center gap-1.5 p-1.5 rounded-full max-w-full overflow-x-auto scroll-hide"
+        style={{
+          background: "rgba(255,255,255,0.045)",
+          border: "1px solid rgba(255,255,255,0.10)",
+          backdropFilter: "blur(20px)",
+          WebkitBackdropFilter: "blur(20px)",
+        }}
+      >
+        {sectionTabs.map((tab) => (
+          <button
+            key={tab.id}
+            onClick={() => handleClick(tab.id)}
+            className="cursor-pointer whitespace-nowrap px-4 md:px-5 py-2 rounded-full text-xs md:text-sm font-semibold text-white/65 hover:text-white hover:bg-white/8 transition-all duration-200"
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /* ─── Main component ─────────────────────────────────────────── */
 export default function PricingPage() {
-  const [annual, setAnnual] = useState(false);
+  const [vozAnnual, setVozAnnual] = useState(false);
+  const [studioAnnual, setStudioAnnual] = useState(false);
   const webRef = useRef<HTMLDivElement>(null);
   const vozRef = useRef<HTMLDivElement>(null);
   const studioRef = useRef<HTMLDivElement>(null);
@@ -468,53 +548,32 @@ export default function PricingPage() {
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <div className="pt-40 pb-20 px-6 md:px-10 text-center">
-        <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/20">
+      <div className="pt-40 pb-16 px-6 md:px-10 text-center">
+        <div className="inline-flex items-center gap-2 mb-7 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/20">
           <Star size={12} className="text-orange-400" />
           <span className="text-xs font-semibold text-orange-300 tracking-wide">Sin letra chica · Sin sorpresas</span>
         </div>
-        <h1 className="text-5xl md:text-7xl font-bold text-white mb-4 font-clash leading-[0.95]">
+        <h1
+          className="font-bold text-white mb-5 font-clash leading-[0.92] tracking-tight"
+          style={{ fontSize: "clamp(3.4rem, 9vw, 7rem)" }}
+        >
           Planes diseñados para{" "}
           <span className="gradient-text">crecer.</span>
         </h1>
-        <p className="text-white/50 text-lg max-w-xl mx-auto mb-10">
+        <p className="text-white/55 text-base md:text-lg max-w-xl mx-auto mb-10">
           Desde un sitio web hasta su operación digital completa con IA. Precios claros, resultados medibles.
         </p>
 
-        {/* Toggle */}
-        <div className="inline-flex items-center gap-2 p-1.5 rounded-full bg-white/5 border border-white/10">
-          <button
-            onClick={() => setAnnual(false)}
-            className={cn(
-              "px-5 py-2 rounded-full text-sm font-medium transition-all duration-200",
-              !annual
-                ? "bg-violet-600 text-white shadow-lg shadow-violet-600/25"
-                : "text-white/50 hover:text-white"
-            )}
-          >
-            Mensual
-          </button>
-          <button
-            onClick={() => setAnnual(true)}
-            className={cn(
-              "px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 flex items-center gap-2",
-              annual
-                ? "bg-violet-600 text-white shadow-lg shadow-violet-600/25"
-                : "text-white/50 hover:text-white"
-            )}
-          >
-            Anual
-            <span className="text-xs px-2 py-0.5 rounded-full bg-green-500/20 text-green-400 font-semibold">
-              -20%
-            </span>
-          </button>
-        </div>
+        {/* Quick-jump tabs */}
+        <SectionTabs />
       </div>
 
       {/* ── Web plans ─────────────────────────────────────────── */}
       <div
+        id="planes-web"
         ref={webRef}
         className="px-6 md:px-10 pb-24 max-w-5xl mx-auto"
+        style={{ scrollMarginTop: "110px" }}
       >
         <ServiceTitleHeader
           serviceTitle={
@@ -522,7 +581,7 @@ export default function PricingPage() {
               Sitios Web{" "}
               <span
                 className="gradient-text"
-                style={{ filter: "drop-shadow(0 4px 22px rgba(124,58,237,0.45))" }}
+                style={{ filter: "drop-shadow(0 4px 18px rgba(124,58,237,0.45))" }}
               >
                 a Medida
               </span>
@@ -535,7 +594,7 @@ export default function PricingPage() {
             <PlanCard
               key={plan.id}
               plan={plan as Plan}
-              annual={annual}
+              annual={false}
               visible={webVisible}
               delay={i * 100}
             />
@@ -556,26 +615,29 @@ export default function PricingPage() {
 
       {/* ── Voz IA plans ──────────────────────────────────────── */}
       <div
+        id="planes-voz"
         ref={vozRef}
         className="px-6 md:px-10 pb-24 max-w-5xl mx-auto"
+        style={{ scrollMarginTop: "110px" }}
       >
         <ServiceTitleHeader
           serviceTitle={
             <>
               Agentes de{" "}
-              <span style={{ color: "#EA580C", textShadow: "0 4px 22px rgba(234,88,12,0.45)" }}>
+              <span style={{ color: "#EA580C", textShadow: "0 4px 18px rgba(234,88,12,0.45)" }}>
                 Voz
               </span>
             </>
           }
           marketingHook="Su negocio atiende, siempre. Califica leads, agenda turnos y responde preguntas — las 24 horas, los 7 días."
         />
+        <BillingToggle annual={vozAnnual} setAnnual={setVozAnnual} />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {vozPlans.map((plan, i) => (
             <PlanCard
               key={plan.id}
               plan={plan as Plan}
-              annual={annual}
+              annual={vozAnnual}
               visible={vozVisible}
               delay={i * 100}
             />
@@ -596,8 +658,10 @@ export default function PricingPage() {
 
       {/* ── Studio plans ──────────────────────────────────────── */}
       <div
+        id="planes-studio"
         ref={studioRef}
         className="px-6 md:px-10 pb-24 max-w-5xl mx-auto"
+        style={{ scrollMarginTop: "110px" }}
       >
         <ServiceTitleHeader
           serviceTitle={
@@ -605,7 +669,7 @@ export default function PricingPage() {
               Creación{" "}
               <span
                 className="gradient-text"
-                style={{ filter: "drop-shadow(0 4px 22px rgba(234,88,12,0.45))" }}
+                style={{ filter: "drop-shadow(0 4px 18px rgba(234,88,12,0.45))" }}
               >
                 Visual
               </span>
@@ -613,12 +677,13 @@ export default function PricingPage() {
           }
           marketingHook="Producción cinematográfica, sin presupuesto de rodaje. Reels, fotos y estrategia de contenido mensual con IA."
         />
+        <BillingToggle annual={studioAnnual} setAnnual={setStudioAnnual} />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {studioPlans.map((plan, i) => (
             <PlanCard
               key={plan.id}
               plan={plan as Plan}
-              annual={annual}
+              annual={studioAnnual}
               visible={studioVisible}
               delay={i * 100}
             />
@@ -639,8 +704,10 @@ export default function PricingPage() {
 
       {/* ── ULTRA 360 ─────────────────────────────────────────── */}
       <div
+        id="planes-ultra"
         ref={ultraRef}
         className="px-6 md:px-10 pb-24 max-w-4xl mx-auto"
+        style={{ scrollMarginTop: "110px" }}
       >
         <div
           className={cn(
@@ -678,11 +745,9 @@ export default function PricingPage() {
               </span>
               <span className="text-white/50 text-xl mb-3">/mes</span>
             </div>
-            {annual && (
-              <p className="text-green-400 text-sm font-medium">
-                Plan anual: desde $2.400/mes · Ahorra $7.200/año
-              </p>
-            )}
+            <p className="text-white/40 text-sm">
+              Plan anual disponible — desde $2.400/mes (ahorre $7.200/año).
+            </p>
           </div>
 
           {/* Features grid */}
