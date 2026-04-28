@@ -1,9 +1,62 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Check, ChevronDown, Star, Zap, Globe, Mic, Film } from "lucide-react";
+import { Check, ChevronDown, Star, Zap, Globe, Mic, Film, Sparkles, Clock, ShieldCheck, Layers } from "lucide-react";
 import { cn } from "@/lib/utils";
 import PricingComparison, { type ComparisonColumn, type ComparisonRow } from "./pricing-comparison";
+
+/* ─── Header commitments band — liquid glass strip ───────────── */
+const commitments = [
+  { icon: ShieldCheck, label: "Sin permanencia" },
+  { icon: Clock,       label: "Respuesta en 24 horas" },
+  { icon: Sparkles,    label: "100% a medida" },
+  { icon: Layers,      label: "Pago único disponible" },
+];
+
+function CommitmentsBar() {
+  return (
+    <div className="flex justify-center mb-8">
+      <div
+        className="grid grid-cols-2 md:grid-cols-4 gap-0 max-w-3xl w-full rounded-2xl overflow-hidden"
+        style={{
+          background: "rgba(255,255,255,0.05)",
+          border: "1px solid rgba(255,255,255,0.10)",
+          backdropFilter: "blur(28px)",
+          WebkitBackdropFilter: "blur(28px)",
+          boxShadow: "inset 0 1px 0 rgba(255,255,255,0.08), 0 8px 32px rgba(0,0,0,0.25)",
+        }}
+      >
+        {commitments.map((c, i) => {
+          const Icon = c.icon;
+          return (
+            <div
+              key={c.label}
+              className={cn(
+                "flex items-center justify-center gap-2.5 px-4 py-3.5",
+                i % 2 === 1 ? "border-l border-white/[0.08]" : "",
+                i >= 2 ? "border-t border-white/[0.08] md:border-t-0" : "",
+                i > 0 && i < 4 ? "md:border-l md:border-white/[0.08]" : "",
+              )}
+            >
+              <span
+                className="inline-flex items-center justify-center w-6 h-6 rounded-full shrink-0"
+                style={{
+                  background: "rgba(124,58,237,0.20)",
+                  border: "1px solid rgba(167,139,250,0.40)",
+                }}
+              >
+                <Icon size={12} className="text-violet-200" strokeWidth={2.4} />
+              </span>
+              <span className="text-white/85 text-xs md:text-sm font-semibold whitespace-nowrap">
+                {c.label}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
 
 /* ─── Comparison data ───────────────────────────────────────── */
 const webComparisonCols: ComparisonColumn[] = [
@@ -325,15 +378,20 @@ function PlanCard({
         {isEnterprise ? (
           <p className="text-2xl font-bold text-white font-clash">A consultar</p>
         ) : (
-          <div className="flex items-end gap-1.5">
-            <span className="text-4xl font-bold text-white font-clash">${price}</span>
-            <span className="text-white/40 text-sm mb-1.5">
-              {plan.oneTime ? " USD pago único" : "/mes"}
+          <div className="flex flex-col">
+            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-white/40 mb-1">
+              Desde
             </span>
+            <div className="flex items-end gap-1.5">
+              <span className="text-4xl font-bold text-white font-clash leading-none">${price}</span>
+              <span className="text-white/45 text-sm mb-1">
+                {plan.oneTime ? " USD pago único" : "/mes"}
+              </span>
+            </div>
           </div>
         )}
         {annual && !plan.oneTime && !isEnterprise && (
-          <p className="text-green-400 text-xs mt-1 font-medium">
+          <p className="text-green-400 text-xs mt-2 font-medium">
             Ahorra ${(plan.priceMonthly - plan.priceAnnual) * 12}/año
           </p>
         )}
@@ -564,6 +622,9 @@ export default function PricingPage() {
           Desde un sitio web hasta su operación digital completa con IA. Precios claros, resultados medibles.
         </p>
 
+        {/* Commitments strip */}
+        <CommitmentsBar />
+
         {/* Quick-jump tabs */}
         <SectionTabs />
       </div>
@@ -738,8 +799,10 @@ export default function PricingPage() {
 
           {/* Price */}
           <div className="text-center mb-10">
-            <div className="flex items-end gap-2 justify-center mb-1">
-              <span className="text-white/40 text-base mb-3">desde</span>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/40 mb-2">
+              Desde
+            </p>
+            <div className="flex items-end gap-2 justify-center mb-2">
               <span className="text-6xl md:text-7xl font-bold text-white font-clash">
                 $3.000
               </span>
