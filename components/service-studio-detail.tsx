@@ -7,76 +7,46 @@ import { cn } from "@/lib/utils";
 // ── Illustrations ──────────────────────────────────────────────────────────────
 
 function FilmFrameIllustration() {
+  const photos = [
+    { src: "/images/butterfly-macro-blue.png",    alt: "Macro butterfly wing — iridescent blue" },
+    { src: "/images/butterfly-golden-hour.png",   alt: "Butterfly in flight — golden hour" },
+    { src: "/images/butterfly-violet-orange.png", alt: "Butterfly — violet & orange" },
+  ];
   return (
-    <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
-      {/* Ambient glows */}
-      <div className="absolute" style={{ width: "260px", height: "180px", background: "radial-gradient(ellipse, rgba(124,58,237,0.45) 0%, transparent 70%)", filter: "blur(32px)", top: "5%", left: "15%" }} />
-      <div className="absolute" style={{ width: "200px", height: "160px", background: "radial-gradient(ellipse, rgba(234,88,12,0.35) 0%, transparent 70%)", filter: "blur(28px)", bottom: "0%", right: "10%" }} />
-
-      {/* Frame 1 — back, orange tinted, rotated left */}
-      <div className="absolute" style={{
-        width: "55%", aspectRatio: "4/3",
-        border: "1.5px solid rgba(234,88,12,0.55)", borderRadius: "6px",
-        background: "linear-gradient(135deg, rgba(20,8,2,0.92), rgba(30,12,3,0.8))",
-        boxShadow: "0 0 28px rgba(234,88,12,0.4), inset 0 0 30px rgba(234,88,12,0.07)",
-        transform: "rotate(-9deg) translate(-18%, 10%)", overflow: "hidden", zIndex: 10,
-      }}>
-        <div className="absolute" style={{ width: "70px", height: "70px", background: "radial-gradient(circle, rgba(251,146,60,0.75) 0%, transparent 70%)", top: "-20px", right: "-10px", filter: "blur(14px)" }} />
-        <svg className="absolute inset-0 w-full h-full" style={{ opacity: 0.65 }}>
-          {[[18,22,3.5],[44,58,2.5],[72,32,3],[26,72,2.5],[85,22,2],[58,48,4],[80,68,2.5]].map(([cx,cy,r],i) => (
-            <circle key={i} cx={`${cx}%`} cy={`${cy}%`} r={r} fill={i%2===0?"rgba(234,88,12,0.8)":"rgba(251,146,60,0.65)"} style={{ filter: `drop-shadow(0 0 ${r+2}px rgba(234,88,12,0.9))` }} />
-          ))}
-        </svg>
-        <div className="absolute top-0 left-0 right-0 flex justify-around px-1.5 pt-0.5">
-          {Array.from({length:7}).map((_,i) => <div key={i} style={{ width:"6px", height:"5px", borderRadius:"1px", background:"rgba(234,88,12,0.3)" }} />)}
+    <div className="w-full h-full flex gap-1.5 px-1.5 pb-1.5 overflow-hidden">
+      {photos.map((p, i) => (
+        <div
+          key={i}
+          className="relative flex-1 overflow-hidden"
+          style={{
+            borderRadius: "10px",
+            border: "1px solid rgba(255,255,255,0.08)",
+            boxShadow: "0 4px 24px rgba(0,0,0,0.5)",
+          }}
+        >
+          {/* Film sprockets top */}
+          <div className="absolute top-0 left-0 right-0 flex justify-around px-1.5 pt-0.5 z-10 pointer-events-none">
+            {Array.from({ length: 5 }).map((_, j) => (
+              <div key={j} style={{ width: "5px", height: "4px", borderRadius: "1px", background: "rgba(0,0,0,0.5)", border: "1px solid rgba(255,255,255,0.15)" }} />
+            ))}
+          </div>
+          {/* Film sprockets bottom */}
+          <div className="absolute bottom-0 left-0 right-0 flex justify-around px-1.5 pb-0.5 z-10 pointer-events-none">
+            {Array.from({ length: 5 }).map((_, j) => (
+              <div key={j} style={{ width: "5px", height: "4px", borderRadius: "1px", background: "rgba(0,0,0,0.5)", border: "1px solid rgba(255,255,255,0.15)" }} />
+            ))}
+          </div>
+          {/* Image */}
+          <img
+            src={p.src}
+            alt={p.alt}
+            className="w-full h-full object-cover"
+            style={{ display: "block" }}
+          />
+          {/* Subtle vignette overlay */}
+          <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.18) 0%, transparent 25%, transparent 75%, rgba(0,0,0,0.25) 100%)" }} />
         </div>
-      </div>
-
-      {/* Frame 2 — middle, violet, slight tilt right */}
-      <div className="absolute" style={{
-        width: "56%", aspectRatio: "4/3",
-        border: "1.5px solid rgba(124,58,237,0.65)", borderRadius: "6px",
-        background: "linear-gradient(145deg, rgba(10,6,24,0.94), rgba(18,10,40,0.88))",
-        boxShadow: "0 0 36px rgba(124,58,237,0.5), inset 0 0 40px rgba(124,58,237,0.09)",
-        transform: "rotate(5deg) translate(12%, -10%)", overflow: "hidden", zIndex: 20,
-      }}>
-        <div className="absolute" style={{ width: "90px", height: "90px", background: "radial-gradient(circle, rgba(167,139,250,0.65) 0%, transparent 70%)", top: "-25px", left: "-15px", filter: "blur(18px)" }} />
-        <svg className="absolute inset-0 w-full h-full" style={{ opacity: 0.75 }}>
-          {[
-            [68.0, 81.2], [14.0, 81.2], [-22.0, 50.0], [14.0, 18.8], [68.0, 18.8], [86.0, 50.0]
-          ].map(([x2, y2], i) => (
-            <line key={i} x1="50%" y1="50%"
-              x2={`${x2}%`}
-              y2={`${y2}%`}
-              stroke={i%2===0?"rgba(124,58,237,0.35)":"rgba(167,139,250,0.25)"} strokeWidth="0.8" strokeDasharray="3 5" />
-          ))}
-          {[[22,28,4],[58,18,3],[78,58,3.5],[38,68,3],[88,38,2.5],[50,48,5.5]].map(([cx,cy,r],i) => (
-            <circle key={i} cx={`${cx}%`} cy={`${cy}%`} r={r} fill={i===5?"rgba(167,139,250,0.8)":i%2===0?"rgba(124,58,237,0.85)":"rgba(139,92,246,0.7)"} style={{ filter: `drop-shadow(0 0 ${r+2}px rgba(124,58,237,1))` }} />
-          ))}
-        </svg>
-        <div className="absolute top-0 left-0 right-0 flex justify-around px-1.5 pt-0.5">
-          {Array.from({length:7}).map((_,i) => <div key={i} style={{ width:"6px", height:"5px", borderRadius:"1px", background:"rgba(124,58,237,0.4)" }} />)}
-        </div>
-      </div>
-
-      {/* Frame 3 — front, portrait, right of center */}
-      <div className="absolute" style={{
-        width: "38%", aspectRatio: "3/4",
-        border: "2px solid rgba(167,139,250,0.82)", borderRadius: "8px",
-        background: "linear-gradient(160deg, rgba(12,8,28,0.97), rgba(8,5,20,0.93))",
-        boxShadow: "0 0 50px rgba(124,58,237,0.65), 0 12px 40px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.1)",
-        transform: "translate(30%, 2%)", overflow: "hidden", zIndex: 30,
-      }}>
-        <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 80% 60% at 50% 40%, rgba(124,58,237,0.3) 0%, transparent 70%)" }} />
-        <svg className="absolute inset-0 w-full h-full" style={{ opacity: 0.95 }}>
-          {[[30,22,4.5],[62,38,4],[18,58,3.5],[78,28,3],[45,72,4.5],[82,62,2.5],[55,18,3]].map(([cx,cy,r],i) => (
-            <circle key={i} cx={`${cx}%`} cy={`${cy}%`} r={r}
-              fill={i%2===0?"rgba(167,139,250,0.95)":"rgba(234,88,12,0.85)"}
-              style={{ filter: `drop-shadow(0 0 ${r+3}px ${i%2===0?"rgba(124,58,237,1)":"rgba(234,88,12,0.95)"})` }} />
-          ))}
-          <circle cx="50%" cy="45%" r="11" fill="rgba(255,255,255,0.92)" style={{ filter: "drop-shadow(0 0 24px rgba(255,255,255,1)) drop-shadow(0 0 50px rgba(124,58,237,0.9)) drop-shadow(0 0 80px rgba(234,88,12,0.5))" }} />
-        </svg>
-      </div>
+      ))}
     </div>
   );
 }
