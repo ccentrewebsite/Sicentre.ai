@@ -54,7 +54,7 @@ export default function PricingComparison({
   visible = true,
 }: PricingComparisonProps) {
   const colCount = columns.length;
-  const gridCols = `minmax(220px, 1.3fr) repeat(${colCount}, minmax(110px, 1fr))`;
+  const gridCols = `minmax(140px, 1.3fr) repeat(${colCount}, minmax(90px, 1fr))`;
 
   return (
     <div
@@ -82,7 +82,7 @@ export default function PricingComparison({
 
       {/* Table — scrollable on mobile */}
       <div className="overflow-x-auto">
-        <div style={{ minWidth: `${220 + colCount * 130}px` }}>
+        <div style={{ minWidth: `${140 + colCount * 100}px` }}>
 
           {/* Column headers */}
           <div

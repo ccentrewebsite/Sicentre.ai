@@ -627,8 +627,8 @@ export default function PricingPage() {
           <div
             className="absolute pointer-events-none"
             style={{
-              width: "720px",
-              height: "420px",
+              width: "clamp(280px, 90vw, 720px)",
+              height: "clamp(220px, 55vw, 420px)",
               background: "radial-gradient(ellipse, rgba(124,58,237,0.18) 0%, transparent 70%)",
               top: "-160px",
               left: "50%",
@@ -639,8 +639,8 @@ export default function PricingPage() {
           <div
             className="absolute pointer-events-none"
             style={{
-              width: "520px",
-              height: "320px",
+              width: "clamp(220px, 70vw, 520px)",
+              height: "clamp(180px, 42vw, 320px)",
               background: "radial-gradient(ellipse, rgba(234,88,12,0.12) 0%, transparent 70%)",
               bottom: "-120px",
               right: "-80px",

@@ -110,12 +110,12 @@ export default function SectorTicker() {
         <div className="relative z-10 py-5 overflow-hidden flex flex-col gap-4">
           {/* Left mask */}
           <div
-            className="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
+            className="absolute left-0 top-0 bottom-0 w-12 md:w-24 z-10 pointer-events-none"
             style={{ background: "linear-gradient(to right, rgba(5,3,12,0.7) 0%, transparent 100%)" }}
           />
           {/* Right mask */}
           <div
-            className="absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
+            className="absolute right-0 top-0 bottom-0 w-12 md:w-24 z-10 pointer-events-none"
             style={{ background: "linear-gradient(to left, rgba(5,3,12,0.7) 0%, transparent 100%)" }}
           />
 

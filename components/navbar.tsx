@@ -46,9 +46,9 @@ export default function Navbar() {
       {/* ── Mobile full-screen overlay ── */}
       {mobileMenuOpen && (
         <div
-          className="md:hidden fixed inset-0 z-[90] flex flex-col px-5 pb-10"
+          className="md:hidden fixed inset-0 z-[90] flex flex-col px-5 pb-8 overflow-y-auto"
           style={{
-            paddingTop: "96px",
+            paddingTop: "clamp(80px, 20vw, 96px)",
             background: "rgba(4,0,12,0.97)",
             backdropFilter: "blur(40px)",
             WebkitBackdropFilter: "blur(40px)",

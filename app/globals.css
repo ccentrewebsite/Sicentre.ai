@@ -339,11 +339,11 @@ body {
 .shimmer-hero-title {
   background: radial-gradient(
     ellipse 180% 120% at 30% 50%,
-    rgba(255,255,255,0.72) 0%,
-    rgba(200,180,255,0.50) 30%,
-    rgba(167,139,250,0.35) 55%,
-    rgba(255,255,255,0.18) 80%,
-    rgba(255,255,255,0.12) 100%
+    rgba(255,255,255,0.92) 0%,
+    rgba(220,205,255,0.78) 30%,
+    rgba(190,170,255,0.62) 55%,
+    rgba(220,210,255,0.55) 80%,
+    rgba(220,210,255,0.50) 100%
   );
   background-size: 250% 250%;
   -webkit-background-clip: text;
@@ -351,6 +351,19 @@ body {
   background-clip: text;
   -webkit-text-stroke: 1px rgba(255,255,255,0.30);
   animation: hero-title-float 9s ease-in-out infinite;
+}
+
+@media (max-width: 768px) {
+  .shimmer-hero-title {
+    background: radial-gradient(
+      ellipse 180% 120% at 50% 50%,
+      rgba(255,255,255,0.96) 0%,
+      rgba(225,215,255,0.85) 40%,
+      rgba(210,195,255,0.78) 80%,
+      rgba(210,195,255,0.72) 100%
+    );
+    -webkit-text-stroke: 0;
+  }
 }
 
 /* ── Hero tagline shimmer ───────────────────────────────── */
