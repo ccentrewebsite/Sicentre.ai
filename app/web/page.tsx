@@ -1,4 +1,4 @@
-import { WebHero, WebProcess, WebIncludes, WebPortfolio, WebPricing, WebFaq } from "@/components/web";
+import { WebHero, WebProcess, WebIncludes, WebSimulator, WebPortfolio, WebPricing, WebFaq } from "@/components/web";
 import PageFooter from "@/components/shared/page-footer";
 import WhatsAppButton from "@/components/whatsapp-button";
 
@@ -14,6 +14,7 @@ export default function WebPage() {
       <WebHero />
       <WebProcess />
       <WebIncludes />
+      <WebSimulator />
       <WebPortfolio />
       <WebPricing />
       <WebFaq />

@@ -521,6 +521,188 @@ function BillingToggle({
   );
 }
 
+/* ─── Hero comparator: à la carte vs ULTRA ───────────────────── */
+type CompareService = {
+  id: string;
+  label: string;
+  price: number;
+  suffix: string;
+  oneTime?: boolean;
+  icon: typeof Globe;
+  accent: string;
+  accentSoft: string;
+};
+
+const COMPARE_SERVICES: CompareService[] = [
+  {
+    id: "voz",
+    label: "Voz Business",
+    price: 1500,
+    suffix: "/mes",
+    icon: Mic,
+    accent: "#EA580C",
+    accentSoft: "rgba(234,88,12,0.18)",
+  },
+  {
+    id: "studio",
+    label: "Studio Business",
+    price: 1500,
+    suffix: "/mes",
+    icon: Film,
+    accent: "#A78BFA",
+    accentSoft: "rgba(167,139,250,0.18)",
+  },
+  {
+    id: "web",
+    label: "Web E-commerce",
+    price: 1000,
+    suffix: " único",
+    oneTime: true,
+    icon: Globe,
+    accent: "#7C3AED",
+    accentSoft: "rgba(124,58,237,0.18)",
+  },
+];
+
+function HeroComparator() {
+  const [selected, setSelected] = useState<string[]>(["voz", "studio", "web"]);
+  const toggle = (id: string) =>
+    setSelected((s) => (s.includes(id) ? s.filter((x) => x !== id) : [...s, id]));
+
+  const picked = COMPARE_SERVICES.filter((s) => selected.includes(s.id));
+  const monthly = picked.filter((s) => !s.oneTime).reduce((a, b) => a + b.price, 0);
+  const oneTime = picked.filter((s) => s.oneTime).reduce((a, b) => a + b.price, 0);
+
+  const ultraMonthly = 3000;
+  const monthlyDelta = monthly - ultraMonthly;
+  const allSelected = selected.length === COMPARE_SERVICES.length;
+
+  return (
+    <div className="relative mt-9 md:mt-11 pt-8 md:pt-10 border-t border-white/10">
+      <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-white/45 mb-5 text-center">
+        À la carta · vs · Plan ULTRA
+      </p>
+
+      {/* Service chips */}
+      <div className="flex flex-wrap justify-center gap-2 mb-6">
+        {COMPARE_SERVICES.map((s) => {
+          const active = selected.includes(s.id);
+          const Icon = s.icon;
+          return (
+            <button
+              key={s.id}
+              onClick={() => toggle(s.id)}
+              className={cn(
+                "inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-xs md:text-sm font-semibold transition-all duration-200 select-none",
+                active ? "scale-100" : "scale-[0.97]"
+              )}
+              style={{
+                background: active ? s.accentSoft : "rgba(255,255,255,0.05)",
+                border: `1px solid ${active ? s.accent + "88" : "rgba(255,255,255,0.10)"}`,
+                color: active ? "#fff" : "rgba(255,255,255,0.55)",
+                boxShadow: active ? `0 0 18px ${s.accentSoft}` : "none",
+              }}
+              aria-pressed={active}
+            >
+              <Icon size={14} style={{ color: active ? s.accent : "rgba(255,255,255,0.45)" }} strokeWidth={2.2} />
+              <span>{s.label}</span>
+              <span
+                className="text-[10px] tabular-nums"
+                style={{ color: active ? "rgba(255,255,255,0.7)" : "rgba(255,255,255,0.35)" }}
+              >
+                ${s.price.toLocaleString("es-AR")}{s.suffix}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Comparison panels */}
+      <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] items-stretch gap-3 max-w-3xl mx-auto">
+        {/* Left: cumulated */}
+        <div
+          className="rounded-2xl p-5 text-left"
+          style={{
+            background: "rgba(255,255,255,0.05)",
+            border: "1px solid rgba(255,255,255,0.10)",
+          }}
+        >
+          <p className="text-[10px] uppercase tracking-[0.18em] text-white/40 mb-2 font-semibold">
+            Su cumulado a la carta
+          </p>
+          {selected.length === 0 ? (
+            <p className="text-white/40 text-sm">Active los servicios para ver el total.</p>
+          ) : (
+            <>
+              <div className="flex items-baseline gap-1.5">
+                <span className="text-[11px] text-white/45 font-medium">desde</span>
+                <span className="font-bold text-white font-clash leading-none tabular-nums" style={{ fontSize: "clamp(1.7rem, 4.2vw, 2.4rem)" }}>
+                  ${monthly.toLocaleString("es-AR")}
+                </span>
+                <span className="text-white/55 text-sm">/mes</span>
+              </div>
+              {oneTime > 0 && (
+                <p className="text-white/55 text-xs mt-1.5">
+                  + ${oneTime.toLocaleString("es-AR")} pago único
+                </p>
+              )}
+            </>
+          )}
+        </div>
+
+        {/* Middle: vs */}
+        <div className="flex items-center justify-center px-2 sm:px-1">
+          <span
+            className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/40 px-3 py-1.5 rounded-full"
+            style={{
+              background: "rgba(255,255,255,0.04)",
+              border: "1px solid rgba(255,255,255,0.10)",
+            }}
+          >
+            vs
+          </span>
+        </div>
+
+        {/* Right: ULTRA */}
+        <div
+          className="relative rounded-2xl p-5 text-left overflow-hidden gradient-border"
+          style={{
+            background:
+              "linear-gradient(135deg, rgba(124,58,237,0.16) 0%, rgba(234,88,12,0.10) 100%)",
+          }}
+        >
+          <div className="flex items-center gap-1.5 mb-2">
+            <Zap size={12} fill="#FB923C" style={{ color: "#FB923C" }} />
+            <p className="text-[10px] uppercase tracking-[0.18em] font-bold" style={{ color: "#FB923C" }}>
+              Plan ULTRA · todo incluido
+            </p>
+          </div>
+          <div className="flex items-baseline gap-1.5">
+            <span className="text-[11px] text-white/55 font-medium">desde</span>
+            <span className="font-bold text-white font-clash leading-none tabular-nums" style={{ fontSize: "clamp(1.7rem, 4.2vw, 2.4rem)" }}>
+              ${ultraMonthly.toLocaleString("es-AR")}
+            </span>
+            <span className="text-white/65 text-sm">/mes</span>
+          </div>
+          <p className="text-white/60 text-xs mt-1.5">Web + Voz IA 24/7 + Studio en uno solo.</p>
+        </div>
+      </div>
+
+      {/* Saving callout when all selected */}
+      {allSelected && (
+        <p className="text-center mt-4 text-xs font-semibold" style={{ color: "#FB923C" }}>
+          ✦ Mismo costo mensual, sitio web e integración total incluidos. Ahorre ${oneTime.toLocaleString("es-AR")} de inversión inicial.
+        </p>
+      )}
+      {!allSelected && monthlyDelta > 0 && (
+        <p className="text-center mt-4 text-xs font-medium text-white/55">
+          Pague ${monthlyDelta.toLocaleString("es-AR")}/mes menos con ULTRA y obtenga el resto incluido.
+        </p>
+      )}
+    </div>
+  );
+}
+
 /* ─── Quick-jump tabs under the page H1 ──────────────────────── */
 const sectionTabs = [
   { id: "planes-web",    label: "Sitios Web" },
@@ -660,12 +842,39 @@ export default function PricingPage() {
             <p className="text-white/60 text-base md:text-lg max-w-xl mx-auto">
               Desde un sitio web hasta su operación digital completa con IA. Precios claros, resultados medibles.
             </p>
+
+            {/* Interactive ULTRA vs cumulated comparator */}
+            <HeroComparator />
           </div>
         </div>
 
         {/* Quick-jump tabs — outside the hero card */}
         <div className="max-w-6xl mx-auto mt-8 md:mt-10">
           <SectionTabs />
+        </div>
+
+        {/* À la carte subtitle */}
+        <div className="max-w-6xl mx-auto mt-10 md:mt-12 text-center">
+          <p
+            className="font-clash font-semibold text-white/85 mb-3"
+            style={{ fontSize: "clamp(1.1rem, 2.2vw, 1.6rem)" }}
+          >
+            Descubra nuestros{" "}
+            <span className="gradient-text" style={{ filter: "drop-shadow(0 4px 14px rgba(124,58,237,0.4))" }}>
+              abonos a la carta
+            </span>
+          </p>
+          <div
+            className="inline-flex flex-col items-center"
+            aria-hidden
+          >
+            <span className="block w-px h-8 md:h-10" style={{ background: "linear-gradient(to bottom, rgba(255,255,255,0.45), rgba(255,255,255,0))" }} />
+            <ChevronDown
+              size={20}
+              className="animate-bounce-slow"
+              style={{ color: "rgba(255,255,255,0.6)" }}
+            />
+          </div>
         </div>
       </div>
 

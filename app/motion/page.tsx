@@ -1,4 +1,4 @@
-import { MotionHero, MotionTypes, MotionProcess, MotionGallery, MotionTools, MotionPricing, MotionFaq } from "@/components/motion";
+import { MotionHero, MotionTypes, MotionProcess, MotionSimulator, MotionGallery, MotionTools, MotionPricing, MotionFaq } from "@/components/motion";
 import PageFooter from "@/components/shared/page-footer";
 import WhatsAppButton from "@/components/whatsapp-button";
 
@@ -14,6 +14,7 @@ export default function MotionPage() {
       <MotionHero />
       <MotionTypes />
       <MotionProcess />
+      <MotionSimulator />
       <MotionGallery />
       <MotionTools />
       <MotionPricing />

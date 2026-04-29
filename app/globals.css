@@ -419,6 +419,15 @@ body {
   scrollbar-width: none;
 }
 
+/* ── Subtle bounce arrow ───────────────────────────────── */
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50%      { transform: translateY(4px); opacity: 1; }
+}
+.animate-bounce-slow {
+  animation: bounce-slow 2.2s ease-in-out infinite;
+}
+
 /* ── Mobile menu enter animation ───────────────────────── */
 @keyframes mobile-menu-in {
   from {
