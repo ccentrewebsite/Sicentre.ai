@@ -651,7 +651,7 @@ function HeroComparator() {
                   }}
                 >
                   <span className="text-[10px] uppercase tracking-[0.16em] font-bold text-violet-200">
-                    + pago único
+                    + desde · pago único
                   </span>
                   <span className="text-sm font-bold text-white tabular-nums">
                     ${oneTime.toLocaleString("es-AR")}
@@ -677,7 +677,7 @@ function HeroComparator() {
 
         {/* Right: ULTRA */}
         <div
-          className="relative rounded-2xl p-5 text-left overflow-hidden gradient-border"
+          className="relative rounded-2xl p-5 text-left overflow-hidden gradient-border flex flex-col"
           style={{
             background:
               "linear-gradient(135deg, rgba(124,58,237,0.32) 0%, rgba(234,88,12,0.22) 100%)",
@@ -697,7 +697,25 @@ function HeroComparator() {
             </span>
             <span className="text-white/65 text-sm">/mes</span>
           </div>
-          <p className="text-white/60 text-xs mt-1.5">Web + Voz IA 24/7 + Studio en uno solo.</p>
+          <p className="text-white/60 text-xs mt-1.5 mb-4 flex-1">
+            Web + Voz IA 24/7 + Studio en uno solo.
+          </p>
+          <a
+            href="#planes-ultra"
+            onClick={(e) => {
+              e.preventDefault();
+              const el = document.getElementById("planes-ultra");
+              if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+            }}
+            className="inline-flex items-center justify-center gap-1.5 w-full py-2.5 rounded-full font-bold text-white text-sm transition-all duration-200 hover:-translate-y-0.5"
+            style={{
+              background: "linear-gradient(135deg, #7C3AED, #EA580C)",
+              boxShadow: "0 8px 22px rgba(124,58,237,0.35)",
+            }}
+          >
+            <Zap size={13} fill="currentColor" />
+            Activar ULTRA →
+          </a>
         </div>
       </div>
 
