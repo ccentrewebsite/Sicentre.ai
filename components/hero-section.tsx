@@ -3,6 +3,51 @@
 import { useState } from "react";
 import { HeroBackground } from "@/components/ui/hero-background";
 
+function VerServiciosButton() {
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <button
+      onClick={() =>
+        document.querySelector("#servicios")?.scrollIntoView({ behavior: "smooth" })
+      }
+      onMouseMove={(e) => {
+        const r = e.currentTarget.getBoundingClientRect();
+        setPos({ x: e.clientX - r.left, y: e.clientY - r.top });
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="relative inline-flex items-center justify-center overflow-hidden rounded-full px-8 py-3.5 text-base md:text-lg font-semibold tracking-tight text-white/85 hover:text-white whitespace-nowrap transition-transform duration-200 hover:-translate-y-0.5"
+      style={{
+        background: "rgba(255,255,255,0.045)",
+        border: "1px solid rgba(255,255,255,0.18)",
+        backdropFilter: "blur(20px)",
+        WebkitBackdropFilter: "blur(20px)",
+      }}
+    >
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-0 transition-opacity duration-300"
+        style={{
+          opacity: hovered ? 1 : 0,
+          background: `radial-gradient(120px circle at ${pos.x}px ${pos.y}px, rgba(255,255,255,0.30), transparent 65%)`,
+          mixBlendMode: "screen",
+        }}
+      />
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-x-6 top-0 h-px"
+        style={{
+          background:
+            "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.45) 50%, transparent 100%)",
+        }}
+      />
+      <span className="relative z-10">Ver servicios</span>
+    </button>
+  );
+}
+
 function HablemosButton() {
   const [pos, setPos] = useState({ x: 0, y: 0 });
   const [hovered, setHovered] = useState(false);
@@ -102,20 +147,7 @@ export default function HeroSection() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full">
-            <button
-              onClick={() =>
-                document.querySelector("#servicios")?.scrollIntoView({ behavior: "smooth" })
-              }
-              className="inline-flex items-center justify-center rounded-full px-8 py-3.5 text-base md:text-lg font-semibold tracking-tight text-white/85 hover:text-white whitespace-nowrap transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/10"
-              style={{
-                background: "rgba(255,255,255,0.045)",
-                border: "1px solid rgba(255,255,255,0.18)",
-                backdropFilter: "blur(20px)",
-                WebkitBackdropFilter: "blur(20px)",
-              }}
-            >
-              Ver servicios
-            </button>
+            <VerServiciosButton />
             <HablemosButton />
           </div>
         </div>
