@@ -623,11 +623,12 @@ function HeroComparator() {
         <div
           className="rounded-2xl p-5 text-left"
           style={{
-            background: "rgba(255,255,255,0.05)",
-            border: "1px solid rgba(255,255,255,0.10)",
+            background: "rgba(20,16,38,0.55)",
+            border: "1px solid rgba(255,255,255,0.18)",
+            boxShadow: "inset 0 1px 0 rgba(255,255,255,0.06)",
           }}
         >
-          <p className="text-[10px] uppercase tracking-[0.18em] text-white/40 mb-2 font-semibold">
+          <p className="text-[10px] uppercase tracking-[0.18em] text-white/55 mb-2 font-semibold">
             Su cumulado a la carta
           </p>
           {selected.length === 0 ? (
@@ -635,16 +636,27 @@ function HeroComparator() {
           ) : (
             <>
               <div className="flex items-baseline gap-1.5">
-                <span className="text-[11px] text-white/45 font-medium">desde</span>
+                <span className="text-[11px] text-white/55 font-medium">desde</span>
                 <span className="font-bold text-white font-clash leading-none tabular-nums" style={{ fontSize: "clamp(1.7rem, 4.2vw, 2.4rem)" }}>
                   ${monthly.toLocaleString("es-AR")}
                 </span>
-                <span className="text-white/55 text-sm">/mes</span>
+                <span className="text-white/70 text-sm">/mes</span>
               </div>
               {oneTime > 0 && (
-                <p className="text-white/55 text-xs mt-1.5">
-                  + ${oneTime.toLocaleString("es-AR")} pago único
-                </p>
+                <div
+                  className="inline-flex items-center gap-1.5 mt-3 px-3 py-1.5 rounded-full"
+                  style={{
+                    background: "rgba(124,58,237,0.18)",
+                    border: "1px solid rgba(124,58,237,0.45)",
+                  }}
+                >
+                  <span className="text-[10px] uppercase tracking-[0.16em] font-bold text-violet-200">
+                    + pago único
+                  </span>
+                  <span className="text-sm font-bold text-white tabular-nums">
+                    ${oneTime.toLocaleString("es-AR")}
+                  </span>
+                </div>
               )}
             </>
           )}
@@ -668,7 +680,8 @@ function HeroComparator() {
           className="relative rounded-2xl p-5 text-left overflow-hidden gradient-border"
           style={{
             background:
-              "linear-gradient(135deg, rgba(124,58,237,0.16) 0%, rgba(234,88,12,0.10) 100%)",
+              "linear-gradient(135deg, rgba(124,58,237,0.32) 0%, rgba(234,88,12,0.22) 100%)",
+            boxShadow: "inset 0 1px 0 rgba(255,255,255,0.08)",
           }}
         >
           <div className="flex items-center gap-1.5 mb-2">
@@ -848,33 +861,25 @@ export default function PricingPage() {
           </div>
         </div>
 
-        {/* Quick-jump tabs — outside the hero card */}
-        <div className="max-w-6xl mx-auto mt-8 md:mt-10">
-          <SectionTabs />
-        </div>
-
-        {/* À la carte subtitle */}
+        {/* À la carte subtitle — placed before the section tabs */}
         <div className="max-w-6xl mx-auto mt-10 md:mt-12 text-center">
           <p
-            className="font-clash font-semibold text-white/85 mb-3"
+            className="font-clash font-semibold text-white/85 mb-2"
             style={{ fontSize: "clamp(1.1rem, 2.2vw, 1.6rem)" }}
           >
-            Descubra nuestros{" "}
+            O explore cada{" "}
             <span className="gradient-text" style={{ filter: "drop-shadow(0 4px 14px rgba(124,58,237,0.4))" }}>
-              abonos a la carta
+              servicio en detalle
             </span>
           </p>
-          <div
-            className="inline-flex flex-col items-center"
-            aria-hidden
-          >
-            <span className="block w-px h-8 md:h-10" style={{ background: "linear-gradient(to bottom, rgba(255,255,255,0.45), rgba(255,255,255,0))" }} />
-            <ChevronDown
-              size={20}
-              className="animate-bounce-slow"
-              style={{ color: "rgba(255,255,255,0.6)" }}
-            />
-          </div>
+          <p className="text-white/45 text-xs md:text-sm">
+            Conozca nuestros planes individuales y elija el que mejor le acompañe.
+          </p>
+        </div>
+
+        {/* Quick-jump tabs — outside the hero card, after the subtitle */}
+        <div className="max-w-6xl mx-auto mt-6 md:mt-8">
+          <SectionTabs />
         </div>
       </div>
 
