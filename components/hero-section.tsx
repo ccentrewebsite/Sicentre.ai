@@ -16,7 +16,7 @@ function HablemosButton() {
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="group relative inline-flex items-center justify-center overflow-hidden rounded-full px-12 py-5 text-base md:text-lg font-bold tracking-tight text-white whitespace-nowrap transition-transform duration-200 hover:-translate-y-0.5"
+      className="group relative inline-flex items-center justify-center overflow-hidden rounded-full px-9 py-3.5 text-base md:text-lg font-bold tracking-tight text-white whitespace-nowrap transition-transform duration-200 hover:-translate-y-0.5"
       style={{
         background: "linear-gradient(135deg, #F97316 0%, #EA580C 50%, #C2410C 100%)",
         boxShadow:
@@ -106,7 +106,7 @@ export default function HeroSection() {
               onClick={() =>
                 document.querySelector("#servicios")?.scrollIntoView({ behavior: "smooth" })
               }
-              className="inline-flex items-center justify-center rounded-full px-10 py-5 text-base md:text-lg font-semibold tracking-tight text-white/85 hover:text-white whitespace-nowrap transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/10"
+              className="inline-flex items-center justify-center rounded-full px-8 py-3.5 text-base md:text-lg font-semibold tracking-tight text-white/85 hover:text-white whitespace-nowrap transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/10"
               style={{
                 background: "rgba(255,255,255,0.045)",
                 border: "1px solid rgba(255,255,255,0.18)",
