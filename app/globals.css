@@ -419,6 +419,22 @@ body {
   scrollbar-width: none;
 }
 
+/* ── Mobile menu enter animation ───────────────────────── */
+@keyframes mobile-menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-mobile-menu-in {
+  animation: mobile-menu-in 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 /* ── ULTRA tab subtle blink — gradient + glow pulse ───── */
 @keyframes ultra-pulse {
   0%, 100% {

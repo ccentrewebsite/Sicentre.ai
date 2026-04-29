@@ -1,15 +1,15 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X, Globe, Mic, Film } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 const serviceDropdown = [
-  { label: "Sitios Web",       href: "/web",    desc: "Diseño web a medida" },
-  { label: "Agente de Voz IA", href: "/voz-ia", desc: "Atiende llamadas 24/7" },
-  { label: "Creación Visual", href: "/motion", desc: "Contenido que vende" },
+  { label: "Sitios Web",       href: "/web",    desc: "Diseño web a medida",    icon: Globe, accent: "#7C3AED", accentSoft: "rgba(124,58,237,0.18)" },
+  { label: "Agente de Voz IA", href: "/voz-ia", desc: "Atiende llamadas 24/7",  icon: Mic,   accent: "#EA580C", accentSoft: "rgba(234,88,12,0.18)" },
+  { label: "Creación Visual",  href: "/motion", desc: "Contenido que vende",    icon: Film,  accent: "#A78BFA", accentSoft: "rgba(167,139,250,0.18)" },
 ];
 
 const navLinks = [
@@ -43,65 +43,172 @@ export default function Navbar() {
 
   return (
     <>
-      {/* ── Mobile full-screen overlay ── */}
+      {/* ── Mobile full-screen overlay — premium liquid glass ── */}
       {mobileMenuOpen && (
         <div
-          className="md:hidden fixed inset-0 z-[90] flex flex-col px-5 pb-8 overflow-y-auto"
+          className="md:hidden fixed inset-0 z-[90] overflow-y-auto animate-mobile-menu-in"
           style={{
-            paddingTop: "clamp(80px, 20vw, 96px)",
-            background: "rgba(4,0,12,0.97)",
-            backdropFilter: "blur(40px)",
-            WebkitBackdropFilter: "blur(40px)",
+            background:
+              "linear-gradient(180deg, #08051A 0%, #0D0B22 50%, #0A0716 100%)",
           }}
         >
-          {/* Service cards */}
-          <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-white/25 mb-3 px-1">
-            Servicios
-          </p>
-          <div className="grid grid-cols-3 gap-2 mb-8">
-            {serviceDropdown.map((s) => (
-              <Link
-                key={s.href}
-                href={s.href}
-                className="flex flex-col gap-1 p-3 rounded-2xl active:scale-95 transition-transform"
-                style={{
-                  background: "rgba(124,58,237,0.1)",
-                  border: "1px solid rgba(124,58,237,0.22)",
-                }}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <span className="text-sm font-bold text-white">{s.label}</span>
-                <span className="text-[11px] text-white/40 leading-tight">{s.desc}</span>
-              </Link>
-            ))}
-          </div>
+          {/* Ambient violet glow — top */}
+          <div
+            className="absolute pointer-events-none"
+            style={{
+              width: "min(120vw, 720px)",
+              height: "420px",
+              top: "-180px",
+              left: "50%",
+              transform: "translateX(-50%)",
+              background:
+                "radial-gradient(ellipse, rgba(124,58,237,0.30) 0%, transparent 70%)",
+              filter: "blur(70px)",
+            }}
+          />
+          {/* Ambient orange glow — bottom right */}
+          <div
+            className="absolute pointer-events-none"
+            style={{
+              width: "min(90vw, 520px)",
+              height: "320px",
+              bottom: "-120px",
+              right: "-80px",
+              background:
+                "radial-gradient(ellipse, rgba(234,88,12,0.22) 0%, transparent 70%)",
+              filter: "blur(70px)",
+            }}
+          />
+          {/* Subtle dot grid */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)",
+              backgroundSize: "32px 32px",
+              opacity: 0.7,
+            }}
+          />
 
-          {/* Divider */}
-          <div className="h-px bg-white/8 mb-4" />
-
-          {/* Main links */}
-          <nav className="flex flex-col flex-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="flex items-center justify-between px-3 py-4 text-xl font-semibold text-white/70 hover:text-white rounded-2xl hover:bg-white/5 transition-all"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {link.label}
-                <span className="text-white/20">→</span>
-              </Link>
-            ))}
-          </nav>
-
-          {/* CTA */}
-          <button
-            className="w-full py-4 rounded-full font-bold text-white text-base mt-4"
-            style={{ background: "linear-gradient(135deg, #7C3AED, #EA580C)" }}
-            onClick={() => { setMobileMenuOpen(false); router.push("/contacto"); }}
+          <div
+            className="relative flex flex-col min-h-full px-5 pb-10"
+            style={{ paddingTop: "clamp(96px, 22vw, 112px)" }}
           >
-            Hablemos →
-          </button>
+            {/* Section label */}
+            <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-white/40 mb-4 px-1">
+              Servicios
+            </p>
+
+            {/* Service cards — 1 col, premium liquid glass with accent */}
+            <div className="flex flex-col gap-3 mb-8">
+              {serviceDropdown.map((s, i) => {
+                const Icon = s.icon;
+                return (
+                  <Link
+                    key={s.href}
+                    href={s.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="group relative flex items-center gap-4 px-4 py-4 rounded-2xl overflow-hidden active:scale-[0.98] transition-all duration-200"
+                    style={{
+                      background: "rgba(255,255,255,0.045)",
+                      border: `1px solid ${s.accentSoft}`,
+                      backdropFilter: "blur(22px)",
+                      WebkitBackdropFilter: "blur(22px)",
+                      boxShadow:
+                        "inset 0 1px 0 rgba(255,255,255,0.07), 0 8px 24px rgba(0,0,0,0.25)",
+                      animationDelay: `${80 + i * 70}ms`,
+                    }}
+                  >
+                    {/* Accent glow corner */}
+                    <span
+                      aria-hidden
+                      className="pointer-events-none absolute -top-8 -right-8 w-32 h-32 rounded-full"
+                      style={{
+                        background: `radial-gradient(circle, ${s.accentSoft} 0%, transparent 70%)`,
+                        filter: "blur(20px)",
+                      }}
+                    />
+                    {/* Icon badge */}
+                    <span
+                      className="relative inline-flex items-center justify-center w-11 h-11 rounded-xl shrink-0"
+                      style={{
+                        background: s.accentSoft,
+                        border: `1px solid ${s.accent}55`,
+                        boxShadow: `0 0 18px ${s.accentSoft}`,
+                      }}
+                    >
+                      <Icon size={18} style={{ color: s.accent }} strokeWidth={2} />
+                    </span>
+                    {/* Text */}
+                    <span className="relative flex-1 flex flex-col">
+                      <span className="text-base font-bold text-white leading-tight">
+                        {s.label}
+                      </span>
+                      <span className="text-xs text-white/45 leading-tight mt-0.5">
+                        {s.desc}
+                      </span>
+                    </span>
+                    {/* Arrow */}
+                    <span
+                      className="relative text-white/30 group-active:translate-x-0.5 transition-transform"
+                      style={{ color: s.accent }}
+                    >
+                      →
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
+
+            {/* Divider */}
+            <div
+              className="h-px mb-4"
+              style={{
+                background:
+                  "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.12) 50%, transparent 100%)",
+              }}
+            />
+
+            {/* Main links */}
+            <nav className="flex flex-col flex-1 gap-1">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center justify-between px-3 py-4 text-lg font-semibold text-white/75 active:text-white rounded-xl active:bg-white/5 transition-all"
+                >
+                  {link.label}
+                  <span className="text-white/25">→</span>
+                </Link>
+              ))}
+            </nav>
+
+            {/* CTA — orange highlighted, mirror of hero Hablemos */}
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                router.push("/contacto");
+              }}
+              className="relative overflow-hidden w-full py-4 rounded-full font-bold text-white text-base mt-6 active:scale-[0.98] transition-transform"
+              style={{
+                background:
+                  "linear-gradient(135deg, #F97316 0%, #EA580C 50%, #C2410C 100%)",
+                boxShadow:
+                  "0 14px 40px rgba(234,88,12,0.45), 0 0 0 1px rgba(255,255,255,0.15) inset, 0 -2px 8px rgba(0,0,0,0.25) inset",
+              }}
+            >
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-x-6 top-0 h-px"
+                style={{
+                  background:
+                    "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.6) 50%, transparent 100%)",
+                }}
+              />
+              <span className="relative">Hablemos →</span>
+            </button>
+          </div>
         </div>
       )}
 
