@@ -651,7 +651,7 @@ function HeroComparator() {
                   }}
                 >
                   <span className="text-[10px] uppercase tracking-[0.16em] font-bold text-violet-200">
-                    + desde · pago único
+                    + pago único · desde
                   </span>
                   <span className="text-sm font-bold text-white tabular-nums">
                     ${oneTime.toLocaleString("es-AR")}

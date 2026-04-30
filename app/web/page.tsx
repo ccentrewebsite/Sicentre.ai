@@ -12,12 +12,12 @@ export default function WebPage() {
   return (
     <main>
       <WebHero />
-      <WebProcess />
-      <WebIncludes />
-      <WebSimulator />
-      <WebPortfolio />
-      <WebPricing />
-      <WebFaq />
+      <div className="service-block"><WebProcess /></div>
+      <div className="service-block"><WebIncludes /></div>
+      <div className="service-block"><WebSimulator /></div>
+      <div className="service-block"><WebPortfolio /></div>
+      <div className="service-block"><WebPricing /></div>
+      <div className="service-block"><WebFaq /></div>
       <PageFooter />
       <WhatsAppButton />
     </main>

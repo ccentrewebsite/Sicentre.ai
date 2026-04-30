@@ -66,7 +66,7 @@ export default function VozFeatures() {
     <section
       ref={sectionRef}
       className="py-24 md:py-32 px-6 md:px-10"
-      style={{ background: "#0D0B18" }}
+      style={{ background: "transparent" }}
     >
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-14 md:mb-16">

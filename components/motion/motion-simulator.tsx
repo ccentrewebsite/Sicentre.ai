@@ -122,7 +122,7 @@ export default function MotionSimulator() {
     <section
       ref={sectionRef}
       className="py-24 md:py-32 px-6 md:px-10 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #0F0C1E 0%, #0D0B18 100%)" }}
+      style={{ background: "transparent" }}
     >
       <div className="max-w-5xl mx-auto">
         {/* Header */}

@@ -12,13 +12,13 @@ export default function MotionPage() {
   return (
     <main>
       <MotionHero />
-      <MotionTypes />
-      <MotionProcess />
-      <MotionSimulator />
-      <MotionGallery />
-      <MotionTools />
-      <MotionPricing />
-      <MotionFaq />
+      <div className="service-block"><MotionTypes /></div>
+      <div className="service-block"><MotionProcess /></div>
+      <div className="service-block"><MotionSimulator /></div>
+      <div className="service-block"><MotionGallery /></div>
+      <div className="service-block"><MotionTools /></div>
+      <div className="service-block"><MotionPricing /></div>
+      <div className="service-block"><MotionFaq /></div>
       <PageFooter />
       <WhatsAppButton />
     </main>

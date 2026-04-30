@@ -67,7 +67,7 @@ export default function WebFaq() {
   return (
     <section
       className="py-24 md:py-32 px-6 md:px-10"
-      style={{ background: "#0F0C1E" }}
+      style={{ background: "transparent" }}
     >
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-14">

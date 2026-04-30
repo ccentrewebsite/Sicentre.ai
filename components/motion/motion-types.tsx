@@ -52,7 +52,7 @@ export default function MotionTypes() {
   const ActiveIcon = types[active].icon;
 
   return (
-    <section className="py-24 md:py-32 px-6 md:px-10" style={{ background: "#0F0C1E" }}>
+    <section className="py-24 md:py-32 px-6 md:px-10" style={{ background: "transparent" }}>
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-14 md:mb-16">
           <h2

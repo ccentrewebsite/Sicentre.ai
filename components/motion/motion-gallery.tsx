@@ -266,7 +266,7 @@ export default function MotionGallery() {
     <section
       ref={sectionRef}
       className="py-24 md:py-32 px-6 md:px-10 planet-section"
-      style={{ background: "#0F0C1E" }}
+      style={{ background: "transparent" }}
     >
       <div className="max-w-6xl mx-auto">
         <div

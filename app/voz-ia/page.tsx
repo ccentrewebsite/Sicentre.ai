@@ -12,14 +12,14 @@ export default function VozIAPage() {
   return (
     <main>
       <VozHero />
-      <VozProblem />
-      <VozFeatures />
-      <VozSimulator />
-      <VozHow />
-      <VozDemo />
-      <VozUsecases />
-      <VozPricing />
-      <VozFaq />
+      <div className="service-block"><VozProblem /></div>
+      <div className="service-block"><VozFeatures /></div>
+      <div className="service-block"><VozSimulator /></div>
+      <div className="service-block"><VozHow /></div>
+      <div className="service-block"><VozDemo /></div>
+      <div className="service-block"><VozUsecases /></div>
+      <div className="service-block"><VozPricing /></div>
+      <div className="service-block"><VozFaq /></div>
       <PageFooter />
       <WhatsAppButton />
     </main>

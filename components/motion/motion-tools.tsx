@@ -85,7 +85,7 @@ export default function MotionTools() {
     <section
       ref={sectionRef}
       className="py-24 md:py-32 px-6 md:px-10 planet-section-warm"
-      style={{ background: "#0D0B18" }}
+      style={{ background: "transparent" }}
     >
       <div className="max-w-5xl mx-auto">
         <div

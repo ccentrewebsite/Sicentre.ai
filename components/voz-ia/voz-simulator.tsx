@@ -443,7 +443,7 @@ export default function VozSimulator() {
   ];
 
   return (
-    <section className="py-24 md:py-32 px-6 md:px-10 overflow-hidden" style={{ background: "linear-gradient(180deg, #0F0C1E 0%, #0D0B18 100%)" }}>
+    <section className="py-24 md:py-32 px-6 md:px-10 overflow-hidden" style={{ background: "transparent" }}>
       <div className="max-w-2xl mx-auto">
         {/* Section header */}
         <div className="text-center mb-12">
