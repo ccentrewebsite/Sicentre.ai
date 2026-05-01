@@ -1,11 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { MessageCircle, Mail, MapPin, Check, ChevronRight } from "lucide-react";
+import { MessageCircle, Mail, MapPin, Check, ChevronRight, ChevronDown, Clock, ShieldCheck, Lightbulb, ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-// ── Same 4 qualification questions as landing ──────────────────────────────────
-
+/* ── Qualification questions ─────────────────────────────── */
 const STEPS = [
   {
     id: "servicio",
@@ -49,28 +48,138 @@ const STEPS = [
   },
 ];
 
+const TRUST_CHIPS = [
+  { icon: Clock,       title: "Respuesta en 24h",         sub: "Lun a vie · horario paraguayo" },
+  { icon: ShieldCheck, title: "Sin compromiso",           sub: "La consulta es gratis y sin presión" },
+  { icon: Lightbulb,   title: "Ideas desde el día 1",     sub: "Propuestas concretas, sin humo" },
+];
+
 const inputStyle = {
   background: "rgba(255,255,255,0.05)",
   border: "1px solid rgba(255,255,255,0.10)",
 };
 
-// ── Main component ─────────────────────────────────────────────────────────────
+/* ── Discrete alternative contact (collapsible) ──────────── */
+
+function AltContact({ leadName }: { leadName?: string }) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className="mt-6">
+      <button
+        onClick={() => setOpen((o) => !o)}
+        className="flex items-center justify-center gap-1.5 mx-auto px-4 py-2 rounded-full text-sm font-medium text-white/55 hover:text-white transition-colors"
+        aria-expanded={open}
+      >
+        ¿Prefiere otro canal?
+        <ChevronDown
+          size={14}
+          className={cn("transition-transform duration-200", open && "rotate-180")}
+        />
+      </button>
+
+      <div
+        className={cn(
+          "grid transition-[grid-template-rows,opacity] duration-300 ease-out",
+          open ? "grid-rows-[1fr] opacity-100 mt-4" : "grid-rows-[0fr] opacity-0 mt-0"
+        )}
+      >
+        <div className="overflow-hidden">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <a
+              href={`https://wa.me/595981000000?text=Hola%20Sicentre${leadName ? `%20soy%20${encodeURIComponent(leadName)}` : ""}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-3 p-3.5 rounded-2xl transition-all duration-200 hover:-translate-y-0.5"
+              style={{
+                background: "rgba(37,211,102,0.06)",
+                border: "1px solid rgba(37,211,102,0.22)",
+              }}
+            >
+              <span
+                className="inline-flex items-center justify-center w-9 h-9 rounded-xl shrink-0"
+                style={{ background: "rgba(37,211,102,0.20)" }}
+              >
+                <MessageCircle size={16} style={{ color: "#25D366" }} strokeWidth={2.2} />
+              </span>
+              <span className="flex-1 min-w-0">
+                <span className="block text-sm font-semibold text-white">WhatsApp</span>
+                <span className="block text-[11px] text-white/45 truncate">+595 981 000 000</span>
+              </span>
+              <span className="text-green-400 group-hover:translate-x-0.5 transition-transform">→</span>
+            </a>
+
+            <a
+              href="mailto:hola@sicentre.com"
+              className="group flex items-center gap-3 p-3.5 rounded-2xl transition-all duration-200 hover:-translate-y-0.5"
+              style={{
+                background: "rgba(124,58,237,0.06)",
+                border: "1px solid rgba(124,58,237,0.22)",
+              }}
+            >
+              <span
+                className="inline-flex items-center justify-center w-9 h-9 rounded-xl shrink-0"
+                style={{ background: "rgba(124,58,237,0.20)" }}
+              >
+                <Mail size={16} style={{ color: "#A78BFA" }} strokeWidth={2.2} />
+              </span>
+              <span className="flex-1 min-w-0">
+                <span className="block text-sm font-semibold text-white">Email</span>
+                <span className="block text-[11px] text-white/45 truncate">hola@sicentre.com</span>
+              </span>
+              <span className="text-violet-400 group-hover:translate-x-0.5 transition-transform">→</span>
+            </a>
+
+            <div
+              className="flex items-center gap-3 p-3.5 rounded-2xl"
+              style={{
+                background: "rgba(255,255,255,0.03)",
+                border: "1px solid rgba(255,255,255,0.10)",
+              }}
+            >
+              <span
+                className="inline-flex items-center justify-center w-9 h-9 rounded-xl shrink-0"
+                style={{ background: "rgba(255,255,255,0.06)" }}
+              >
+                <MapPin size={16} className="text-white/55" strokeWidth={2.2} />
+              </span>
+              <span className="flex-1 min-w-0">
+                <span className="block text-sm font-semibold text-white">Asunción, Paraguay</span>
+                <span className="block text-[11px] text-white/45">Atendemos toda Latinoamérica</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Main component ──────────────────────────────────────── */
 
 export default function ContactoPage() {
-  const [step, setStep] = useState(0);          // 0–3 = questions, 4 = contact form, 5 = success
+  const [step, setStep] = useState(0); // 0–3 = questions, 4 = contact form, 5 = success
   const [answers, setAnswers] = useState<Record<string, string>>({});
-  const [selected, setSelected] = useState("");
   const [contact, setContact] = useState({ nombre: "", whatsapp: "", email: "" });
   const [loading, setLoading] = useState(false);
 
-  const currentQ = STEPS[step];
-  const progress = Math.round((step / STEPS.length) * 100);
+  const isQuestion = step < STEPS.length;
+  const currentQ = isQuestion ? STEPS[step] : null;
+  const totalSteps = STEPS.length + 1; // questions + form
+  const stepLabel = step < STEPS.length ? step + 1 : STEPS.length + 1;
+  const progress = Math.min((step / totalSteps) * 100, 100);
 
-  function handleNext() {
-    if (!selected) return;
-    setAnswers((prev) => ({ ...prev, [currentQ.id]: selected }));
-    setSelected("");
+  /* Auto-advance on option select — no Next button needed */
+  function selectOption(value: string) {
+    if (!currentQ) return;
+    setAnswers((prev) => ({ ...prev, [currentQ.id]: value }));
     setStep((s) => s + 1);
+  }
+
+  function goBack() {
+    if (step > 0 && step <= STEPS.length) {
+      setStep((s) => s - 1);
+    }
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -79,201 +188,304 @@ export default function ContactoPage() {
     console.log("[Sicentre Contact]", { ...answers, ...contact });
     await new Promise((r) => setTimeout(r, 1200));
     setLoading(false);
-    setStep(5);
+    setStep(STEPS.length + 1); // success
   }
+
+  const isSuccess = step === STEPS.length + 1;
+  const isContactForm = step === STEPS.length;
 
   return (
     <div className="min-h-screen">
       {/* ── Hero ── */}
-      <div className="relative pt-32 pb-12 px-6 md:px-10 text-center overflow-hidden">
+      <div className="relative pt-32 pb-10 px-6 md:px-10 text-center overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px]" style={{ background: "radial-gradient(ellipse, rgba(124,58,237,0.2) 0%, transparent 70%)", filter: "blur(60px)" }} />
-          <div className="absolute top-10 right-1/4 w-[300px] h-[200px]" style={{ background: "radial-gradient(ellipse, rgba(234,88,12,0.12) 0%, transparent 70%)", filter: "blur(50px)" }} />
+          <div
+            className="absolute top-0 left-1/2 -translate-x-1/2"
+            style={{
+              width: "min(120vw, 720px)",
+              height: "300px",
+              background: "radial-gradient(ellipse, rgba(124,58,237,0.20) 0%, transparent 70%)",
+              filter: "blur(60px)",
+            }}
+          />
+          <div
+            className="absolute top-10 right-1/4"
+            style={{
+              width: "min(80vw, 320px)",
+              height: "200px",
+              background: "radial-gradient(ellipse, rgba(234,88,12,0.12) 0%, transparent 70%)",
+              filter: "blur(50px)",
+            }}
+          />
         </div>
-        <div className="relative z-10">
-          <h1 className="font-clash leading-[0.9] mb-5 text-white" style={{ fontSize: "clamp(4rem, 10vw, 9rem)", textShadow: "0 0 60px rgba(255,255,255,0.15)" }}>
+        <div className="relative z-10 max-w-3xl mx-auto">
+          <h1
+            className="font-clash leading-[0.9] mb-5 text-white"
+            style={{ fontSize: "clamp(3.2rem, 9vw, 7rem)", textShadow: "0 0 60px rgba(255,255,255,0.15)" }}
+          >
             Hablemos.
           </h1>
-          <p className="text-white/55 text-lg max-w-2xl mx-auto leading-relaxed">
-            Cuéntenos su proyecto. Le respondemos en menos de 24 horas con ideas concretas, sin costo y sin compromiso.
+          <p className="text-white/60 text-base md:text-lg max-w-xl mx-auto leading-relaxed">
+            Cuéntenos su proyecto en cuatro preguntas. Le respondemos en menos de 24 horas con ideas concretas, sin costo y sin compromiso.
           </p>
         </div>
       </div>
 
-      {/* ── Content ── */}
-      <div className="px-6 md:px-10 pb-24 max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
-
-          {/* ── Form ── */}
-          <div className="lg:col-span-3">
-            <div className="rounded-2xl p-7 md:p-8" style={{ backdropFilter: "blur(32px)", WebkitBackdropFilter: "blur(32px)", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.09)", boxShadow: "0 8px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.07)" }}>
-
-              {/* ── Success ── */}
-              {step === 5 ? (
-                <div className="flex flex-col items-center gap-4 py-10 text-center">
-                  <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ background: "linear-gradient(135deg, #7C3AED, #EA580C)" }}>
-                    <Check size={32} className="text-white" strokeWidth={2.5} />
-                  </div>
-                  <h3 className="font-clash text-3xl font-bold text-white">¡Mensaje enviado!</h3>
-                  <p className="text-white/55 text-sm max-w-xs leading-relaxed">
-                    Recibimos su consulta. Le respondemos en menos de 24 horas con ideas concretas y sin compromiso.
-                  </p>
-                  <a
-                    href="https://wa.me/595981000000?text=Hola%20Sicentre%2C%20acabo%20de%20enviar%20mi%20consulta"
-                    target="_blank" rel="noopener noreferrer"
-                    className="mt-2 inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-white text-sm transition-all hover:-translate-y-0.5"
-                    style={{ background: "#25D366" }}
+      {/* ── Trust chips strip ── */}
+      {!isSuccess && (
+        <div className="px-6 md:px-10 mb-8 md:mb-10">
+          <div className="max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {TRUST_CHIPS.map((c) => {
+              const Icon = c.icon;
+              return (
+                <div
+                  key={c.title}
+                  className="flex items-center gap-3 px-4 py-3 rounded-2xl"
+                  style={{
+                    background: "rgba(255,255,255,0.04)",
+                    border: "1px solid rgba(255,255,255,0.10)",
+                    backdropFilter: "blur(20px)",
+                  }}
+                >
+                  <span
+                    className="inline-flex items-center justify-center w-9 h-9 rounded-xl shrink-0"
+                    style={{
+                      background: "rgba(124,58,237,0.18)",
+                      border: "1px solid rgba(124,58,237,0.35)",
+                    }}
                   >
-                    <MessageCircle size={16} /> Escribir por WhatsApp
-                  </a>
+                    <Icon size={15} className="text-violet-200" strokeWidth={2.2} />
+                  </span>
+                  <div className="flex flex-col leading-tight">
+                    <span className="text-sm font-semibold text-white">{c.title}</span>
+                    <span className="text-[11px] text-white/45">{c.sub}</span>
+                  </div>
                 </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* ── Main focused card ── */}
+      <div className="px-6 md:px-10 pb-10 md:pb-14">
+        <div className="max-w-2xl mx-auto">
+          <div
+            className="rounded-3xl p-6 md:p-8"
+            style={{
+              backdropFilter: "blur(32px)",
+              WebkitBackdropFilter: "blur(32px)",
+              background: "rgba(20,16,38,0.55)",
+              border: "1px solid rgba(255,255,255,0.14)",
+              boxShadow: "0 24px 70px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08)",
+            }}
+          >
+            {/* ── Success ── */}
+            {isSuccess ? (
+              <div className="flex flex-col items-center gap-4 py-6 md:py-8 text-center">
+                <div
+                  className="w-16 h-16 rounded-full flex items-center justify-center"
+                  style={{ background: "linear-gradient(135deg, #7C3AED, #EA580C)" }}
+                >
+                  <Check size={32} className="text-white" strokeWidth={2.5} />
+                </div>
+                <h3 className="font-clash text-3xl font-bold text-white">¡Mensaje enviado!</h3>
+                <p className="text-white/60 text-sm max-w-md leading-relaxed">
+                  Recibimos su consulta{contact.nombre ? `, ${contact.nombre}` : ""}. Le respondemos en menos de 24 horas con ideas concretas y un plan a su medida.
+                </p>
+
+                {/* Contact options for follow-up — appear AFTER the form */}
+                <div className="w-full mt-3">
+                  <p className="text-[11px] uppercase tracking-[0.2em] font-semibold text-white/40 mb-3">
+                    Mientras tanto
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <a
+                      href={`https://wa.me/595981000000?text=Hola%20Sicentre${contact.nombre ? `%2C%20soy%20${encodeURIComponent(contact.nombre)}` : ""}%2C%20acabo%20de%20enviar%20mi%20consulta`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 px-4 py-3 rounded-full font-semibold text-white text-sm transition-all hover:-translate-y-0.5"
+                      style={{ background: "#25D366", boxShadow: "0 8px 22px rgba(37,211,102,0.30)" }}
+                    >
+                      <MessageCircle size={16} />
+                      Adelantar por WhatsApp
+                    </a>
+                    <a
+                      href="mailto:hola@sicentre.com"
+                      className="flex items-center justify-center gap-2 px-4 py-3 rounded-full font-semibold text-white text-sm transition-all hover:-translate-y-0.5"
+                      style={{
+                        background: "rgba(255,255,255,0.06)",
+                        border: "1px solid rgba(255,255,255,0.14)",
+                      }}
+                    >
+                      <Mail size={16} className="text-violet-300" />
+                      hola@sicentre.com
+                    </a>
+                  </div>
+                </div>
+              </div>
 
               /* ── Contact form ── */
-              ) : step === 4 ? (
-                <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+            ) : isContactForm ? (
+              <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                {/* Header with back */}
+                <div className="flex items-start justify-between gap-4">
                   <div>
-                    <p className="text-xs font-semibold tracking-[0.15em] uppercase text-violet-400/70 mb-1">Último paso</p>
-                    <h3 className="font-clash text-2xl text-white">¿Cómo le contactamos?</h3>
+                    <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-violet-300 mb-1">
+                      Último paso · {stepLabel} / {totalSteps}
+                    </p>
+                    <h3 className="font-clash text-2xl text-white leading-tight">¿Cómo le contactamos?</h3>
                   </div>
-
-                  {[
-                    { name: "nombre",   label: "Nombre *",   type: "text",  placeholder: "Juan Pérez"          },
-                    { name: "whatsapp", label: "WhatsApp *", type: "tel",   placeholder: "+595 981 000 000"     },
-                    { name: "email",    label: "Email",      type: "email", placeholder: "juan@empresa.com"     },
-                  ].map((f) => (
-                    <div key={f.name} className="flex flex-col gap-1.5">
-                      <label className="text-xs text-white/40 font-medium">{f.label}</label>
-                      <input
-                        type={f.type}
-                        required={f.label.includes("*")}
-                        placeholder={f.placeholder}
-                        value={contact[f.name as keyof typeof contact]}
-                        onChange={(e) => setContact((p) => ({ ...p, [f.name]: e.target.value }))}
-                        className="w-full px-4 py-3 rounded-xl text-white text-sm placeholder:text-white/25 outline-none transition-all focus:border-violet-500/50"
-                        style={inputStyle}
-                      />
-                    </div>
-                  ))}
-
-                  {/* Summary pills */}
-                  <div className="flex flex-wrap gap-2 pt-1">
-                    {Object.entries(answers).map(([key, val]) => {
-                      const q = STEPS.find((s) => s.id === key);
-                      const opt = q?.options.find((o) => o.value === val);
-                      return opt ? (
-                        <span key={key} className="text-xs px-3 py-1 rounded-full" style={{ background: "rgba(124,58,237,0.2)", border: "1px solid rgba(124,58,237,0.35)", color: "rgba(167,139,250,0.9)" }}>
-                          {opt.icon} {opt.label}
-                        </span>
-                      ) : null;
-                    })}
-                  </div>
-
-                  <button type="submit" disabled={loading} className="w-full flex items-center justify-center gap-2 py-3.5 rounded-full text-white font-semibold text-sm transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-violet-600/30 disabled:opacity-70" style={{ background: "linear-gradient(135deg, #7C3AED, #EA580C)" }}>
-                    {loading ? (
-                      <><svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" /></svg>Enviando...</>
-                    ) : "Enviar consulta →"}
+                  <button
+                    type="button"
+                    onClick={goBack}
+                    className="inline-flex items-center gap-1 text-xs text-white/45 hover:text-white/80 transition-colors px-2 py-1 rounded-md shrink-0"
+                  >
+                    <ArrowLeft size={12} /> Volver
                   </button>
-                </form>
+                </div>
+
+                {/* Progress */}
+                <div className="h-1 rounded-full" style={{ background: "rgba(255,255,255,0.08)" }}>
+                  <div
+                    className="h-1 rounded-full transition-all duration-500"
+                    style={{ width: `${(step / totalSteps) * 100}%`, background: "linear-gradient(90deg, #7C3AED, #EA580C)" }}
+                  />
+                </div>
+
+                {[
+                  { name: "nombre",   label: "Nombre",   type: "text",  placeholder: "Juan Pérez", required: true },
+                  { name: "whatsapp", label: "WhatsApp", type: "tel",   placeholder: "+595 981 000 000", required: true },
+                  { name: "email",    label: "Email (opcional)", type: "email", placeholder: "juan@empresa.com", required: false },
+                ].map((f) => (
+                  <div key={f.name} className="flex flex-col gap-1.5">
+                    <label className="text-xs text-white/55 font-medium">
+                      {f.label}{f.required && <span className="text-violet-300 ml-0.5">*</span>}
+                    </label>
+                    <input
+                      type={f.type}
+                      required={f.required}
+                      placeholder={f.placeholder}
+                      value={contact[f.name as keyof typeof contact]}
+                      onChange={(e) => setContact((p) => ({ ...p, [f.name]: e.target.value }))}
+                      className="w-full px-4 py-3 rounded-xl text-white text-sm placeholder:text-white/25 outline-none transition-all focus:border-violet-500/60"
+                      style={inputStyle}
+                    />
+                  </div>
+                ))}
+
+                {/* Recap pills of previous answers */}
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {Object.entries(answers).map(([key, val]) => {
+                    const q = STEPS.find((s) => s.id === key);
+                    const opt = q?.options.find((o) => o.value === val);
+                    return opt ? (
+                      <span
+                        key={key}
+                        className="text-[11px] px-2.5 py-1 rounded-full"
+                        style={{
+                          background: "rgba(124,58,237,0.18)",
+                          border: "1px solid rgba(124,58,237,0.35)",
+                          color: "rgba(196,181,253,0.95)",
+                        }}
+                      >
+                        {opt.icon} {opt.label}
+                      </span>
+                    ) : null;
+                  })}
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full flex items-center justify-center gap-2 py-3.5 rounded-full text-white font-semibold text-sm transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-violet-600/30 disabled:opacity-70"
+                  style={{ background: "linear-gradient(135deg, #7C3AED, #EA580C)" }}
+                >
+                  {loading ? (
+                    <>
+                      <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                      </svg>
+                      Enviando...
+                    </>
+                  ) : "Enviar consulta →"}
+                </button>
+              </form>
 
               /* ── Qualification questions ── */
-              ) : (
-                <div className="flex flex-col gap-6">
-                  {/* Progress bar */}
-                  <div className="flex flex-col gap-2">
-                    <div className="flex justify-between items-center">
-                      <span className="text-xs text-white/35">{step + 1} / {STEPS.length}</span>
-                      <span className="text-xs text-white/35">{progress}%</span>
-                    </div>
-                    <div className="h-1 rounded-full" style={{ background: "rgba(255,255,255,0.08)" }}>
-                      <div className="h-1 rounded-full transition-all duration-500" style={{ width: `${progress}%`, background: "linear-gradient(90deg, #7C3AED, #EA580C)" }} />
-                    </div>
+            ) : (
+              <div className="flex flex-col gap-6">
+                {/* Header with back + step */}
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-violet-300 mb-1">
+                      Pregunta {stepLabel} de {totalSteps}
+                    </p>
+                    <h3 className="font-clash text-xl md:text-2xl text-white leading-snug">
+                      {currentQ?.question}
+                    </h3>
                   </div>
+                  {step > 0 && (
+                    <button
+                      type="button"
+                      onClick={goBack}
+                      className="inline-flex items-center gap-1 text-xs text-white/45 hover:text-white/80 transition-colors px-2 py-1 rounded-md shrink-0"
+                    >
+                      <ArrowLeft size={12} /> Volver
+                    </button>
+                  )}
+                </div>
 
-                  {/* Question */}
-                  <h3 className="font-clash text-xl md:text-2xl text-white leading-snug">{currentQ.question}</h3>
+                {/* Progress bar */}
+                <div className="h-1 rounded-full" style={{ background: "rgba(255,255,255,0.08)" }}>
+                  <div
+                    className="h-1 rounded-full transition-all duration-500"
+                    style={{ width: `${progress}%`, background: "linear-gradient(90deg, #7C3AED, #EA580C)" }}
+                  />
+                </div>
 
-                  {/* Options */}
-                  <div className="grid grid-cols-2 gap-3">
-                    {currentQ.options.map((opt) => (
+                {/* Options — auto-advance on click */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {currentQ?.options.map((opt) => {
+                    const wasSelected = answers[currentQ.id] === opt.value;
+                    return (
                       <button
                         key={opt.value}
                         type="button"
-                        onClick={() => setSelected(opt.value)}
-                        className={cn("flex flex-col items-start gap-1.5 px-4 py-3.5 rounded-xl text-left transition-all duration-200", selected === opt.value ? "scale-[1.02]" : "hover:scale-[1.01]")}
+                        onClick={() => selectOption(opt.value)}
+                        className={cn(
+                          "group flex items-center gap-3 px-4 py-4 rounded-2xl text-left transition-all duration-200 hover:scale-[1.01] hover:-translate-y-0.5",
+                        )}
                         style={{
-                          background: selected === opt.value ? "rgba(124,58,237,0.22)" : "rgba(255,255,255,0.04)",
-                          border: `1px solid ${selected === opt.value ? "rgba(124,58,237,0.6)" : "rgba(255,255,255,0.08)"}`,
-                          boxShadow: selected === opt.value ? "0 0 20px rgba(124,58,237,0.2)" : "none",
+                          background: wasSelected ? "rgba(124,58,237,0.22)" : "rgba(255,255,255,0.04)",
+                          border: `1px solid ${wasSelected ? "rgba(124,58,237,0.55)" : "rgba(255,255,255,0.10)"}`,
+                          boxShadow: wasSelected ? "0 0 18px rgba(124,58,237,0.18)" : "none",
                         }}
                       >
-                        <span className="text-xl">{opt.icon}</span>
-                        <span className="text-sm font-medium text-white/85 leading-tight">{opt.label}</span>
+                        <span className="text-2xl shrink-0">{opt.icon}</span>
+                        <span className="text-sm font-semibold text-white/90 leading-tight flex-1">
+                          {opt.label}
+                        </span>
+                        <ChevronRight
+                          size={16}
+                          className="text-white/35 group-hover:text-violet-300 group-hover:translate-x-0.5 transition-all shrink-0"
+                        />
                       </button>
-                    ))}
-                  </div>
-
-                  {/* Next */}
-                  <button
-                    type="button"
-                    onClick={handleNext}
-                    disabled={!selected}
-                    className="w-full flex items-center justify-center gap-2 py-3.5 rounded-full text-white font-semibold text-sm transition-all hover:-translate-y-0.5 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:translate-y-0"
-                    style={{ background: selected ? "linear-gradient(135deg, #7C3AED, #EA580C)" : "rgba(255,255,255,0.08)" }}
-                  >
-                    {step === STEPS.length - 1 ? "Ver formulario de contacto" : "Siguiente"} <ChevronRight size={16} />
-                  </button>
+                    );
+                  })}
                 </div>
-              )}
-            </div>
+
+                {/* Hint */}
+                <p className="text-[11px] text-white/35 text-center">
+                  Toque una opción para continuar
+                </p>
+              </div>
+            )}
           </div>
 
-          {/* ── Sidebar ── */}
-          <div className="lg:col-span-2 flex flex-col gap-5 lg:pt-2">
-            <h2 className="font-clash text-xl font-bold text-white">Contacto directo.</h2>
-
-            <a href="https://wa.me/595981000000?text=Hola%20Sicentre%2C%20quiero%20saber%20m%C3%A1s" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-4 p-4 rounded-2xl transition-all duration-200" style={{ border: "1px solid rgba(37,211,102,0.2)", background: "rgba(37,211,102,0.04)" }}>
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: "rgba(37,211,102,0.2)", color: "#25D366" }}><MessageCircle size={18} /></div>
-              <div className="flex-1">
-                <p className="text-white font-semibold text-sm">WhatsApp</p>
-                <p className="text-white/50 text-xs">+595 981 000 000</p>
-              </div>
-              <span className="text-green-400 text-sm group-hover:translate-x-1 transition-transform">→</span>
-            </a>
-
-            <a href="mailto:hola@sicentre.com" className="group flex items-center gap-4 p-4 rounded-2xl transition-all duration-200" style={{ border: "1px solid rgba(124,58,237,0.2)", background: "rgba(124,58,237,0.04)" }}>
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: "rgba(124,58,237,0.2)", color: "#A78BFA" }}><Mail size={18} /></div>
-              <div className="flex-1">
-                <p className="text-white font-semibold text-sm">Email</p>
-                <p className="text-white/50 text-xs">hola@sicentre.com</p>
-              </div>
-              <span className="text-violet-400 text-sm group-hover:translate-x-1 transition-transform">→</span>
-            </a>
-
-            <div className="flex items-center gap-4 p-4 rounded-2xl" style={{ border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.02)" }}>
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)" }}><MapPin size={18} /></div>
-              <div>
-                <p className="text-white font-semibold text-sm">Asunción, Paraguay</p>
-                <p className="text-white/40 text-xs">Atendemos toda Latinoamérica</p>
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-4 mt-2">
-              {[
-                { icon: "⚡", title: "Respuesta en menos de 24h", sub: "Lun–Vie, horario paraguayo" },
-                { icon: "🔒", title: "Sin compromiso", sub: "La consulta es gratis y sin presión" },
-                { icon: "💡", title: "Ideas concretas desde el día 1", sub: "No vendemos humo, proponemos soluciones" },
-              ].map((arg) => (
-                <div key={arg.title} className="flex items-start gap-3">
-                  <span className="text-lg flex-shrink-0">{arg.icon}</span>
-                  <div>
-                    <p className="text-white/80 text-sm font-semibold">{arg.title}</p>
-                    <p className="text-white/40 text-xs">{arg.sub}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
+          {/* ── Discrete alt-contact toggle (only during questions/form) ── */}
+          {!isSuccess && <AltContact leadName={contact.nombre} />}
         </div>
       </div>
     </div>
