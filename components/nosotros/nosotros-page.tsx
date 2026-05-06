@@ -174,17 +174,17 @@ function GlassBlock({
   return (
     <section
       className={cn(
-        "relative max-w-[1280px] mx-auto my-10 md:my-14 px-6 md:px-12 lg:px-16 py-14 md:py-20 lg:py-24 rounded-[28px] md:rounded-[36px] overflow-hidden",
+        "relative max-w-[1280px] mx-auto my-5 md:my-8 px-6 md:px-12 lg:px-16 py-14 md:py-20 lg:py-24 rounded-[28px] md:rounded-[36px] overflow-hidden",
         className
       )}
       style={{
         background:
-          "linear-gradient(to bottom, rgba(20,16,38,0.42) 0%, rgba(13,11,24,0.48) 50%, rgba(20,16,38,0.42) 100%)",
-        backdropFilter: "blur(32px)",
-        WebkitBackdropFilter: "blur(32px)",
-        border: "1px solid rgba(255,255,255,0.14)",
+          "linear-gradient(to bottom, rgba(20,16,38,0.20) 0%, rgba(13,11,24,0.22) 50%, rgba(20,16,38,0.20) 100%)",
+        backdropFilter: "blur(28px)",
+        WebkitBackdropFilter: "blur(28px)",
+        border: "1px solid rgba(255,255,255,0.12)",
         boxShadow:
-          "inset 0 1px 0 rgba(255,255,255,0.08), 0 24px 70px rgba(0,0,0,0.40)",
+          "inset 0 1px 0 rgba(255,255,255,0.06), 0 24px 70px rgba(0,0,0,0.32)",
       }}
     >
       {glowColor && <div className="absolute" style={glowStyle} />}
@@ -231,7 +231,7 @@ export default function NosotrosPage() {
   return (
     <div className="bg-transparent">
       {/* ── Hero ─────────────────────────────────────────────── */}
-      <section className="relative min-h-[72vh] flex flex-col overflow-hidden">
+      <section className="relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div
             className="absolute top-[-120px] left-1/2 -translate-x-1/2 w-[760px] h-[520px] rounded-full hero-blob-violet"
@@ -252,21 +252,18 @@ export default function NosotrosPage() {
         <div
           ref={heroRef}
           className={cn(
-            "relative z-10 flex-1 flex items-center justify-center px-6 md:px-10 pt-32 pb-20 text-center transition-all duration-1000",
+            "relative z-10 px-6 md:px-10 pt-32 md:pt-40 pb-8 md:pb-10 text-center transition-all duration-1000",
             heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}
         >
-          <div className="max-w-4xl mx-auto">
-            <p className="uppercase tracking-[0.3em] text-xs font-semibold text-white/45 mb-7">
-              Nosotros
-            </p>
+          <div className="max-w-5xl mx-auto">
             <h1
-              className="font-bold text-white leading-[0.95] tracking-tight mb-8 font-clash"
+              className="font-bold text-white leading-[0.95] tracking-tight mb-12 md:mb-14 font-clash"
               style={{ fontSize: "clamp(2.6rem, 7.5vw, 6.2rem)" }}
             >
               No somos otra <span className="gradient-text whitespace-nowrap">agencia digital.</span>
             </h1>
-            <p className="text-base md:text-lg lg:text-xl text-white/65 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-white/68 max-w-[940px] mx-auto leading-relaxed">
               Construimos cada proyecto a mano, decisión por decisión. Sin templates, sin atajos, sin guion comercial. Para empresas que se niegan a desaparecer en el ruido digital.
             </p>
           </div>
@@ -282,9 +279,6 @@ export default function NosotrosPage() {
               visionVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             )}
           >
-            <p className="uppercase tracking-[0.3em] text-xs font-semibold text-violet-300/85 mb-6">
-              Visión
-            </p>
             <h2
               className="font-bold text-white leading-[1.05] tracking-tight mb-9 font-clash"
               style={{ fontSize: "clamp(2rem, 5vw, 4rem)" }}
@@ -315,9 +309,6 @@ export default function NosotrosPage() {
             )}
           >
             <div className="text-center mb-12 md:mb-14">
-              <p className="uppercase tracking-[0.3em] text-xs font-semibold text-orange-300/85 mb-5">
-                Equipo
-              </p>
               <h2
                 className="font-bold text-white leading-[1.05] tracking-tight font-clash mb-4 max-w-3xl mx-auto"
                 style={{ fontSize: "clamp(2rem, 5vw, 3.8rem)" }}
@@ -382,9 +373,6 @@ export default function NosotrosPage() {
             )}
           >
             <div className="mb-12 md:mb-14">
-              <p className="uppercase tracking-[0.3em] text-xs font-semibold text-violet-300/85 mb-5">
-                Método
-              </p>
               <h2
                 className="font-bold text-white leading-[1.05] tracking-tight font-clash mb-5"
                 style={{ fontSize: "clamp(2rem, 5vw, 3.8rem)" }}
@@ -442,9 +430,6 @@ export default function NosotrosPage() {
             )}
           >
             <div className="text-center mb-12 md:mb-14">
-              <p className="uppercase tracking-[0.3em] text-xs font-semibold text-orange-300/85 mb-5">
-                Manifiesto
-              </p>
               <h2
                 className="font-bold text-white leading-[1] tracking-tight font-clash mx-auto max-w-3xl"
                 style={{ fontSize: "clamp(2rem, 5vw, 3.8rem)" }}
