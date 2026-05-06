@@ -163,7 +163,7 @@ export default function VozPricing() {
             </ul>
             <a
               href="/precios"
-              className="block text-center w-full py-3.5 rounded-full font-semibold text-sm bg-gradient-to-r from-violet-600 to-orange-500 text-white hover:opacity-90 transition-all duration-200"
+              className="block text-center w-full py-3.5 rounded-full font-semibold text-sm bg-gradient-to-r from-violet-600 via-fuchsia-500 to-orange-500 text-white hover:opacity-90 transition-all duration-200"
             >
               Ver ULTRA →
             </a>

@@ -709,8 +709,8 @@ function HeroComparator() {
             }}
             className="inline-flex items-center justify-center gap-1.5 w-full py-2.5 rounded-full font-bold text-white text-sm transition-all duration-200 hover:-translate-y-0.5"
             style={{
-              background: "linear-gradient(135deg, #7C3AED, #EA580C)",
-              boxShadow: "0 8px 22px rgba(124,58,237,0.35)",
+              background: "linear-gradient(to right, #7C3AED, #D946EF, #F97316)",
+              boxShadow: "0 8px 22px rgba(217,70,239,0.35)",
             }}
           >
             <Zap size={13} fill="currentColor" />
@@ -1109,7 +1109,7 @@ export default function PricingPage() {
           <div className="text-center">
             <a
               href="/contacto"
-              className="inline-flex items-center gap-2 px-6 md:px-10 py-4 rounded-full bg-gradient-to-r from-violet-600 to-orange-500 text-white font-bold text-base md:text-lg hover:opacity-90 transition-all duration-200 shadow-2xl shadow-violet-600/30 hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 px-6 md:px-10 py-4 rounded-full bg-gradient-to-r from-violet-600 via-fuchsia-500 to-orange-500 text-white font-bold text-base md:text-lg hover:opacity-90 transition-all duration-200 shadow-2xl shadow-fuchsia-500/30 hover:-translate-y-0.5"
             >
               <Zap size={18} fill="currentColor" />
               Activar ULTRA →
