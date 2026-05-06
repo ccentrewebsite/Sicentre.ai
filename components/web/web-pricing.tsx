@@ -85,7 +85,7 @@ export default function WebPricing() {
 
               <div className="flex items-end gap-1.5 mb-1">
                 <span className="text-sm text-white/40">desde</span>
-                <span className="text-5xl font-bold text-white">${plan.price.toLocaleString("es-AR")}</span>
+                <span className="text-5xl font-bold text-white font-clash tabular-nums">${plan.price.toLocaleString("es-AR")}</span>
                 <span className="text-white/40 mb-1.5">USD</span>
               </div>
               <p className="text-xs text-violet-400/70 mb-6">Pago único · Sin mensualidades</p>

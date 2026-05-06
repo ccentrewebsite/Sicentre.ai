@@ -112,7 +112,7 @@ function PlanCard({
       </h3>
       <div className="flex items-baseline gap-1 mb-1">
         <span className="text-sm text-white/40">desde</span>
-        <span className="text-4xl font-bold text-white">${price}</span>
+        <span className="text-4xl font-bold text-white font-clash tabular-nums">${price}</span>
         <span className="text-white/50 text-sm">{plan.subtitle ? "USD" : "/mes"}</span>
       </div>
       {plan.subtitle && (
@@ -168,7 +168,7 @@ function UltraCard({ plan, annual }: { plan: PricingPlan; annual: boolean }) {
             <p className="text-white/50 text-sm mb-6">{plan.subtitle}</p>
             <div className="flex items-baseline gap-1">
               <span className="text-sm text-white/40">desde</span>
-              <span className="text-5xl font-bold text-white">${price}</span>
+              <span className="text-5xl font-bold text-white font-clash tabular-nums">${price}</span>
               <span className="text-white/50">/mes</span>
               {annual && (
                 <span className="ml-2 text-xs text-orange-400 bg-orange-500/10 border border-orange-500/20 px-2 py-0.5 rounded-full">

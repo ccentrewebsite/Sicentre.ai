@@ -130,10 +130,10 @@ export default function MotionPricing() {
 
               <div className="flex items-end gap-1 mb-6">
                 {plan.enterprise ? (
-                  <span className="text-2xl font-bold text-white">Sur devis</span>
+                  <span className="text-2xl font-bold text-white font-clash">Sur devis</span>
                 ) : (
                   <>
-                    <span className="text-4xl font-bold text-white">
+                    <span className="text-4xl font-bold text-white font-clash tabular-nums">
                       ${annual ? plan.priceAnnual.toLocaleString("es-AR") : plan.priceMonthly.toLocaleString("es-AR")}
                     </span>
                     <span className="text-white/40 mb-1">/mes</span>

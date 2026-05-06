@@ -110,7 +110,7 @@ export default function VozPricing() {
               </div>
 
               <div className="flex items-end gap-1 mb-6 mt-4">
-                <span className="text-5xl font-bold text-white">
+                <span className="text-5xl font-bold text-white font-clash tabular-nums">
                   ${annual ? plan.priceAnnual.toLocaleString("es-AR") : plan.priceMonthly.toLocaleString("es-AR")}
                 </span>
                 <span className="text-white/40 mb-1.5">/mes</span>
